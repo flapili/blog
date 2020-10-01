@@ -14,3 +14,7 @@ html {
 .no-text-decoration {
   text-decoration: none;
 }
+
+.flex {
+  display: flex;
+}
