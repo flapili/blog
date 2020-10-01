@@ -18,3 +18,7 @@ html {
 .flex {
   display: flex;
 }
+
+.block {
+  display: block;
+}
