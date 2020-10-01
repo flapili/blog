@@ -3,19 +3,19 @@
     <h1>Derniers posts</h1>
     <ul style="padding-inline-start: 0;">
       <li v-for="(article, i) in articles" :key="i" class="article">
-        <!-- <nuxt-link :to="article.path.split('/').pop()">
-
-        </nuxt-link> -->
-        <a :href="`posts/${article.path.split('/').pop()}`" class="article-link">
+        <nuxt-link :to="`posts/${article.path.split('/').pop()}`" class="no-text-decoration">
           <el-card>
             <h3 v-if="article.title">{{article.title}}</h3>
-            <span v-if="article.description">{{article.description}}</span>
-            
+            <p v-if="article.description">{{article.description}}</p>
             <div>
-
+              <span v-if="article.author_avatar">
+                <el-image :src="require(`~/assets/${author_avatar}`)" fit="cover" class="logo"></el-image>
+                </span>
+              <span v-if="article.author">{{article.author}}</span>
+              
             </div>
           </el-card>
-        </a>
+        </nuxt-link>
       </li>
     </ul>
 
@@ -36,9 +36,5 @@ export default {
   .article {
     display: block;
     margin-bottom: 10px;
-  }
-
-  .article-link {
-    text-decoration: none;
   }
 </style>

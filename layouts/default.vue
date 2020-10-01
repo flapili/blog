@@ -2,27 +2,28 @@
   <div>
     <el-container class="background">
       <el-header class="header">
-        <el-row class="background">
-          <el-col :md="{ span: 8, offset: 8}">
-            <el-menu
-              mode="horizontal"
-              background-color="#545c64"
-              text-color="#fff"
-              active-text-color="#ffd04b"
-              class="nav-menu"
-            >
-              <el-menu-item index="1" class="nav-menu-item">Accueil</el-menu-item>
-              <el-menu-item index="2" class="nav-menu-item">Bio</el-menu-item>
-              <el-menu-item index="3" class="nav-menu-item">CV</el-menu-item>
-              <el-menu-item index="4" class="nav-menu-item">
-                <nuxt-link to="/posts" class="no-text-decoration">Posts</nuxt-link>
-                
+        <span class="flex span-logo">
+          <el-image :src="require(`~/assets/logo.webp`)" fit="cover" class="logo"></el-image>
+        </span>
+        
+        <span class="flex">
+          <el-menu
+            mode="horizontal"
+            background-color="#545c64"
+            text-color="#fff"
+            active-text-color="#ffd04b"
+            class="nav-menu"
+          >
+            <el-menu-item index="1" class="nav-menu-item">
+              <nuxt-link to="/" class="no-text-decoration">Accueil</nuxt-link>
               </el-menu-item>
-            </el-menu>            
-          </el-col>
-          <el-col></el-col>
-        </el-row>
-
+            <!-- <el-menu-item index="2" class="nav-menu-item">Bio</el-menu-item> -->
+            <!-- <el-menu-item index="3" class="nav-menu-item">CV</el-menu-item> -->
+            <el-menu-item index="4" class="nav-menu-item">
+              <nuxt-link to="/posts" class="no-text-decoration">Posts</nuxt-link>
+            </el-menu-item>
+          </el-menu> 
+        </span>
       </el-header>
 
       <el-main class="main">
@@ -71,6 +72,12 @@
     background-color: gainsboro;
   }
 
+  .header {
+    padding: 0;
+    display: flex;
+    background-color: #545c64;
+  }
+
   .main {
     min-height: 100vh;
     min-height: calc(100vh - 120px);
@@ -85,12 +92,15 @@
     font-size: 1.25em;
   }
 
-  .nav-menu-item:first-child {
-    border-bottom-left-radius: 25px;
+  .span-logo {
+    padding-left: 10px;
+    padding-top: 10px;
   }
 
-  .nav-menu {
-    border-bottom-left-radius: 25px;
-    border-bottom-right-radius: 25px;
-    }
+  .logo {
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+  }
+
 </style>
