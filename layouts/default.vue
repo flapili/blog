@@ -15,12 +15,12 @@
             class="nav-menu"
           >
             <el-menu-item index="1" class="nav-menu-item">
-              <nuxt-link to="/" class="no-text-decoration">Accueil</nuxt-link>
+              <nuxt-link to="/" class="no-text-decoration block">Accueil</nuxt-link>
               </el-menu-item>
-            <!-- <el-menu-item index="2" class="nav-menu-item">Bio</el-menu-item> -->
-            <!-- <el-menu-item index="3" class="nav-menu-item">CV</el-menu-item> -->
+            <el-menu-item index="2" class="nav-menu-item">Bio</el-menu-item>
+            <el-menu-item index="3" class="nav-menu-item">CV</el-menu-item>
             <el-menu-item index="4" class="nav-menu-item">
-              <nuxt-link to="/posts" class="no-text-decoration">Posts</nuxt-link>
+              <nuxt-link to="/posts" class="no-text-decoration block">Posts</nuxt-link>
             </el-menu-item>
           </el-menu> 
         </span>
@@ -45,27 +45,6 @@
     </el-container>
   </div>
 </template>
-
-
-<script>
-  export default {
-    computed: {
-      articles() {
-        return this.$store.state.articles.articles
-      }
-    },
-
-    async fetch() {
-      const last_articles = await this.$content("articles")
-        .only(["title", "updatedAt", "author", "description"])
-        .sortBy("updatedAt", "desc")
-        .limit(10)
-        .fetch()
-
-      await this.$store.commit('articles/update_last', last_articles)
-    },
-  };
-</script>
 
 <style scoped>
   .background {
