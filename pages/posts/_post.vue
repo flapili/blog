@@ -21,7 +21,7 @@
   export default {
     async asyncData({ $content, params }) {
       try {
-        const article = await $content('articles', params.post).fetch()
+        const article = await $content('posts', params.post).fetch()
         return {article}
       }
       catch (error) {
