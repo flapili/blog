@@ -1,19 +1,22 @@
 <template>
-  <el-card>
-    <article>
-      <h1 v-if="article.title" class="title text-center">{{article.title}}</h1>
+  <el-row>
+    <el-col :lg="{ span: 16, offset: 4 }">
+      <el-card>
+        <article>
+          <h1 v-if="article.title" class="title text-center">{{article.title}}</h1>
 
-      <nav style="margin-bottom: 50px;">
-        <ul>
-          <li v-for="link of article.toc" :key="link.id" class="nav-item">
-            <NuxtLink :to="`#${link.id}`">{{ link.text }}</NuxtLink>
-          </li>
-        </ul>
-      </nav>
-      
-      <nuxt-content :document="article" />
-    </article>  
-  </el-card>
+          <nav style="margin-bottom: 50px;">
+            <ul>
+              <li v-for="link of article.toc" :key="link.id" class="nav-item">
+                <NuxtLink :to="`#${link.id}`">{{ link.text }}</NuxtLink>
+              </li>
+            </ul>
+          </nav>
+          <nuxt-content :document="article" />
+        </article>  
+      </el-card>
+    </el-col>
+  </el-row>
 
 </template>
 
