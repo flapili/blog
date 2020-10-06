@@ -11,7 +11,7 @@
         </span>
 
         <el-collapse-transition>
-          <span class="flex" v-show="show_menu">
+          <span class="flex" v-if="show_menu">
             <el-menu
               mode="horizontal"
               background-color="#545c64"
@@ -105,7 +105,7 @@ export default {
   color: #ffd04b;
 }
 
-@media only screen and (max-width: 400px) {
+@media only screen and (max-width: 363px) {
   .bouton-disable-nav-menu {
     display: block;
   }
