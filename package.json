@@ -19,7 +19,15 @@
     "@nuxtjs/pwa": "^3.0.2",
     "core-js": "^3.6.5",
     "element-ui": "^2.13.2",
-    "nuxt": "^2.14.5"
+    "nuxt": "^2.14.5",
+    "nuxt-ssr-screen-size": "github:hugojerez/nuxt-ssr-screen-size"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "coffee-loader": "^1.0.0",
+    "coffeescript": "^2.5.1",
+    "node-sass": "^4.14.1",
+    "pug": "2.0.3",
+    "pug-plain-loader": "^1.0.0",
+    "sass-loader": "^10.0.2"
+  }
 }
