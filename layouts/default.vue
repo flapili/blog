@@ -2,13 +2,15 @@
   <div>
     <el-container class="background">
       <el-header class="header">
-        <span class="flex span-logo">
-          <el-image
-            :src="require(`~/assets/logo.webp`)"
-            fit="cover"
-            class="logo"
-          ></el-image>
-        </span>
+        <nuxt-link to="/">
+          <span class="flex span-logo">
+            <el-image
+              :src="require(`~/assets/logo.webp`)"
+              fit="cover"
+              class="logo"
+            ></el-image>
+          </span>
+        </nuxt-link>
 
         <el-collapse-transition>
           <span class="flex" v-if="show_menu">
