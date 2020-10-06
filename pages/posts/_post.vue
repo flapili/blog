@@ -1,47 +1,97 @@
 <template>
-  <el-row>
-    <el-col :md="{ span: 16, offset: 4 }">
-      <el-card>
-        <article>
-          <!-- title -->
-          <template v-if="article.title">
-            <h1 class="title text-center">
-              {{ article.title }}
-            </h1>
-          </template>
+  <div>
+    <el-row>
+      <el-col :md="{ span: 16, offset: 4 }">
+        <el-card>
+          <article>
+            <!-- title -->
+            <template v-if="article.title">
+              <h1 class="title text-center">
+                {{ article.title }}
+              </h1>
+            </template>
 
-          <!-- article img -->
-          <template v-if="article.image">
-            <div class="flex" style="justify-content: center">
-              <el-image
-                :src="require(`~/assets/${article.image}`)"
-                class="logo"
-              ></el-image>
-            </div>
-          </template>
+            <!-- article img -->
+            <template v-if="article.image">
+              <div class="flex" style="justify-content: center">
+                <el-image
+                  :src="require(`~/assets/${article.image}`)"
+                  class="logo"
+                ></el-image>
+              </div>
+            </template>
 
-          <template v-if="article.toc.length">
-            <span>Sommaire</span>
-            <nav style="margin-bottom: 50px">
-              <ul style="padding-inline-start: 0">
-                <li v-for="link in article.toc" :key="link.id" class="nav-item">
-                  <nuxt-link
-                    :to="`#${link.id}`"
-                    :class="`toc-${link.depth}`"
-                    class="no-text-decoration toc"
+            <!-- article toc -->
+            <template v-if="article.toc.length">
+              <span>Sommaire</span>
+              <nav style="margin-bottom: 50px">
+                <ul style="padding-inline-start: 0">
+                  <li
+                    v-for="link in article.toc"
+                    :key="link.id"
+                    class="nav-item"
                   >
-                    {{ link.text }}
-                  </nuxt-link>
-                </li>
-              </ul>
-            </nav>
-          </template>
-          <nuxt-content :document="article" />
-          <span><i>{{ new Date(article.updatedAt).toLocaleString() }}</i></span>
-        </article>
-      </el-card>
-    </el-col>
-  </el-row>
+                    <nuxt-link
+                      :to="`#${link.id}`"
+                      :class="`toc-${link.depth}`"
+                      class="no-text-decoration toc"
+                    >
+                      {{ link.text }}
+                    </nuxt-link>
+                  </li>
+                </ul>
+              </nav>
+            </template>
+
+            <!-- article -->
+            <nuxt-content :document="article" />
+
+            <!-- date -->
+            <span>
+              <i>{{ new Date(article.updatedAt).toLocaleString() }}</i>
+            </span>
+          </article>
+        </el-card>
+      </el-col>
+    </el-row>
+
+    <el-row type="flex" justify="space-around" style="margin-top: 16px;">
+      <el-col :lg="{ span: 5 }">
+        <nuxt-link
+          :to="`${prev.path}`"
+          class="no-text-decoration nav-button"
+          v-if="prev"
+        >
+          <el-card shadow="hover" class="page-down">
+            <i><strong>{{ prev.title }}</strong></i>
+          </el-card>
+        </nuxt-link>
+      </el-col>
+
+      <el-col :lg="{ span: 5 }">
+        <nuxt-link
+          :to="`${next.path}`"
+          class="no-text-decoration nav-button"
+          v-if="next"
+        >
+          <el-card shadow="hover" class="page-down">
+            <i><strong>{{ next.title }}</strong></i>
+          </el-card>
+        </nuxt-link>
+      </el-col>
+
+      <!-- <el-col :lg="{ span: 5 }">
+          <nuxt-link
+            :to="`${this.$route.path}?page=${this.page + 1}`"
+            class="no-text-decoration nav-button"
+          >
+            <el-card v-if="articles.length > 9" shadow="hover" class="page-up">
+              page suivante
+            </el-card>
+          </nuxt-link>
+        </el-col> -->
+    </el-row>
+  </div>
 </template>
 
 <script>
@@ -49,10 +99,17 @@ export default {
   async asyncData({ $content, params }) {
     try {
       const article = await $content("posts", params.post).fetch();
-      return { article };
+
+      const [prev, next] = await $content("posts")
+        .only(["title", "path"])
+        .sortBy("updatedAt")
+        .surround(params.post)
+        .fetch();
+
+      return { article, prev, next };
     } catch (error) {
       const article = await $content("404").fetch();
-      return { article };
+      return { article, prev: null, next: null };
     }
   },
 
@@ -110,10 +167,21 @@ export default {
 .toc-1 {
   margin-left: 0px;
 }
+
 .toc-2 {
   margin-left: 10px;
 }
+
 .toc-3 {
   margin-left: 20px;
+}
+
+.nav-button {
+  color: inherit;
+}
+
+.page-up,
+.page-down {
+  text-align: center;
 }
 </style>
