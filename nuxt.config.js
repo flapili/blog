@@ -59,7 +59,9 @@ export default {
   axios: {},
 
   // Content module configuration (https://go.nuxtjs.dev/content-config)
-  content: {},
+  content: {
+    fullTextSearchFields: ['title', 'description', 'slug', 'text', 'tags'],
+  },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {

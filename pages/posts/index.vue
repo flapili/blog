@@ -3,12 +3,33 @@
     <el-row>
       <el-col :md="{ span: 16, offset: 4 }">
         <h1 class="text-center">Tous les posts</h1>
+        <el-autocomplete
+          placeholder="Cherchez quelque chose"
+          v-model="search_query"
+          :fetch-suggestions="suggest_topic"
+          @keypress.enter.native="search"
+          class="block"
+        >
+          <el-button
+            slot="append"
+            icon="el-icon-search"
+            @click="search"
+          ></el-button>
+        </el-autocomplete>
+
         <template v-if="articles.length">
           <ul style="padding-inline-start: 0">
             <li v-for="(article, i) in articles" :key="i" class="article">
               <nuxt-link :to="article.path" class="no-text-decoration">
                 <el-card shadow="hover">
-                  <h3 v-if="article.title">{{ article.title }}</h3>
+                  <h3 v-if="article.title" class="title">
+                    {{ article.title }}
+                  </h3>
+                  <span
+                    ><i>{{
+                      new Date(article.updatedAt).toLocaleString()
+                    }}</i></span
+                  >
                   <div class="flex">
                     <el-image
                       v-if="article.image"
@@ -36,13 +57,14 @@
           </ul>
         </template>
         <template v-else>
-          <el-card shadow="hover">
+          <el-card shadow="hover" style="margin-top: 1rem">
+            <h1>{{ error.title }}</h1>
             <nuxt-content :document="error" />
           </el-card>
         </template>
       </el-col>
     </el-row>
-    <template v-if="articles.length">
+    <template v-if="articles.length && !searched">
       <el-row type="flex" justify="space-around">
         <el-col :lg="{ span: 5 }">
           <nuxt-link
@@ -74,6 +96,46 @@ export default {
   watchQuery: ["page"],
 
   key: (to) => to.fullPath,
+
+  data() {
+    return {
+      search_query: "",
+      searched: false,
+    };
+  },
+
+  methods: {
+    async search() {
+      this.articles = await this.$content("posts")
+        .only([
+          "title",
+          "updatedAt",
+          "author",
+          "description",
+          "path",
+          "author_avatar",
+          "image",
+        ])
+        .sortBy("updatedAt", "desc")
+        .search(this.search_query)
+        .fetch();
+      if (!this.articles.length) {
+        this.error = await this.$content("404").fetch();
+      }
+      this.searched = true;
+    },
+
+    async suggest_topic(qs, cb) {
+      if (!qs) {
+        return cb(this.topic.map((x) => ({ value: x })));
+      }
+      return cb(
+        this.topic
+          .filter((x) => x.toLowerCase().indexOf(qs.toLowerCase()) === 0)
+          .map((x) => ({ value: x }))
+      );
+    },
+  },
 
   computed: {
     page() {
@@ -117,16 +179,26 @@ export default {
       error = await $content("404").fetch();
     }
 
+    const tags = await $content("posts")
+      .where({ tags: { $gt: "" } })
+      .fetch();
+
+    const topic = [...new Set(tags.map((x) => x.tags.split(" ")).flat())];
+    topic.sort((a, b) => a.localeCompare(b));
+
     return {
       articles,
       error,
+      topic,
     };
   },
-
 };
 </script>
 
 <style scoped>
+.title {
+  margin-block-end: 0;
+}
 .article {
   display: block;
   margin-bottom: 20px;
