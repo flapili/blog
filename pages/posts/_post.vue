@@ -37,6 +37,7 @@
             </nav>
           </template>
           <nuxt-content :document="article" />
+          <span><i>{{ new Date(article.updatedAt).toLocaleString() }}</i></span>
         </article>
       </el-card>
     </el-col>
