@@ -68,17 +68,17 @@
       <el-row type="flex" justify="space-around">
         <el-col :lg="{ span: 5 }">
           <nuxt-link
-            :to="`${this.$route.path}?page=${this.page - 1}`"
+            :to="`${$route.path}?page=${page - 1}`"
             class="no-text-decoration nav-button"
           >
-            <el-card v-if="this.page > 1" shadow="hover" class="page-down">
+            <el-card v-if="page > 1" shadow="hover" class="page-down">
               page précédente
             </el-card>
           </nuxt-link>
         </el-col>
         <el-col :lg="{ span: 5 }">
           <nuxt-link
-            :to="`${this.$route.path}?page=${this.page + 1}`"
+            :to="`${$route.path}?page=${page + 1}`"
             class="no-text-decoration nav-button"
           >
             <el-card v-if="articles.length > 9" shadow="hover" class="page-up">
