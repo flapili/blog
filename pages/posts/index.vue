@@ -1,7 +1,7 @@
 <template>
   <div>
     <el-row>
-      <el-col :lg="{ span: 16, offset: 4 }">
+      <el-col :md="{ span: 16, offset: 4 }">
         <h1 class="text-center">Tous les posts</h1>
         <template v-if="articles.length">
           <ul style="padding-inline-start: 0">
@@ -9,7 +9,14 @@
               <nuxt-link :to="article.path" class="no-text-decoration">
                 <el-card shadow="hover">
                   <h3 v-if="article.title">{{ article.title }}</h3>
-                  <p v-if="article.description">{{ article.description }}</p>
+                  <div class="flex">
+                    <el-image
+                      v-if="article.image"
+                      :src="require(`~/assets/${article.image}`)"
+                      fit="scale-down"
+                    ></el-image>
+                    <p v-if="article.description">{{ article.description }}</p>
+                  </div>
 
                   <div class="author">
                     <template v-if="article.author"
@@ -38,28 +45,24 @@
     <template v-if="articles.length">
       <el-row type="flex" justify="space-around">
         <el-col :lg="{ span: 5 }">
-          <el-card v-if="this.page > 1" shadow="hover">
-            <nuxt-link
-              :to="`${this.$route.path}?page=${this.page - 1}`"
-              class="no-text-decoration nav-button"
-            >
+          <nuxt-link
+            :to="`${this.$route.path}?page=${this.page - 1}`"
+            class="no-text-decoration nav-button"
+          >
+            <el-card v-if="this.page > 1" shadow="hover" class="page-down">
               page précédente
-            </nuxt-link>
-          </el-card>
+            </el-card>
+          </nuxt-link>
         </el-col>
         <el-col :lg="{ span: 5 }">
-          <el-card
-            v-if="articles.length > 9"
-            shadow="hover"
-            style="text-align: right"
+          <nuxt-link
+            :to="`${this.$route.path}?page=${this.page + 1}`"
+            class="no-text-decoration nav-button"
           >
-            <nuxt-link
-              :to="`${this.$route.path}?page=${this.page + 1}`"
-              class="no-text-decoration nav-button"
-            >
+            <el-card v-if="articles.length > 9" shadow="hover" class="page-up">
               page suivante
-            </nuxt-link>
-          </el-card>
+            </el-card>
+          </nuxt-link>
         </el-col>
       </el-row>
     </template>
@@ -69,6 +72,8 @@
 <script>
 export default {
   watchQuery: ["page"],
+
+  key: (to) => to.fullPath,
 
   computed: {
     page() {
@@ -101,6 +106,7 @@ export default {
         "description",
         "path",
         "author_avatar",
+        "image",
       ])
       .sortBy("updatedAt", "desc")
       .skip((page - 1) * 10)
@@ -116,15 +122,14 @@ export default {
       error,
     };
   },
+
 };
 </script>
 
 <style scoped>
-
-
 .article {
   display: block;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .author {
@@ -148,4 +153,8 @@ export default {
   color: inherit;
 }
 
+.page-up,
+.page-down {
+  text-align: center;
+}
 </style>
