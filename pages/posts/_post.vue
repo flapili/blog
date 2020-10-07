@@ -24,7 +24,7 @@
               </i>
               <span v-if="article.author.avatar"> </span>
             </div>
-
+            
               <!-- date -->
               <br>
             </div>
@@ -70,6 +70,8 @@
       </el-col>
     </el-row>
 
+
+     <!-- article précédant -->
     <el-row type="flex" justify="space-around" style="margin-top: 16px">
       <el-col :lg="{ span: 5 }">
         <nuxt-link
@@ -85,6 +87,7 @@
         </nuxt-link>
       </el-col>
 
+      <!-- article suivant -->
       <el-col :lg="{ span: 5 }">
         <nuxt-link
           :to="`${next.path}`"
