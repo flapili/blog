@@ -4,7 +4,7 @@ description: test
 author:
     name: flapili
     avatar: logo.webp
-tags: python print
+tags: python;print
 ---
 
 # Comment faire un print ?
