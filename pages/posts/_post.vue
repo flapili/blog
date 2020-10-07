@@ -11,12 +11,31 @@
               </h1>
             </template>
 
+            <!-- author -->
+            <div class="flex" style="align-items: flex;">
+              <el-image
+              :src="require(`~/assets/${article.author.avatar}`)"
+              fit="cover"
+              class="logo"
+            ></el-image>
+              <div class="author" v-if="article.author">
+              <i v-if="article.author.name" class="author-name">
+                {{ article.author.name }}
+              </i>
+              <span v-if="article.author.avatar"> </span>
+            </div>
+
+              <!-- date -->
+              <br>
+            </div>
+                <i class="date">{{ new Date(article.updatedAt).toLocaleString() }}</i>
+                      
+
             <!-- article img -->
             <template v-if="article.image">
               <div class="flex" style="justify-content: center">
                 <el-image
                   :src="require(`~/assets/${article.image}`)"
-                  class="logo"
                 ></el-image>
               </div>
             </template>
@@ -43,19 +62,15 @@
               </nav>
             </template>
 
-            <!-- article -->
+            <!-- content -->
             <nuxt-content :document="article" />
 
-            <!-- date -->
-            <span>
-              <i>{{ new Date(article.updatedAt).toLocaleString() }}</i>
-            </span>
           </article>
         </el-card>
       </el-col>
     </el-row>
 
-    <el-row type="flex" justify="space-around" style="margin-top: 16px;">
+    <el-row type="flex" justify="space-around" style="margin-top: 16px">
       <el-col :lg="{ span: 5 }">
         <nuxt-link
           :to="`${prev.path}`"
@@ -63,7 +78,9 @@
           v-if="prev"
         >
           <el-card shadow="hover" class="page-down">
-            <i><strong>{{ prev.title }}</strong></i>
+            <i
+              ><strong>{{ prev.title }}</strong></i
+            >
           </el-card>
         </nuxt-link>
       </el-col>
@@ -75,21 +92,12 @@
           v-if="next"
         >
           <el-card shadow="hover" class="page-down">
-            <i><strong>{{ next.title }}</strong></i>
+            <i
+              ><strong>{{ next.title }}</strong></i
+            >
           </el-card>
         </nuxt-link>
       </el-col>
-
-      <!-- <el-col :lg="{ span: 5 }">
-          <nuxt-link
-            :to="`${this.$route.path}?page=${this.page + 1}`"
-            class="no-text-decoration nav-button"
-          >
-            <el-card v-if="articles.length > 9" shadow="hover" class="page-up">
-              page suivante
-            </el-card>
-          </nuxt-link>
-        </el-col> -->
     </el-row>
   </div>
 </template>
@@ -151,10 +159,34 @@ export default {
 </script>
 
 <style scoped>
+
 .title {
   font-size: 2.5em;
   margin-block-end: 0;
 }
+
+.author {
+  padding-bottom: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.author-name {
+  padding-left: 10px;
+  padding-bottom: 0px;
+}
+
+.logo {
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+}
+
+.date {
+  margin-left: auto;
+  margin-right: 50px;
+}
+
 .nav-item {
   list-style-type: none;
   text-decoration: none !important;
@@ -184,4 +216,6 @@ export default {
 .page-down {
   text-align: center;
 }
+
+
 </style>
