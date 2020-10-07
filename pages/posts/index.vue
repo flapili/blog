@@ -22,30 +22,50 @@
             <li v-for="(article, i) in articles" :key="i" class="article">
               <nuxt-link :to="article.path" class="no-text-decoration">
                 <el-card shadow="hover">
+                  <!-- tags -->
+                  <div>
+                    <el-tag
+                      v-for="(tag, i) in Array.from(
+                        new Set(article.tags.split(' '))
+                      )"
+                      :key="i"
+                      type="info"
+                      class="tag"
+                    >
+                      {{ tag }}</el-tag
+                    >
+                  </div>
+
+                  <!-- title -->
                   <h3 v-if="article.title" class="title">
                     {{ article.title }}
                   </h3>
-                  <span
-                    ><i>{{
-                      new Date(article.updatedAt).toLocaleString()
-                    }}</i></span
-                  >
+
+                  <!-- date -->
+                  <span>
+                    <i>{{ new Date(article.updatedAt).toLocaleString() }}</i>
+                  </span>
+
+                  <!-- image -->
                   <div class="flex">
                     <el-image
                       v-if="article.image"
                       :src="require(`~/assets/${article.image}`)"
                       fit="scale-down"
                     ></el-image>
+
+                    <!-- description -->
                     <p v-if="article.description">{{ article.description }}</p>
                   </div>
 
-                  <div class="author">
-                    <template v-if="article.author"
-                      ><i class="author-name">{{ article.author }}</i></template
-                    >
-                    <span v-if="article.author_avatar">
+                  <!-- author -->
+                  <div class="author" v-if="article.author">
+                    <i v-if="article.author.name" class="author-name">
+                      {{ article.author.name }}
+                    </i>
+                    <span v-if="article.author.avatar">
                       <el-image
-                        :src="require(`~/assets/${article.author_avatar}`)"
+                        :src="require(`~/assets/${article.author.avatar}`)"
                         fit="cover"
                         class="logo"
                       ></el-image>
@@ -56,6 +76,8 @@
             </li>
           </ul>
         </template>
+
+        <!-- error 404 -->
         <template v-else>
           <el-card shadow="hover" style="margin-top: 1rem">
             <h1>{{ error.title }}</h1>
@@ -64,6 +86,7 @@
         </template>
       </el-col>
     </el-row>
+
     <template v-if="articles.length && !searched">
       <el-row type="flex" justify="space-around">
         <el-col :lg="{ span: 5 }">
@@ -115,6 +138,7 @@ export default {
           "path",
           "author_avatar",
           "image",
+          "tags",
         ])
         .sortBy("updatedAt", "desc")
         .search(this.search_query)
@@ -169,6 +193,7 @@ export default {
         "path",
         "author_avatar",
         "image",
+        "tags",
       ])
       .sortBy("updatedAt", "desc")
       .skip((page - 1) * 10)
@@ -196,6 +221,11 @@ export default {
 </script>
 
 <style scoped>
+
+.tag {
+  margin-right: 4px;
+}
+
 .title {
   margin-block-end: 0;
 }
