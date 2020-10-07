@@ -1,8 +1,10 @@
 ---
 title: test
 description: test
-author: flapili
-author_avatar: logo.webp
+author:
+    name: flapili
+    avatar: logo.webp
+tags: python print
 ---
 
 # Comment faire un print ?
