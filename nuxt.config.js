@@ -61,6 +61,11 @@ export default {
   // Content module configuration (https://go.nuxtjs.dev/content-config)
   content: {
     fullTextSearchFields: ['title', 'description', 'slug', 'text', 'tags'],
+    nestedProperties: [
+      "author.name",
+      "author.avatar",
+      "author.website_url",
+    ],
   },
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
