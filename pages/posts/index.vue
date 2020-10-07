@@ -26,7 +26,7 @@
                   <div>
                     <el-tag
                       v-for="(tag, i) in Array.from(
-                        new Set(article.tags.split(' '))
+                        new Set(article.tags.split(';'))
                       )"
                       :key="i"
                       type="info"
@@ -208,7 +208,7 @@ export default {
       .where({ tags: { $gt: "" } })
       .fetch();
 
-    const topic = [...new Set(tags.map((x) => x.tags.split(" ")).flat())];
+    const topic = [...new Set(tags.map((x) => x.tags.split(";")).flat())];
     topic.sort((a, b) => a.localeCompare(b));
 
     return {
