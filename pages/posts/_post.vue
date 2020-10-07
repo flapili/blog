@@ -133,6 +133,11 @@ export default {
           name: "description",
           content: this.article.description || "Blog de flapili",
         },
+        {
+          hid: "image",
+          name: "image",
+          content: `https://flapili.fr/_nuxt/assets/${this.article.image || "logo.webp"}`,
+        },
         // Open Graph
         {
           hid: "og:title",
@@ -144,6 +149,11 @@ export default {
           property: "og:description",
           content: this.article.description || "Blog de flapili",
         },
+        {
+          hid: "og:image",
+          name: "og:image",
+          content: `https://flapili.fr/_nuxt/assets/${this.article.image || "logo.webp"}`,
+        },
         // Twitter Card
         {
           hid: "twitter:title",
@@ -154,6 +164,11 @@ export default {
           hid: "twitter:description",
           name: "twitter:description",
           content: this.article.description || "Blog de flapili",
+        },
+        {
+          hid: "twitter:image",
+          name: "twitter:image",
+          content: `https://flapili.fr/_nuxt/assets/${this.article.image || "logo.webp"}`,
         },
       ],
     };
