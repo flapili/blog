@@ -6,7 +6,7 @@
         <el-autocomplete
           placeholder="Cherchez quelque chose"
           v-model="search_query"
-          :fetch-suggestions="suggest_topic"
+          :fetch-suggestions="fetch_tags"
           @keypress.enter.native="search"
           class="block"
         >
@@ -80,7 +80,6 @@
         <!-- error 404 -->
         <template v-else>
           <el-card shadow="hover" style="margin-top: 1rem">
-            <h1>{{ error.title }}</h1>
             <nuxt-content :document="error" />
           </el-card>
         </template>
@@ -142,6 +141,7 @@ export default {
         ])
         .sortBy("updatedAt", "desc")
         .search(this.search_query)
+        .where({ archived: false })
         .fetch();
       if (!this.articles.length) {
         this.error = await this.$content("404").fetch();
@@ -149,12 +149,12 @@ export default {
       this.searched = true;
     },
 
-    async suggest_topic(qs, cb) {
+    async fetch_tags(qs, cb) {
       if (!qs) {
-        return cb(this.topic.map((x) => ({ value: x })));
+        return cb(this.tags.map((x) => ({ value: x })));
       }
       return cb(
-        this.topic
+        this.tags
           .filter((x) => x.toLowerCase().indexOf(qs.toLowerCase()) === 0)
           .map((x) => ({ value: x }))
       );
@@ -196,6 +196,7 @@ export default {
         "tags",
       ])
       .sortBy("updatedAt", "desc")
+      .where({ archived: false })
       .skip((page - 1) * 10)
       .limit(10)
       .fetch();
@@ -204,24 +205,28 @@ export default {
       error = await $content("404").fetch();
     }
 
-    const tags = await $content("posts")
-      .where({ tags: { $gt: "" } })
+    const article_with_tags = await $content("posts")
+      .where({ archived: false, tags: { $gt: "" } })
+
       .fetch();
 
-    const topic = [...new Set(tags.map((x) => x.tags.split(";")).flat())];
-    topic.sort((a, b) => a.localeCompare(b));
+    const tags = [
+      ...new Set(
+        article_with_tags.map((article) => article.tags.split(";")).flat()
+      ),
+    ];
+    tags.sort((a, b) => a.localeCompare(b));
 
     return {
       articles,
       error,
-      topic,
+      tags,
     };
   },
 };
 </script>
 
 <style scoped>
-
 .tag {
   margin-right: 4px;
 }

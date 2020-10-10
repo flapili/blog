@@ -3,7 +3,7 @@
     <el-row>
       <el-col :md="{ span: 16, offset: 4 }">
         <el-card>
-          <article>
+          <article v-if="error==false">
             <!-- title -->
             <template v-if="article.title">
               <h1 class="title text-center">
@@ -12,7 +12,7 @@
             </template>
 
             <!-- author -->
-            <div class="flex" style="align-items: flex;">
+            <div v-if="article.author" class="flex" style="align-items: flex;">
               <el-image
               :src="require(`~/assets/${article.author.avatar}`)"
               fit="cover"
@@ -42,8 +42,7 @@
 
             <!-- article toc -->
             <template v-if="article.toc.length">
-              <span>Sommaire</span>
-              <nav style="margin-bottom: 50px">
+              <nav style="margin-bottom: 50px; margin-top: 30px">Sommaire
                 <ul style="padding-inline-start: 0">
                   <li
                     v-for="link in article.toc"
@@ -64,8 +63,9 @@
 
             <!-- content -->
             <nuxt-content :document="article" />
-
           </article>
+          <!-- error -->
+          <nuxt-content v-else :document="article" />
         </el-card>
       </el-col>
     </el-row>
@@ -109,18 +109,19 @@
 export default {
   async asyncData({ $content, params }) {
     try {
-      const article = await $content("posts", params.post).fetch();
+      const article = await $content("posts", params.post).where({archived: false}).fetch();
 
       const [prev, next] = await $content("posts")
         .only(["title", "path"])
         .sortBy("updatedAt")
+        .where({archived: false})
         .surround(params.post)
         .fetch();
 
-      return { article, prev, next };
+      return { article, prev, next, error: false };
     } catch (error) {
       const article = await $content("404").fetch();
-      return { article, prev: null, next: null };
+      return { article, prev: null, next: null, error: true };
     }
   },
 
