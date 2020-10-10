@@ -20,7 +20,7 @@
     "core-js": "^3.6.5",
     "element-ui": "^2.13.2",
     "nuxt": "^2.14.5",
-    "nuxt-ssr-screen-size": "github:hugojerez/nuxt-ssr-screen-size"
+    "prism-themes": "^1.4.1"
   },
   "devDependencies": {
     "coffee-loader": "^1.0.0",
@@ -28,6 +28,7 @@
     "node-sass": "^4.14.1",
     "pug": "2.0.3",
     "pug-plain-loader": "^1.0.0",
-    "sass-loader": "^10.0.2"
+    "sass-loader": "^10.0.2",
+    "thread-loader": "^3.0.0"
   }
 }

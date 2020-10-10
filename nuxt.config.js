@@ -3,6 +3,7 @@ export default {
   server: {
     host: "0.0.0.0",
   },
+  target: "static",
   vue: {
     config: {
       devtools: true,
@@ -59,7 +60,13 @@ export default {
   axios: {},
 
   // Content module configuration (https://go.nuxtjs.dev/content-config)
-  content: {
+  content:
+  {
+    markdown: {
+      prism: {
+        theme: 'prism-themes/themes/prism-vs.css'
+      }
+    },
     fullTextSearchFields: ['title', 'description', 'slug', 'text', 'tags'],
     nestedProperties: [
       "author.name",
@@ -71,5 +78,6 @@ export default {
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
     transpile: [/^element-ui/],
+    // parallel: true,
   }
 }
