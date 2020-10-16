@@ -5,6 +5,7 @@ author:
     name: flapili
     avatar: logo.webp
 archived: false
+image: alembic.png
 tags: python;alembic;migration
 ---
 
