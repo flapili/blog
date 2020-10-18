@@ -3,9 +3,11 @@ title: Comment résoudre les problèmes d'import avec l'option autogenerate d'Al
 description: Arretez de vous prendre la tête avec les imports qui ne marchent jamais, Alembic est un outil de migration de schéma de base de donnée SQL (MySQL, PostgreSQL, SQLite, ect ...) en ligne de commande.
 author:
     name: flapili
-    avatar: logo.webp
+    avatar: flapili.webp
 archived: false
-image: alembic.png
+image:
+    src: alembic.png
+    alt: alambic
 tags: python;alembic;migration
 ---
 

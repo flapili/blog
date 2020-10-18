@@ -43,14 +43,15 @@
 
                   <!-- date -->
                   <span>
-                    <i>{{ new Date(article.updatedAt).toLocaleString() }}</i>
+                    <i>{{ new Date(article.createdAt).toLocaleString() }}</i>
                   </span>
 
                   <!-- image -->
                   <div class="flex">
                     <el-image
                       v-if="article.image"
-                      :src="require(`~/assets/${article.image}`)"
+                      :src="`/posts/${article.image.src}`"
+                      :alt="article.image.alt"
                       fit="scale-down"
                     ></el-image>
 
@@ -65,9 +66,10 @@
                     </i>
                     <span v-if="article.author.avatar">
                       <el-image
-                        :src="require(`~/assets/${article.author.avatar}`)"
+                        :src="`/author/${article.author.avatar}`"
                         fit="cover"
                         class="logo"
+                        alt="auteur"
                       ></el-image>
                     </span>
                   </div>
@@ -131,7 +133,7 @@ export default {
       this.articles = await this.$content("posts")
         .only([
           "title",
-          "updatedAt",
+          "createdAt",
           "author",
           "description",
           "path",
@@ -139,7 +141,7 @@ export default {
           "image",
           "tags",
         ])
-        .sortBy("updatedAt", "desc")
+        .sortBy("createdAt", "desc")
         .search(this.search_query)
         .where({ archived: false })
         .fetch();
@@ -187,7 +189,7 @@ export default {
     const articles = await $content("posts")
       .only([
         "title",
-        "updatedAt",
+        "createdAt",
         "author",
         "description",
         "path",

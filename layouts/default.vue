@@ -5,7 +5,7 @@
         <nuxt-link to="/">
           <span class="flex span-logo">
             <el-image
-              :src="require(`~/assets/logo.webp`)"
+              src="/logo.webp"
               fit="cover"
               class="logo"
             ></el-image>

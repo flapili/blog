@@ -3,7 +3,7 @@
     <el-row>
       <el-col :md="{ span: 16, offset: 4 }">
         <el-card>
-          <article v-if="error==false">
+          <article v-if="error == false">
             <!-- title -->
             <template v-if="article.title">
               <h1 class="title text-center">
@@ -12,37 +12,41 @@
             </template>
 
             <!-- author -->
-            <div v-if="article.author" class="flex" style="align-items: flex;">
+            <div v-if="article.author" class="flex" style="align-items: flex">
               <el-image
-              :src="require(`~/assets/${article.author.avatar}`)"
-              fit="cover"
-              class="logo"
-            ></el-image>
+                :src="`/author/${article.author.avatar}`"
+                alt="auteur"
+                fit="cover"
+                class="logo"
+              ></el-image>
               <div class="author" v-if="article.author">
-              <i v-if="article.author.name" class="author-name">
-                {{ article.author.name }}
-              </i>
-              <span v-if="article.author.avatar"> </span>
-            </div>
-            
+                <i v-if="article.author.name" class="author-name">
+                  {{ article.author.name }}
+                </i>
+                <!-- <span v-if="article.author.avatar"> </span> -->
+              </div>
+
               <!-- date -->
-              <br>
+              <br />
             </div>
-                <i class="date">{{ new Date(article.updatedAt).toLocaleString() }}</i>
-                      
+            <i class="date">{{
+              new Date(article.createdAt).toLocaleString()
+            }}</i>
 
             <!-- article img -->
             <template v-if="article.image">
               <div class="flex" style="justify-content: center">
                 <el-image
-                  :src="require(`~/assets/${article.image}`)"
+                  :src="`/posts/${article.image.src}`"
+                  :alt="article.image.alt"
                 ></el-image>
               </div>
             </template>
 
             <!-- article toc -->
             <template v-if="article.toc.length">
-              <nav style="margin-bottom: 50px; margin-top: 30px">Sommaire
+              <nav style="margin-bottom: 50px; margin-top: 30px">
+                Sommaire
                 <ul style="padding-inline-start: 0">
                   <li
                     v-for="link in article.toc"
@@ -70,8 +74,7 @@
       </el-col>
     </el-row>
 
-
-     <!-- article précédant -->
+    <!-- article précédant -->
     <el-row type="flex" justify="space-around" style="margin-top: 16px">
       <el-col :lg="{ span: 5 }">
         <nuxt-link
@@ -109,12 +112,14 @@
 export default {
   async asyncData({ $content, params }) {
     try {
-      const article = await $content("posts", params.post).where({archived: false}).fetch();
+      const article = await $content("posts", params.post)
+        .where({ archived: false })
+        .fetch();
 
       const [prev, next] = await $content("posts")
         .only(["title", "path"])
-        .sortBy("updatedAt")
-        .where({archived: false})
+        .sortBy("createdAt")
+        .where({ archived: false })
         .surround(params.post)
         .fetch();
 
@@ -137,7 +142,7 @@ export default {
         {
           hid: "image",
           name: "image",
-          content: `https://flapili.fr/_nuxt/assets/${this.article.image || "logo.webp"}`,
+          content: `https://flapili.fr/${this.article.image || "logo.webp"}`,
         },
         // Open Graph
         {
@@ -153,7 +158,9 @@ export default {
         {
           hid: "og:image",
           name: "og:image",
-          content: `https://flapili.fr/_nuxt/assets/${this.article.image || "logo.webp"}`,
+          content: `https://flapili.fr/${
+            this.article.image || "logo.webp"
+          }`,
         },
         // Twitter Card
         {
@@ -169,7 +176,9 @@ export default {
         {
           hid: "twitter:image",
           name: "twitter:image",
-          content: `https://flapili.fr/_nuxt/assets/${this.article.image || "logo.webp"}`,
+          content: `https://flapili.fr/${
+            this.article.image || "logo.webp"
+          }`,
         },
       ],
     };
@@ -178,7 +187,6 @@ export default {
 </script>
 
 <style scoped>
-
 .title {
   font-size: 2.5em;
   margin-block-end: 0;
@@ -235,6 +243,4 @@ export default {
 .page-down {
   text-align: center;
 }
-
-
 </style>
