@@ -4,11 +4,7 @@
       <el-header class="header">
         <nuxt-link to="/">
           <span class="flex span-logo">
-            <el-image
-              src="/logo.webp"
-              fit="cover"
-              class="logo"
-            ></el-image>
+            <el-image src="/logo.webp" fit="cover" class="logo"></el-image>
           </span>
         </nuxt-link>
 
@@ -20,18 +16,18 @@
               text-color="#fff"
               active-text-color="#ffd04b"
               class="nav-menu"
+              :default-active="activeIndex"
+              router
             >
-              <el-menu-item index="1" class="nav-menu-item">
-                <nuxt-link to="/" class="no-text-decoration block"
-                  >Accueil</nuxt-link
-                >
+              <el-menu-item index="/" class="nav-menu-item">
+                Accueil
               </el-menu-item>
-              <el-menu-item index="2" class="nav-menu-item">Bio</el-menu-item>
-              <el-menu-item index="3" class="nav-menu-item">CV</el-menu-item>
-              <el-menu-item index="4" class="nav-menu-item">
-                <nuxt-link to="/posts" class="no-text-decoration block"
-                  >Posts</nuxt-link
-                >
+              <el-menu-item index="/bio" class="nav-menu-item">
+                Bio
+              </el-menu-item>
+              <el-menu-item index="/cv" class="nav-menu-item">CV</el-menu-item>
+              <el-menu-item index="/posts" class="nav-menu-item">
+                Posts
               </el-menu-item>
             </el-menu>
           </span>
@@ -44,7 +40,7 @@
       </el-header>
 
       <el-main class="main">
-        <Nuxt />
+        <nuxt />
       </el-main>
 
       <el-footer class="footer text-center">
@@ -70,6 +66,11 @@ export default {
       show_menu: true,
     };
   },
+  computed: {
+    activeIndex() {
+      return this.$store.state["menu-active-item"].activeIndex
+    }
+  }
 };
 </script>
 
