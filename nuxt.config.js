@@ -3,12 +3,18 @@ export default {
     server: {
         host: "0.0.0.0",
     },
+
+
     target: "static",
+
+
     vue: {
         config: {
             devtools: true,
         },
     },
+
+
     // Global page headers (https://go.nuxtjs.dev/config-head)
     head: {
         title: 'flapili.fr',
@@ -22,6 +28,7 @@ export default {
         ]
     },
 
+
     // Global CSS (https://go.nuxtjs.dev/config-css)
     css: [
         'element-ui/lib/theme-chalk/index.css',
@@ -31,6 +38,7 @@ export default {
         '~/assets/css/transition.css',
     ],
 
+
     // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
     plugins: [
         '@/plugins/element-ui',
@@ -38,11 +46,14 @@ export default {
         '@/plugins/menu-router-guard.js',
     ],
 
+
     // Auto import components (https://go.nuxtjs.dev/config-components)
     components: true,
 
+
     // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
     buildModules: [],
+
 
     // Modules (https://go.nuxtjs.dev/config-modules)
     modules: [
@@ -54,11 +65,13 @@ export default {
         '@nuxt/content',
         '@nuxtjs/dayjs',
         '@nuxtjs/sitemap',
-
+        '@nuxtjs/robots',
     ],
+
 
     // Axios module configuration (https://go.nuxtjs.dev/config-axios)
     axios: {},
+
 
     // Content module configuration (https://go.nuxtjs.dev/content-config)
     content: {
@@ -74,6 +87,22 @@ export default {
             "author.website_url",
         ],
     },
+
+
+    // https://github.com/nuxt-community/sitemap-module
+    sitemap: {
+        hostname: 'https://flapili.fr',
+        gzip: true,
+    },
+
+    // https://github.com/nuxt-community/robots-module
+    robots: {
+        UserAgent: '*',
+        Allow: "/",
+        Sitemap: "https://flapili.fr/sitemap.xml",
+    },
+
+
     generate: {
         async routes() {
             const { $content } = require('@nuxt/content')
@@ -83,11 +112,6 @@ export default {
         }
     },
 
-    // https://github.com/nuxt-community/sitemap-module
-    sitemap: {
-        hostname: 'https://flapili.fr',
-        gzip: true,
-    },
 
     // Build Configuration (https://go.nuxtjs.dev/config-build)
     build: {
