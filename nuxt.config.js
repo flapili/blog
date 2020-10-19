@@ -49,10 +49,11 @@ export default {
         // https://go.nuxtjs.dev/axios
         // '@nuxtjs/axios',
         // https://go.nuxtjs.dev/pwa
-        // '@nuxtjs/pwa',
+        '@nuxtjs/pwa',
         // https://go.nuxtjs.dev/content
         '@nuxt/content',
         '@nuxtjs/dayjs',
+        '@nuxtjs/sitemap',
 
     ],
 
@@ -73,10 +74,23 @@ export default {
             "author.website_url",
         ],
     },
+    generate: {
+        async routes() {
+            const { $content } = require('@nuxt/content')
+            const files = await $content("posts").only(['path']).fetch()
+
+            return files.map(file => file.path === '/index' ? '/' : file.path)
+        }
+    },
+
+    // https://github.com/nuxt-community/sitemap-module
+    sitemap: {
+        hostname: 'https://flapili.fr',
+        gzip: true,
+    },
 
     // Build Configuration (https://go.nuxtjs.dev/config-build)
     build: {
         transpile: [/^element-ui/],
-        // parallel: true,
-    }
+    },
 }
