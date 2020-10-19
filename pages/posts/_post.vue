@@ -47,12 +47,8 @@
             <template v-if="article.toc.length">
               <nav style="margin-bottom: 50px; margin-top: 30px">
                 Sommaire
-                <ul style="padding-inline-start: 0">
-                  <li
-                    v-for="link in article.toc"
-                    :key="link.id"
-                    class="nav-item"
-                  >
+                <ul style="padding-inline-start: 40px">
+                  <li v-for="link in article.toc" :key="link.id">
                     <nuxt-link
                       :to="`#${link.id}`"
                       :class="`toc-${link.depth}`"
@@ -158,9 +154,7 @@ export default {
         {
           hid: "og:image",
           name: "og:image",
-          content: `https://flapili.fr/${
-            this.article.image || "logo.webp"
-          }`,
+          content: `https://flapili.fr/${this.article.image || "logo.webp"}`,
         },
         // Twitter Card
         {
@@ -176,9 +170,7 @@ export default {
         {
           hid: "twitter:image",
           name: "twitter:image",
-          content: `https://flapili.fr/${
-            this.article.image || "logo.webp"
-          }`,
+          content: `https://flapili.fr/${this.article.image || "logo.webp"}`,
         },
       ],
     };
@@ -214,25 +206,16 @@ export default {
   margin-right: 50px;
 }
 
-.nav-item {
-  list-style-type: none;
-  text-decoration: none !important;
-}
-
 .toc {
   color: #11a7e2;
 }
 
-.toc-1 {
+.toc-2 {
   margin-left: 0px;
 }
 
-.toc-2 {
-  margin-left: 10px;
-}
-
 .toc-3 {
-  margin-left: 20px;
+  margin-left: 10px;
 }
 
 .nav-button {
