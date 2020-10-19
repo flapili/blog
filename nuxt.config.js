@@ -52,11 +52,7 @@ export default {
 
 
     // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
-    buildModules: [],
-
-
-    // Modules (https://go.nuxtjs.dev/config-modules)
-    modules: [
+    buildModules: [
         // https://go.nuxtjs.dev/axios
         // '@nuxtjs/axios',
         // https://go.nuxtjs.dev/pwa
@@ -67,6 +63,10 @@ export default {
         '@nuxtjs/sitemap',
         '@nuxtjs/robots',
     ],
+
+
+    // Modules (https://go.nuxtjs.dev/config-modules)
+    modules: [],
 
 
     // Axios module configuration (https://go.nuxtjs.dev/config-axios)
