@@ -1,24 +1,29 @@
-
 body {
     margin: 0;
 }
 
 html {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 }
 
 .text-center {
-  text-align: center;
+    text-align: center;
 }
 
 .no-text-decoration {
-  text-decoration: none;
+    text-decoration: none;
 }
 
 .flex {
-  display: flex;
+    display: flex;
 }
 
 .block {
-  display: block;
+    display: block;
+}
+
+a div.el-card:hover {
+    background-color: #b3d8ff;
+    border-color: #409EFF;
+    transition: 2s;
 }
