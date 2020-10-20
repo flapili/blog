@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-container class="background">
+    <el-container>
       <el-header class="header">
         <nuxt-link to="/">
           <span class="flex span-logo">
@@ -80,9 +80,6 @@ export default {
 </script>
 
 <style scoped>
-.background {
-  background-color: gainsboro;
-}
 
 .header {
   padding: 0;
@@ -91,6 +88,7 @@ export default {
 }
 
 .main {
+  background-color: gainsboro;
   min-height: 100vh;
   min-height: calc(100vh - 140px);
 }
