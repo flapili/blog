@@ -4,7 +4,12 @@
       <el-header class="header">
         <nuxt-link to="/">
           <span class="flex span-logo">
-            <el-image src="/logo.webp" fit="cover" class="logo" alt="logo"></el-image>
+            <el-image
+              src="/logo.webp"
+              fit="cover"
+              class="logo"
+              alt="logo"
+            ></el-image>
           </span>
         </nuxt-link>
 
@@ -68,9 +73,9 @@ export default {
   },
   computed: {
     activeIndex() {
-      return this.$store.state["menu-active-item"].activeIndex
-    }
-  }
+      return this.$store.state["menu-active-item"].activeIndex;
+    },
+  },
 };
 </script>
 
