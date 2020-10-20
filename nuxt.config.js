@@ -93,6 +93,11 @@ export default {
     sitemap: {
         hostname: 'https://flapili.fr',
         gzip: true,
+        defaults: {
+            // changefreq: 'daily',
+            priority: 1,
+            lastmod: new Date()
+        },
     },
 
     // https://github.com/nuxt-community/robots-module
