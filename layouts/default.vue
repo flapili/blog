@@ -4,7 +4,7 @@
       <el-header class="header">
         <nuxt-link to="/">
           <span class="flex span-logo">
-            <el-image src="/logo.webp" fit="cover" class="logo"></el-image>
+            <el-image src="/logo.webp" fit="cover" class="logo" alt="logo"></el-image>
           </span>
         </nuxt-link>
 
