@@ -56,7 +56,9 @@
                     ></el-image>
 
                     <!-- description -->
-                    <p v-if="article.description">{{ article.description }}</p>
+                    <p v-if="article.description" style="margin-left: 10px">
+                      {{ article.description }}
+                    </p>
                   </div>
 
                   <!-- author -->
@@ -236,6 +238,7 @@ export default {
 .title {
   margin-block-end: 0;
 }
+
 .article {
   display: block;
   margin-bottom: 20px;
