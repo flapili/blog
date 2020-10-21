@@ -23,7 +23,6 @@
                 <i v-if="article.author.name" class="author-name">
                   {{ article.author.name }}
                 </i>
-                <!-- <span v-if="article.author.avatar"> </span> -->
               </div>
 
               <!-- date -->
@@ -48,10 +47,11 @@
               <nav style="margin-bottom: 50px; margin-top: 30px">
                 Sommaire
                 <ul style="padding-inline-start: 40px">
-                  <li v-for="link in article.toc" :key="link.id">
+                  <li v-for="link in article.toc" :key="link.id"
+                  :class="`toc-${link.depth}`"
+                  >
                     <nuxt-link
                       :to="`#${link.id}`"
-                      :class="`toc-${link.depth}`"
                       class="no-text-decoration toc"
                     >
                       {{ link.text }}
@@ -215,7 +215,7 @@ export default {
 }
 
 .toc-3 {
-  margin-left: 10px;
+  margin-left: 15px;
 }
 
 .nav-button {
