@@ -27,3 +27,34 @@ a div.el-card:hover {
     border-color: #409EFF;
     transition: 2s;
 }
+
+
+/* nuxt content */
+
+div.nuxt-content blockquote {
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: #F2F6F8;
+}
+
+div.nuxt-content blockquote p {
+    margin-left: 10px;
+}
+
+div.nuxt-content p {
+    margin-left: 20px;
+}
+
+div.nuxt-content ul li a,
+div.nuxt-content p a {
+    text-decoration: none;
+    color: #11a7e2;
+}
+
+div.nuxt-content h2 code,
+div.nuxt-content h3 code,
+div.nuxt-content h4 code,
+div.nuxt-content h5 code,
+div.nuxt-content p code {
+    background-color: #ededed;
+}
