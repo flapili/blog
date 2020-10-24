@@ -118,9 +118,9 @@ import foo
 Python va en 1er regarder dans `'C:\\Users\\DEVEAUX\\AppData\\Local\\Programs\\Python\\Python38\\Lib\\idlelib'` regarder s'il ne trouve pas un dossier nommé "foo" ou un fichier nommé "foo.py", puis va regarder dans `'C:\\Users\\DEVEAUX\\AppData\\Local\\Programs\\Python\\Python38\\python38.zip'` (là me demandez pas ce que fou un zip dans sys.path), ect ...
 
 
-Maintenant créons un fichier "print_syspath.py" quelque part et lancons le:
+Maintenant créons un fichier `print_syspath.py` quelque part et lancons le:
 
-```py{1-2}[print_syspath.py]
+```py
 import sys
 from pprint import pprint
 
@@ -144,7 +144,7 @@ on obtient
 ]
  ```
 
-Regardez la 1ère ligne est importante, ça veux dire que Python ajoute automatiquement le dossier dans lequel le script s'execute au path.
+Regardez, la 1ère ligne est importante, ça veux dire que Python ajoute automatiquement le dossier dans lequel le script s'execute au path.
 
 ## Pourquoi est ce que alembic se plante comme une merde ?
 
