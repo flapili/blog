@@ -199,7 +199,7 @@ export default {
         "image",
         "tags",
       ])
-      .sortBy("updatedAt", "desc")
+      .sortBy("createdAt", "desc")
       .where({ archived: false })
       .skip((page - 1) * 10)
       .limit(10)
