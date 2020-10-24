@@ -4,6 +4,14 @@
       <el-col :md="{ span: 16, offset: 4 }">
         <el-card>
           <article v-if="error == false">
+            <el-tag
+              v-for="(tag, i) in Array.from(new Set(article.tags.split(';')))"
+              :key="i"
+              type="info"
+              class="tag"
+            >
+              {{ tag }}
+            </el-tag>
             <!-- title -->
             <template v-if="article.title">
               <h1 class="title text-center">
@@ -47,8 +55,10 @@
               <nav style="margin-bottom: 50px; margin-top: 30px">
                 Sommaire
                 <ul style="padding-inline-start: 40px">
-                  <li v-for="link in article.toc" :key="link.id"
-                  :class="`toc-${link.depth}`"
+                  <li
+                    v-for="link in article.toc"
+                    :key="link.id"
+                    :class="`toc-${link.depth}`"
                   >
                     <nuxt-link
                       :to="`#${link.id}`"
@@ -127,6 +137,10 @@ export default {
   },
 
   head() {
+    let image_content = "https://flapili.fr/logo.webp";
+    if (this.article.image) {
+      image_content = `https://flapili.fr/posts/${this.article.image.src}`;
+    }
     return {
       title: this.article.title || "flapili.fr",
       meta: [
@@ -138,7 +152,7 @@ export default {
         {
           hid: "image",
           name: "image",
-          content: `https://flapili.fr/${this.article.image || "logo.webp"}`,
+          content: image_content,
         },
         // Open Graph
         {
@@ -154,7 +168,7 @@ export default {
         {
           hid: "og:image",
           name: "og:image",
-          content: `https://flapili.fr/${this.article.image || "logo.webp"}`,
+          content: image_content,
         },
         // Twitter Card
         {
@@ -170,7 +184,12 @@ export default {
         {
           hid: "twitter:image",
           name: "twitter:image",
-          content: `https://flapili.fr/${this.article.image || "logo.webp"}`,
+          content: image_content,
+        },
+        {
+          hid: "twitter:card",
+          name: "twitter:card",
+          content: "summary_large_image",
         },
       ],
     };
@@ -179,6 +198,11 @@ export default {
 </script>
 
 <style scoped>
+.tag {
+  margin-right: 4px;
+  margin-bottom: 4px;
+}
+
 .title {
   font-size: 2.5em;
   margin-block-end: 0;
