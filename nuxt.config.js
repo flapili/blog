@@ -38,6 +38,7 @@ export default {
         '@fortawesome/fontawesome-svg-core/styles.css',
 
         '~/assets/css/styles.css',
+        '~/assets/css/content.css',
         '~/assets/css/transition.css',
     ],
 
