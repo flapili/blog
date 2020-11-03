@@ -249,5 +249,6 @@ export default {
 .page-up,
 .page-down {
   text-align: center;
+  height: 100%;
 }
 </style>
