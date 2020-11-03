@@ -80,7 +80,7 @@
       </el-col>
     </el-row>
 
-    <!-- article précédant -->
+    <!-- article précédent -->
     <el-row type="flex" justify="space-around" style="margin-top: 16px">
       <el-col :lg="{ span: 5 }">
         <nuxt-link
