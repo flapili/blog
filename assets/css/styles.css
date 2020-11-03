@@ -18,6 +18,10 @@ html {
     display: flex;
 }
 
+.flex-row-reverse {
+    flex-direction: row-reverse;
+}
+
 .block {
     display: block;
 }
