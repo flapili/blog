@@ -27,10 +27,9 @@
               <el-menu-item index="/" class="nav-menu-item">
                 Accueil
               </el-menu-item>
-              <el-menu-item index="/bio" class="nav-menu-item">
-                Bio
+              <el-menu-item index="/team" class="nav-menu-item">
+                L'équipe
               </el-menu-item>
-              <el-menu-item index="/cv" class="nav-menu-item">CV</el-menu-item>
               <el-menu-item index="/posts" class="nav-menu-item">
                 Posts
               </el-menu-item>
