@@ -195,7 +195,6 @@ export default {
         "author",
         "description",
         "path",
-        "author_avatar",
         "image",
         "tags",
       ])
