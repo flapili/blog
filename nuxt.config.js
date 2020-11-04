@@ -5,7 +5,7 @@ export default {
     },
 
 
-    target: "static",
+    target: "server",
 
 
     vue: {
@@ -56,21 +56,17 @@ export default {
 
 
     // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
-    buildModules: [
-        // https://go.nuxtjs.dev/axios
-        // '@nuxtjs/axios',
-        // https://go.nuxtjs.dev/pwa
-        // '@nuxtjs/pwa',
+    buildModules: [],
+    
+    
+    // Modules (https://go.nuxtjs.dev/config-modules)
+    modules: [
         // https://go.nuxtjs.dev/content
         '@nuxt/content',
         '@nuxtjs/dayjs',
         '@nuxtjs/sitemap',
         '@nuxtjs/robots',
     ],
-
-
-    // Modules (https://go.nuxtjs.dev/config-modules)
-    modules: [],
 
 
     // Axios module configuration (https://go.nuxtjs.dev/config-axios)
