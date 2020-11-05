@@ -9,6 +9,7 @@ image:
     src: alembic.png
     alt: alambic
 tags: python;alembic;migration
+createdAt: "2020-10-07T11:52:59.000Z" # facultatif
 ---
 
 ## Qu'est ce qu'Alembic ?

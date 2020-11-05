@@ -9,6 +9,7 @@ image:
     src: modern_build.png
     alt: illustration d'un build moderne avec Nuxtjs
 tags: javascript;babeljs;vuejs;nuxtjs;ES2015+;compatibilité IE;polyfill
+createdAt: "2020-10-20T10:06:17.000Z" # facultatif
 ---
 
 ## ES2015, Polyfills, babel ... ça veut dire encore de nouvelles choses à apprendre ?!
@@ -26,7 +27,12 @@ On parle de la même chose, c'est la 6ème édition d'EcmaScript publié en juin
 Comme vous le voyez ES6 est pris en charge sur la majorité des navigateurs récents (en même temps ça fait 5 ans 🙄).
 <div style="text-align: center;">
   <a href="https://caniuse.com/es6">
-    <img src="/posts/es6_compatibilité.png" alt="compatibilité des navigateurs avec ES6" loading="lazy" style="max-width: 100%;min-width: 50%;">
+    <img
+      src="/posts/es6_compatibilité.png"
+      alt="compatibilité des navigateurs avec ES6"
+      loading="lazy"
+      style="max-width: 100%;min-width: 50%;border-radius:10px;border: solid 1px black"
+    >
   </a>
 </div>
 
@@ -124,7 +130,12 @@ Et vous savez quoi ?<br>
 Les polyfills eux mêmes peuvent avoir besoin d'être transpilé. Et dans les codes transpilés il peut y avoir besoin de pollyfills...
 
 <div style="text-align: center;">
-    <img src="https://i.giphy.com/media/26xBI73gWquCBBCDe/giphy.webp" alt="Math" loading="lazy" style="max-width: 100%;min-width: 50%;">
+    <img
+      src="https://i.giphy.com/media/26xBI73gWquCBBCDe/giphy.webp"
+      alt="Math"
+      loading="lazy"
+      style="max-width: 100%;min-width: 50%;border-radius:10px;border: solid 1px black;"
+    >
 </div>
 
 
@@ -195,7 +206,12 @@ de même le gain étant relatif, si vous avez 300mo d'assets il est clair que vo
 Alors, pas cher payé pour une dizaine de caractères hein ?
 
 <div style="text-align: center;">
-    <img src="https://media1.tenor.com/images/a29353c4ff3f57e76fee8e9ad460e1c8/tenor.gif" alt="clin d'oeil" loading="lazy" style="max-width: 100%;min-width: 50%;">
+    <img
+      src="https://media1.tenor.com/images/a29353c4ff3f57e76fee8e9ad460e1c8/tenor.gif"
+      alt="clin d'oeil"
+      loading="lazy"
+      style="max-width: 100%;min-width: 50%;border-radius:10px;border: solid 1px black;"
+    >
 </div>
 
 Pour aller plus loin :
