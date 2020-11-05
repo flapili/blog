@@ -51,7 +51,7 @@
         © {{ $dayjs().format("YYYY") }} flapili.fr
         <div>
           <a
-            href="https://github.com/flapili"
+            href="https://github.com/flapili/blog"
             target="_blank"
             style="color: inherit"
           >
