@@ -2,6 +2,7 @@ export default {
 
     server: {
         host: "0.0.0.0",
+        port: process.env.NODE_ENV === "development" ? 8080 : 80
     },
 
 
