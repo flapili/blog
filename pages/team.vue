@@ -38,9 +38,9 @@
             </div>
 
             <!-- bio -->
-            <p style="margin: 0 10px; text-align: justify">
-              {{ member.bio }}
-            </p>
+            <!-- <p style="margin: 0 10px; text-align: justify"> -->
+              <nuxt-content :document="member" style="text-align: justify;margin: 0 10px;"/>
+            <!-- </p> -->
           </div>
         </div>
         <!-- </el-card> -->
@@ -59,7 +59,7 @@ export default {
 
   async asyncData({ $content }) {
     const members = await $content("team")
-      .only(["createdAt", "name", "avatar", "bio", "roles"])
+      .only(["createdAt", "name", "avatar", "bio", "roles", "body"])
       .sortBy("createdAt", "asc")
       .where({ active: true })
       .fetch();
