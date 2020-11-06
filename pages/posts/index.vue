@@ -119,6 +119,12 @@
 
 <script>
 export default {
+  head() {
+    return {
+      title: "Les posts - flapili.fr",
+    };
+  },
+
   watchQuery: ["page"],
 
   key: (to) => to.fullPath,
