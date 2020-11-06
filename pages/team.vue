@@ -1,35 +1,49 @@
 <template>
   <el-row>
     <el-col :md="{ span: 16, offset: 4 }">
-      <el-card shadow="hover">
         <h1 class="text-center">L'équipe</h1>
-      </el-card>
 
-      <el-card shadow="hover" style="margin-top: 16px;">
-        <el-card
-          v-for="(member, i) in members"
-          :key="i"
-          :class="{'member-card': i > 0}"
-        >
-          <div class="flex" :class="{ 'flex-row-reverse': i % 2 == 1 }">
-            <!-- image -->
-            <el-avatar
-              :size="100"
-              :src="`/author/${member.avatar}`"
-              style="min-width: fit-content;"
-            ></el-avatar>
+      <!-- <el-card shadow="hover" style="margin-top: 16px;"> -->
+      <el-card v-for="(member, i) in members" :key="i" class="member-card">
+        <div class="flex" :class="{ 'flex-row-reverse': i % 2 == 1 }">
+          <!-- image -->
+          <el-avatar
+            :size="100"
+            :src="`/author/${member.avatar}`"
+            style="min-width: fit-content"
+          ></el-avatar>
 
-            <div>
-              <!-- name -->
+          <div>
+            <!-- name -->
+            <div class="flex" :class="{ 'flex-row-reverse': i % 2 === 1 }">
               <h1 class="name">{{ member.name }}</h1>
-
-              <!-- bio -->
-              <p style="margin: 0 10px 0 10px;">
-                {{ member.bio }}
-              </p>
+              <div
+                v-if="member.roles"
+                :class="
+                  i % 2 === 0 ? 'role-container-left' : 'role-container-right'
+                "
+              >
+                <!-- roles -->
+                <el-tag
+                  v-for="(role, i_roles) in member.roles"
+                  :key="i_roles"
+                  class="role"
+                  :class="i % 2 === 1 ? 'role-left' : 'role-right'"
+                  effect="dark"
+                  type="info"
+                >
+                  {{ role }}
+                </el-tag>
+              </div>
             </div>
+
+            <!-- bio -->
+            <p style="margin: 0 10px; text-align: justify">
+              {{ member.bio }}
+            </p>
           </div>
-        </el-card>
+        </div>
+        <!-- </el-card> -->
       </el-card>
     </el-col>
   </el-row>
@@ -37,9 +51,15 @@
 
 <script>
 export default {
+  head() {
+    return {
+      title: "L'équipe - flapili.fr",
+    };
+  },
+
   async asyncData({ $content }) {
     const members = await $content("team")
-      .only(["createdAt", "name", "avatar", "bio"])
+      .only(["createdAt", "name", "avatar", "bio", "roles"])
       .sortBy("createdAt", "asc")
       .where({ active: true })
       .fetch();
@@ -56,8 +76,23 @@ export default {
   margin-block-end: 0;
 }
 
+.role-container-left {
+  margin-left: 10px;
+}
+
+.role-container-right {
+  margin-right: 10px;
+}
+
+.role-left {
+  margin-left: 4px;
+}
+
+.role-right {
+  margin-right: 4px;
+}
+
 .member-card {
   margin-top: 16px;
 }
-
 </style>
