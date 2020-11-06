@@ -58,8 +58,8 @@ export default {
 
     // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
     buildModules: [],
-    
-    
+
+
     // Modules (https://go.nuxtjs.dev/config-modules)
     modules: [
         // https://go.nuxtjs.dev/content
@@ -76,6 +76,7 @@ export default {
 
     // Content module configuration (https://go.nuxtjs.dev/content-config)
     content: {
+        liveEdit: false,
         markdown: {
             prism: {
                 theme: 'prism-themes/themes/prism-vs.css'
