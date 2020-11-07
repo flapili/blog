@@ -1,7 +1,9 @@
 <template>
   <el-row>
     <el-col :md="{ span: 16, offset: 4 }">
-        <h1 class="text-center">L'équipe</h1>
+                <el-card>
+          <h1 class="text-center title-page">L'équipe</h1>
+        </el-card>
 
       <!-- <el-card shadow="hover" style="margin-top: 16px;"> -->
       <el-card v-for="(member, i) in members" :key="i" class="member-card">
