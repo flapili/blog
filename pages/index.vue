@@ -2,7 +2,9 @@
   <div>
     <el-row type="flex">
       <el-col :md="{ span: 16, offset: 4 }">
-        <h1 class="text-center">Bienvenue sur flapili.fr</h1>
+        <el-card>
+          <h1 class="text-center title-page">Bienvenue sur flapili.fr</h1>
+        </el-card>
       </el-col>
     </el-row>
 
@@ -49,7 +51,7 @@
       <el-col :md="{ span: 16, offset: 4 }">
         <el-card shadow="hover">
           <div class="text-center">
-            <strong>rejoignez le discord</strong><br />
+            <strong>Rejoignez le discord</strong><br />
             <a href="https://discord.flapili.fr" target="_blank">
               <font-awesome-icon
                 :icon="['fab', 'discord']"
