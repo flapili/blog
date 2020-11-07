@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=Raleway:400,500,700%22");
 body {
     margin: 0;
     background: url('~@/assets/images/banner.jpg') no-repeat center fixed;
@@ -32,4 +33,11 @@ a div.el-card:hover {
     background-color: #b3d8ff;
     border-color: #409EFF;
     transition: 2s;
+}
+
+.title-page {
+    font-size: 5em;
+    font-family: Raleway;
+    margin-block-start: 0;
+    margin-block-end: 0;
 }
