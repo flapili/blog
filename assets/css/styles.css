@@ -36,8 +36,13 @@ a div.el-card:hover {
 }
 
 .title-page {
-    font-size: 5em;
+    font-size: 4em;
     font-family: Raleway;
     margin-block-start: 0;
     margin-block-end: 0;
+}
+
+.transparent-card {
+    background-color: hsl(234deg 12% 81% / 90%);
+    border: none;
 }

@@ -2,7 +2,7 @@
   <div>
     <el-row>
       <el-col :md="{ span: 16, offset: 4 }">
-        <el-card>
+        <el-card class="transparent-card">
           <article v-if="error == false">
             <el-tag
               v-for="(tag, i) in Array.from(new Set(article.tags.split(';')))"

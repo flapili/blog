@@ -2,7 +2,10 @@
   <div>
     <el-row type="flex">
       <el-col :md="{ span: 16, offset: 4 }">
-        <el-card>
+        <el-card
+          class="no-border"
+          style="background-color: rgba(255, 255, 255, 0.2)"
+        >
           <h1 class="text-center title-page">Bienvenue sur flapili.fr</h1>
         </el-card>
       </el-col>
@@ -10,7 +13,7 @@
 
     <el-row type="flex" style="margin-top: 16px">
       <el-col :md="{ span: 16, offset: 4 }">
-        <el-card shadow="hover" style="text-align: justify">
+        <el-card shadow="hover" class="transparent-card" style="text-align: justify">
           Laboris ipsum dolor labore qui irure proident esse ut duis. Commodo
           occaecat esse exercitation ad. Laboris qui ex id minim laborum veniam
           eiusmod ea sunt quis reprehenderit ea. Cillum elit tempor cillum
@@ -49,16 +52,16 @@
 
     <el-row type="flex" style="margin-top: 16px">
       <el-col :md="{ span: 16, offset: 4 }">
-        <el-card shadow="hover">
+        <el-card shadow="hover" class="transparent-card">
           <div class="text-center">
             <strong>Rejoignez le discord</strong><br />
-            <a href="https://discord.flapili.fr" target="_blank">
+            <a href="https://discord.flapili.fr" target="_blank" rel="nofollow noopener">
               <font-awesome-icon
                 :icon="['fab', 'discord']"
                 size="8x"
                 style="color: #8c9eff"
-              />
-            </a><br />
+              /> </a
+            ><br />
             <i>On a besoin de vous !</i>
           </div>
         </el-card>

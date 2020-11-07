@@ -1,12 +1,15 @@
 <template>
   <el-row>
     <el-col :md="{ span: 16, offset: 4 }">
-                <el-card>
-          <h1 class="text-center title-page">L'équipe</h1>
-        </el-card>
+      <el-card
+        class="no-border"
+        style="background-color: rgba(255, 255, 255, 0.2)"
+      >
+        <h1 class="text-center title-page">L'équipe</h1>
+      </el-card>
 
       <!-- <el-card shadow="hover" style="margin-top: 16px;"> -->
-      <el-card v-for="(member, i) in members" :key="i" class="member-card">
+      <el-card v-for="(member, i) in members" :key="i" class="member-card transparent-card">
         <div class="flex" :class="{ 'flex-row-reverse': i % 2 == 1 }">
           <!-- image -->
           <el-avatar
@@ -41,7 +44,10 @@
 
             <!-- bio -->
             <!-- <p style="margin: 0 10px; text-align: justify"> -->
-              <nuxt-content :document="member" style="text-align: justify;margin: 0 10px;"/>
+            <nuxt-content
+              :document="member"
+              style="text-align: justify; margin: 0 10px"
+            />
             <!-- </p> -->
           </div>
         </div>

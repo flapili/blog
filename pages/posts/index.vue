@@ -20,7 +20,10 @@
     </el-row>
     <el-row>
       <el-col :md="{ span: 16, offset: 4 }">
-        <el-card>
+        <el-card
+          class="no-border"
+          style="background-color: rgba(255, 255, 255, 0.2)"
+        >
           <h1 class="text-center title-page">Les posts</h1>
         </el-card>
 
@@ -28,7 +31,10 @@
           <ul style="padding-inline-start: 0">
             <li v-for="(article, i) in articles" :key="i" class="article">
               <nuxt-link :to="article.path" class="no-text-decoration">
-                <el-card shadow="hover">
+                <el-card
+                  shadow="hover"
+                  class="no-border transparent-card"
+                >
                   <!-- tags -->
                   <div>
                     <el-tag
@@ -60,7 +66,7 @@
                       :src="`/posts/${article.image.src}`"
                       :alt="article.image.alt"
                       fit="scale-down"
-                      style="max-width: 25%;"
+                      style="max-width: 25%"
                     ></el-image>
 
                     <!-- description -->
