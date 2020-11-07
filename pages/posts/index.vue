@@ -1,14 +1,14 @@
 <template>
   <div>
     <el-row>
-      <el-col :md="{ span: 16, offset: 4 }">
-        <h1 class="text-center">Tous les posts</h1>
+      <el-col :md="{ span: 4, offset: 16 }">
         <el-autocomplete
           placeholder="Cherchez quelque chose"
           v-model="search_query"
           :fetch-suggestions="fetch_tags"
           @keypress.enter.native="search"
           class="block"
+          style="margin-bottom: 16px"
         >
           <el-button
             slot="append"
@@ -16,6 +16,13 @@
             @click="search"
           ></el-button>
         </el-autocomplete>
+      </el-col>
+    </el-row>
+    <el-row>
+      <el-col :md="{ span: 16, offset: 4 }">
+        <el-card>
+          <h1 class="text-center title-page">Les posts</h1>
+        </el-card>
 
         <template v-if="articles.length">
           <ul style="padding-inline-start: 0">
@@ -238,10 +245,6 @@ export default {
 <style scoped>
 .tag {
   margin-right: 4px;
-}
-
-.title {
-  margin-block-end: 0;
 }
 
 .article {
