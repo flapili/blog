@@ -24,7 +24,8 @@ div.nuxt-content h2 code,
 div.nuxt-content h3 code,
 div.nuxt-content h4 code,
 div.nuxt-content h5 code,
-div.nuxt-content p code {
+div.nuxt-content p code,
+div.nuxt-content div.el-card.box div.el-card__body code {
     background-color: #ededed;
     word-break: break-all;
 }
