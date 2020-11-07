@@ -77,12 +77,10 @@ export default {
 .header {
   padding: 0;
   display: flex;
-  /* background-color: #545c64; */
 
 }
 
 .main {
-  /* background-color: gainsboro; */
   min-height: 100vh;
   min-height: calc(100vh - 140px);
 
@@ -94,25 +92,32 @@ export default {
   padding-top: 10px;
 }
 
+.nav-menu {
+  border-bottom: none;
+}
+
 .nav-menu-item {
   font-size: 1.25em;
 }
 .bouton-disable-nav-menu {
   display: none;
-  background-color: #545c64;
+  background-color: transparent;
   margin-left: auto;
   border: none;
   font-size: 2em;
   color: #ffd04b;
 }
 
-@media only screen and (max-width: 363px) {
+@media only screen and (max-width: 275px) {
   .bouton-disable-nav-menu {
     display: block;
   }
   .nav-menu-item {
     float: none;
     z-index: 1;
+    background-color: white !important;
+    color: black !important;
+    mix-blend-mode: difference;
   }
 }
 
