@@ -2,22 +2,11 @@
   <div>
     <el-container>
       <el-header class="header">
-        <nuxt-link to="/">
-          <span class="flex span-logo">
-            <el-image
-              src="/logo.webp"
-              fit="cover"
-              class="logo"
-              alt="logo"
-            ></el-image>
-          </span>
-        </nuxt-link>
-
         <el-collapse-transition>
           <span class="flex" v-if="show_menu">
             <el-menu
               mode="horizontal"
-              background-color="#545c64"
+              background-color="transparent"
               text-color="#fff"
               active-text-color="#ffd04b"
               class="nav-menu"
@@ -25,7 +14,12 @@
               router
             >
               <el-menu-item index="/" class="nav-menu-item">
-                Accueil
+              <el-image
+              src="/logo.webp"
+              fit="cover"
+              class="logo"
+              alt="logo"
+            ></el-image>
               </el-menu-item>
               <el-menu-item index="/team" class="nav-menu-item">
                 L'équipe
@@ -83,13 +77,15 @@ export default {
 .header {
   padding: 0;
   display: flex;
-  background-color: #545c64;
+  /* background-color: #545c64; */
+
 }
 
 .main {
-  background-color: gainsboro;
+  /* background-color: gainsboro; */
   min-height: 100vh;
   min-height: calc(100vh - 140px);
+
 }
 
 .footer {
