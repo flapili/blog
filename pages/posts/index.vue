@@ -39,8 +39,8 @@
                       type="info"
                       class="tag"
                     >
-                      {{ tag }}</el-tag
-                    >
+                      {{ tag }}
+                    </el-tag>
                   </div>
 
                   <!-- title -->
@@ -60,6 +60,7 @@
                       :src="`/posts/${article.image.src}`"
                       :alt="article.image.alt"
                       fit="scale-down"
+                      style="max-width: 25%;"
                     ></el-image>
 
                     <!-- description -->
