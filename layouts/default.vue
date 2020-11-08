@@ -14,12 +14,12 @@
               router
             >
               <el-menu-item index="/" class="nav-menu-item">
-              <el-image
-              src="/logo.webp"
-              fit="cover"
-              class="logo"
-              alt="logo"
-            ></el-image>
+                <el-image
+                  src="/logo.webp"
+                  fit="cover"
+                  class="logo"
+                  alt="logo"
+                ></el-image>
               </el-menu-item>
               <el-menu-item index="/team" class="nav-menu-item">
                 L'équipe
@@ -48,6 +48,7 @@
             href="https://github.com/flapili/blog"
             target="_blank"
             style="color: inherit"
+            rel="nofollow noopener"
           >
             <font-awesome-icon :icon="['fab', 'github']" size="2x" />
           </a>
@@ -73,17 +74,14 @@ export default {
 </script>
 
 <style scoped>
-
 .header {
   padding: 0;
   display: flex;
-
 }
 
 .main {
   min-height: 100vh;
   min-height: calc(100vh - 140px);
-
 }
 
 .footer {
