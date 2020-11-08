@@ -10,12 +10,16 @@ div.nuxt-content blockquote p {
     margin-left: 10px;
 }
 
-div.nuxt-content p {
+div.nuxt-content p,
+div.nuxt-content div.nuxt-content-highlight pre,
+div.nuxt-content div.box {
     margin-left: 20px;
+    margin-right: 20px;
 }
 
 div.nuxt-content ul li a,
-div.nuxt-content p a {
+div.nuxt-content p a,
+div.nuxt-content div.box a {
     text-decoration: none;
     color: #11a7e2;
 }
