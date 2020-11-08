@@ -8,6 +8,12 @@ export default {
 
     target: "server",
 
+    loading: {
+        color: 'blue',
+        height: '3px',
+        continuous: true,
+        duration: 1000,
+    },
 
     vue: {
         config: {
@@ -123,5 +129,8 @@ export default {
     // Build Configuration (https://go.nuxtjs.dev/config-build)
     build: {
         transpile: [/^element-ui/],
+        hardSource: true,
+        cache: true,
+        parallel: true,
     },
 }
