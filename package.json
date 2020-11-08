@@ -20,7 +20,8 @@
     "core-js": "^3.6.5",
     "element-ui": "^2.13.2",
     "nuxt": "^2.14.5",
-    "prism-themes": "^1.4.1"
+    "prism-themes": "^1.4.1",
+    "remark-footnotes": "2"
   },
   "devDependencies": {
     "coffee-loader": "^1.0.0",
