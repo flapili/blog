@@ -13,8 +13,12 @@
 
     <el-row type="flex" style="margin-top: 16px">
       <el-col :md="{ span: 16, offset: 4 }">
-        <el-card shadow="hover" class="transparent-card" style="text-align: justify">
-              <h3>Chers développeurs,</h3>
+        <el-card
+          shadow="hover"
+          class="transparent-card"
+          style="text-align: justify"
+        >
+          <h3>Chers développeurs,</h3>
           <h5>Intro</h5>
           <p>
             Ce site a été entièrement réalisé par des passionnés d'informatique
@@ -49,7 +53,11 @@
         <el-card shadow="hover" class="transparent-card">
           <div class="text-center">
             <strong>Rejoignez le discord</strong><br />
-            <a href="https://discord.flapili.fr" target="_blank" rel="nofollow noopener">
+            <a
+              href="https://discord.flapili.fr"
+              target="_blank"
+              rel="nofollow noopener"
+            >
               <font-awesome-icon
                 :icon="['fab', 'discord']"
                 size="8x"
