@@ -64,7 +64,7 @@
                 style="color: #8c9eff"
               /> </a
             ><br />
-            <i>On a besoin de vous !</i>
+            <i>L'équipe a besoin de vous !</i>
           </div>
         </el-card>
       </el-col>
