@@ -146,12 +146,12 @@ export default {
       meta: [
         {
           hid: "description",
-          name: "description",
+          property: "description",
           content: this.article.description || "Blog de flapili",
         },
         {
           hid: "image",
-          name: "image",
+          property: "image",
           content: image_content,
         },
         // Open Graph
@@ -167,28 +167,38 @@ export default {
         },
         {
           hid: "og:image",
-          name: "og:image",
+          property: "og:image",
           content: image_content,
+        },
+        {
+          hid: "og:type",
+          property: "og:type",
+          content: "website",
+        },
+        {
+          hid: "og:url",
+          property: "og:url",
+          content: `flapili.fr${this.$route.path}`,
         },
         // Twitter Card
         {
           hid: "twitter:title",
-          name: "twitter:title",
+          property: "twitter:title",
           content: this.article.title || "flapili.fr",
         },
         {
           hid: "twitter:description",
-          name: "twitter:description",
+          property: "twitter:description",
           content: this.article.description || "Blog de flapili",
         },
         {
           hid: "twitter:image",
-          name: "twitter:image",
+          property: "twitter:image",
           content: image_content,
         },
         {
           hid: "twitter:card",
-          name: "twitter:card",
+          property: "twitter:card",
           content: "summary_large_image",
         },
       ],
