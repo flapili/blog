@@ -34,13 +34,12 @@
             Il est très simple de collaborer en intégrant vos articles sur le
             site internet. En effet vous pouvez très simplement "Forker" le
             projet et le modifier à votre guise. Reconnaissez qu'il est
-            tellement mieux de discuter avec les membres du discord qui sauront vous
-            guider. Un article ne se fait pas en un jour ni même en une nuit
-            c'est un travail long et fastidieux...
+            tellement mieux de discuter avec les membres du discord qui sauront
+            vous guider. Un article ne se fait pas en un jour ni même en une
+            nuit c'est un travail long et fastidieux...
           </p>
 
-
-          <div style="text-align:center;">
+          <div style="text-align: center">
             Sur ceux vous êtes les Bienvenus, l'équipe vous souhaite une bonne
             visite!
           </div>
