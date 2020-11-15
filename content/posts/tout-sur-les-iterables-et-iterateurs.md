@@ -180,7 +180,7 @@ for x in MonIterateur(5):
 # 5
 ```
 
-#### Comment ça marcher ?
+#### Comment ça marche ?
 
 Si on ajoute quelques print pour y voir plus clair
 
