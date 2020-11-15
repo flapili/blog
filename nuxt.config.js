@@ -1,8 +1,23 @@
+import path from 'path'
+import fs from 'fs'
+
 export default {
 
     server: {
         host: "0.0.0.0",
-        port: process.env.NODE_ENV === "development" ? 8080 : 80
+        port: process.env.NODE_ENV === "development" ? 8080 : 80,
+        https: {
+            key: fs.readFileSync(path.resolve(__dirname, 'server.key')),
+            cert: fs.readFileSync(path.resolve(__dirname, 'server.crt')),
+        },
+    },
+
+    modern: true,
+
+    render: {
+        http2: {
+            push: true,
+        },
     },
 
 
