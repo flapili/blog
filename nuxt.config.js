@@ -5,7 +5,7 @@ export default {
 
     server: {
         host: "0.0.0.0",
-        port: process.env.NODE_ENV === "development" ? 8080 : 80,
+        port: process.env.NODE_ENV === "development" ? 8080 : 443,
         https: {
             key: fs.readFileSync(path.resolve(__dirname, 'server.key')),
             cert: fs.readFileSync(path.resolve(__dirname, 'server.crt')),
@@ -146,6 +146,5 @@ export default {
         transpile: [/^element-ui/],
         hardSource: true,
         cache: true,
-        parallel: true,
     },
 }
