@@ -4,7 +4,6 @@ import fs from 'fs'
 export default {
 
     server: {
-        host: "0.0.0.0",
         port: process.env.NODE_ENV === "development" ? 8080 : 4443,
         https: {
             key: fs.readFileSync(path.resolve(__dirname, 'server.key')),
