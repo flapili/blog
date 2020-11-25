@@ -25,12 +25,6 @@ const config = {
         duration: 1000,
     },
 
-    vue: {
-        config: {
-            // devtools: true,
-        },
-    },
-
     // Global page headers (https://go.nuxtjs.dev/config-head)
     head: {
         htmlAttrs: {
