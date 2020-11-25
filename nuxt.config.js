@@ -1,14 +1,11 @@
 import path from 'path'
 import fs from 'fs'
 
-export default {
+
+const config = {
 
     server: {
         port: process.env.NODE_ENV === "development" ? 8080 : 4443,
-        https: {
-            key: fs.readFileSync(path.resolve(__dirname, 'server.key')),
-            cert: fs.readFileSync(path.resolve(__dirname, 'server.crt')),
-        },
     },
 
     modern: true,
@@ -18,7 +15,6 @@ export default {
             push: true,
         },
     },
-
 
     target: "server",
 
@@ -34,7 +30,6 @@ export default {
             // devtools: true,
         },
     },
-
 
     // Global page headers (https://go.nuxtjs.dev/config-head)
     head: {
@@ -52,7 +47,6 @@ export default {
         ]
     },
 
-
     // Global CSS (https://go.nuxtjs.dev/config-css)
     css: [
         'element-ui/lib/theme-chalk/index.css',
@@ -63,7 +57,6 @@ export default {
         '~/assets/css/transition.css',
     ],
 
-
     // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
     plugins: [
         '@/plugins/element-ui',
@@ -71,14 +64,11 @@ export default {
         '@/plugins/menu-router-guard.js',
     ],
 
-
     // Auto import components (https://go.nuxtjs.dev/config-components)
     components: true,
 
-
     // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
     buildModules: [],
-
 
     // Modules (https://go.nuxtjs.dev/config-modules)
     modules: [
@@ -89,10 +79,8 @@ export default {
         '@nuxtjs/robots',
     ],
 
-
     // Axios module configuration (https://go.nuxtjs.dev/config-axios)
     axios: {},
-
 
     // Content module configuration (https://go.nuxtjs.dev/content-config)
     content: {
@@ -109,7 +97,6 @@ export default {
             "author.website_url",
         ],
     },
-
 
     // https://github.com/nuxt-community/sitemap-module
     sitemap: {
@@ -129,7 +116,6 @@ export default {
         Sitemap: "https://flapili.fr/sitemap.xml",
     },
 
-
     generate: {
         async routes() {
             const { $content } = require('@nuxt/content')
@@ -139,7 +125,6 @@ export default {
         }
     },
 
-
     // Build Configuration (https://go.nuxtjs.dev/config-build)
     build: {
         transpile: [/^element-ui/],
@@ -147,3 +132,13 @@ export default {
         cache: true,
     },
 }
+
+// only serve https in production
+if (process.env.NODE_ENV === "production") {
+    config.server.https = {
+        key: fs.readFileSync(path.resolve(__dirname, 'server.key')),
+        cert: fs.readFileSync(path.resolve(__dirname, 'server.crt')),
+    }
+}
+
+export default config
