@@ -211,6 +211,12 @@ export default {
         property: "publisher",
         content: this.article.author.name,
       });
+      meta.push({
+        hid: "twitter:creator",
+        property: "twitter:creator",
+        content: this.article.author.name,
+      });
+
     }
     return {
       title: this.article.title || "flapili.fr",
