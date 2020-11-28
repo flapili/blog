@@ -9,6 +9,7 @@ image:
     src: ouroboros.png
     alt: serpent qui se mort la queue
 tags: python;iter;collections;boucle
+createdAt: "2020-11-07T10:18:03.000Z"
 ---
 
 ## Itérable
