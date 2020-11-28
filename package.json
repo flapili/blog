@@ -1,35 +1,34 @@
 {
-  "name": "blog",
-  "version": "1.0.0",
-  "private": true,
-  "scripts": {
-    "dev": "nuxt",
-    "build": "nuxt build",
-    "start": "nuxt start",
-    "generate": "nuxt generate"
-  },
-  "dependencies": {
-    "@fortawesome/fontawesome-svg-core": "^1.2.31",
-    "@fortawesome/free-brands-svg-icons": "^5.15.0",
-    "@fortawesome/free-solid-svg-icons": "^5.15.0",
-    "@fortawesome/vue-fontawesome": "^2.0.0",
-    "@nuxt/content": "1.10.0",
-    "@nuxtjs/dayjs": "^1.2.0",
-    "@nuxtjs/robots": "^2.4.2",
-    "@nuxtjs/sitemap": "^2.4.0",
-    "core-js": "^3.6.5",
-    "element-ui": "^2.13.2",
-    "nuxt": "^2.14.5",
-    "prism-themes": "^1.4.1",
-    "remark-footnotes": "2"
-  },
-  "devDependencies": {
-    "coffee-loader": "^1.0.0",
-    "coffeescript": "^2.5.1",
-    "node-sass": "^4.14.1",
-    "pug": "2.0.3",
-    "pug-plain-loader": "^1.0.0",
-    "sass-loader": "^10.0.2",
-    "thread-loader": "^3.0.0"
-  }
+    "name": "blog",
+    "version": "1.0.0",
+    "private": true,
+    "scripts": {
+        "dev": "nuxt",
+        "build": "nuxt build",
+        "start": "nuxt start",
+        "generate": "nuxt generate"
+    },
+    "dependencies": {
+        "@nuxt/content": "1.10.0",
+        "@nuxtjs/dayjs": "^1.2.0",
+        "@nuxtjs/robots": "^2.4.2",
+        "@nuxtjs/sitemap": "^2.4.0",
+        "core-js": "^3.6.5",
+        "element-ui": "^2.13.2",
+        "nuxt": "^2.14.5",
+        "prism-themes": "^1.4.1",
+        "remark-footnotes": "2"
+    },
+    "devDependencies": {
+        "@fortawesome/free-brands-svg-icons": "^5.15.1",
+        "@fortawesome/free-solid-svg-icons": "^5.15.1",
+        "@nuxtjs/fontawesome": "^1.1.2",
+        "coffee-loader": "^1.0.0",
+        "coffeescript": "^2.5.1",
+        "node-sass": "^4.14.1",
+        "pug": "2.0.3",
+        "pug-plain-loader": "^1.0.0",
+        "sass-loader": "^10.0.2",
+        "thread-loader": "^3.0.0"
+    }
 }

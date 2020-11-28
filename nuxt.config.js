@@ -44,7 +44,6 @@ const config = {
     // Global CSS (https://go.nuxtjs.dev/config-css)
     css: [
         'element-ui/lib/theme-chalk/index.css',
-        '@fortawesome/fontawesome-svg-core/styles.css',
 
         '~/assets/css/styles.css',
         '~/assets/css/content.css',
@@ -54,7 +53,6 @@ const config = {
     // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
     plugins: [
         '@/plugins/element-ui',
-        '@/plugins/fontawesome.js',
         '@/plugins/menu-router-guard.js',
     ],
 
@@ -62,7 +60,9 @@ const config = {
     components: true,
 
     // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
-    buildModules: [],
+    buildModules: [
+        '@nuxtjs/fontawesome',
+    ],
 
     // Modules (https://go.nuxtjs.dev/config-modules)
     modules: [
@@ -73,9 +73,21 @@ const config = {
         '@nuxtjs/robots',
     ],
 
-    // Axios module configuration (https://go.nuxtjs.dev/config-axios)
-    axios: {},
+    fontawesome: {
+        icons: {
+            solid: [
+                'faExclamationTriangle',
+            ],
+            regular: [],
+            light: [],
+            duotone: [],
+            brands: [
+                'faDiscord',
+                'faGithub',
 
+            ],
+        }
+    },
     // Content module configuration (https://go.nuxtjs.dev/content-config)
     content: {
         liveEdit: false,
