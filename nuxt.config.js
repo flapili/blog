@@ -3,9 +3,7 @@ import fs from 'fs'
 
 
 const description = "Ce site a été entièrement réalisé par des passionnés d'informatique qui ont\
- pour vocation de transmettre leurs connaissances sur des sujets aussi précis que variés. Cette\
- équipe de rédacteurs et de designers est à votre écoute pour toute idée sur le fonctionnement du\
- site. Le projet étant Open Source il est consultable depuis Github."
+ pour vocation de transmettre leurs connaissances sur des sujets aussi précis que varié."
 
 const hostname = 'https://flapili.fr'
 
