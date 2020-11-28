@@ -2,6 +2,13 @@ import path from 'path'
 import fs from 'fs'
 
 
+const description = "Ce site a été entièrement réalisé par des passionnés d'informatique qui ont\
+ pour vocation de transmettre leurs connaissances sur des sujets aussi précis que variés. Cette\
+ équipe de rédacteurs et de designers est à votre écoute pour toute idée sur le fonctionnement du\
+ site. Le projet étant Open Source il est consultable depuis Github."
+
+const hostname = 'https://flapili.fr'
+
 const config = {
 
     server: {
@@ -34,7 +41,21 @@ const config = {
         meta: [
             { charset: 'utf-8' },
             { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-            { hid: 'description', property: 'description', content: 'Le blog de flapili' }
+            { hid: 'description', property: 'description', content: description },
+
+            // Open Graph tags
+            { hid: 'og:description', property: 'og:description', content: description },
+            { hid: 'og:url', property: 'og:url', content: hostname },
+            { hid: 'og:type', property: 'og:type', content: 'website' },
+            { hid: 'og:title', property: 'og:title', content: 'Accueil - flapili.fr' },
+            { hid: 'og:image', property: "og:image", content: `${hostname}/logo.webp` },
+
+            // twitter tags
+            { hid: 'twitter:description', property: 'twitter:description', content: description },
+            { hid: 'twitter:domain', property: 'twitter:domain', content: 'flapili.fr' },
+            { hid: 'twitter:url', property: 'twitter:url', content: hostname },
+            { hid: 'twitter:title', property: 'twitter:title', content: 'Accueil - flapili.fr' },
+            { hid: 'twitter:image', property: "twitter:image", content: `${hostname}/logo.webp` },
         ],
         link: [
             { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
@@ -93,7 +114,7 @@ const config = {
         liveEdit: false,
         markdown: {
             prism: {
-                theme: 'prism-themes/themes/prism-vs.css'
+                theme: 'prism-themes/themes/prism-vsc-dark-plus.css'
             }
         },
         fullTextSearchFields: ['title', 'description', 'slug', 'text', 'tags'],
@@ -106,10 +127,9 @@ const config = {
 
     // https://github.com/nuxt-community/sitemap-module
     sitemap: {
-        hostname: 'https://flapili.fr',
+        hostname: hostname,
         gzip: true,
         defaults: {
-            // changefreq: 'daily',
             priority: 1,
             lastmod: new Date()
         },
@@ -119,7 +139,7 @@ const config = {
     robots: {
         UserAgent: '*',
         Allow: "/",
-        Sitemap: "https://flapili.fr/sitemap.xml",
+        Sitemap: `${hostname}/sitemap.xml`,
     },
 
     generate: {
