@@ -2,8 +2,7 @@
   <div>
     <el-container>
       <el-header class="header">
-        <el-collapse-transition>
-          <span class="flex" v-if="show_menu">
+          <span class="flex">
             <el-menu
               mode="horizontal"
               background-color="transparent"
@@ -29,12 +28,6 @@
               </el-menu-item>
             </el-menu>
           </span>
-        </el-collapse-transition>
-        <el-button
-          @click="show_menu = !show_menu"
-          class="bouton-disable-nav-menu"
-          ><i :class="show_menu ? 'el-icon-s-fold' : 'el-icon-s-unfold'"></i
-        ></el-button>
       </el-header>
 
       <el-main class="main">
@@ -60,11 +53,7 @@
 
 <script>
 export default {
-  data() {
-    return {
-      show_menu: true,
-    };
-  },
+
   computed: {
     activeIndex() {
       return this.$store.state["menu-active-item"].activeIndex;
@@ -91,7 +80,7 @@ export default {
 }
 
 .nav-menu {
-  border-bottom: none;
+  border-bottom: none !important;
 }
 
 .nav-menu-item {

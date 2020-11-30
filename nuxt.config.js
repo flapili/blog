@@ -62,7 +62,7 @@ const config = {
 
     // Global CSS (https://go.nuxtjs.dev/config-css)
     css: [
-        'element-ui/lib/theme-chalk/index.css',
+        // 'element-ui/lib/theme-chalk/index.css',
 
         '~/assets/css/styles.css',
         '~/assets/css/content.css',
@@ -96,6 +96,7 @@ const config = {
         icons: {
             solid: [
                 'faExclamationTriangle',
+                'faHome'
             ],
             regular: [],
             light: [],
@@ -152,7 +153,7 @@ const config = {
     // Build Configuration (https://go.nuxtjs.dev/config-build)
     build: {
         transpile: [/^element-ui/],
-        hardSource: true,
+        // hardSource: true,
         cache: true,
     },
 }

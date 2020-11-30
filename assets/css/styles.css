@@ -43,6 +43,6 @@ a div.el-card:hover {
 }
 
 .transparent-card {
-    background-color: hsl(234deg 12% 81% / 90%);
-    border: none;
+    background-color: hsl(234deg 12% 81% / 90%) !important;
+    border: none !important;
 }
