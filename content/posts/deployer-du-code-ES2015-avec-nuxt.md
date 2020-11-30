@@ -70,7 +70,7 @@ BabelJS est un transcompilateur, ce mot barbare veux dire que c'est un outil qui
 
 Concrètement si je prends une fonction fléchée
 ```js
-maFonction = (nom) => {
+const maFonction = (nom) => {
     console.log("Bonjour " + nom )
 }
 ```
@@ -86,7 +86,7 @@ maFonction = function maFonction(nom) {
 C'est pareil sauf que les vieux navigateurs comprennent.<br>
 Maintenant un autre exemple avec du async/await et on rigole déjà moins :
 ```js
-maFonctionAsync = async (arg) => {
+const maFonctionAsync = async (arg) => {
     await Promise.resolve(arg)
 }
 ```
