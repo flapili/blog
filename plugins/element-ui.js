@@ -4,6 +4,9 @@ import Vue from 'vue'
 // Vue.use(Element, { locale })
 
 
+import 'element-ui/lib/theme-chalk/icon.css';
+
+
 import ElCard from 'element-ui/lib/card';
 import 'element-ui/lib/theme-chalk/card.css';
 Vue.component(ElCard.name, ElCard);
