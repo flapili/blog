@@ -81,6 +81,7 @@ const config = {
     // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
     buildModules: [
         '@nuxtjs/fontawesome',
+        '@nuxtjs/google-analytics',
     ],
 
     // Modules (https://go.nuxtjs.dev/config-modules)
@@ -91,6 +92,10 @@ const config = {
         '@nuxtjs/sitemap',
         '@nuxtjs/robots',
     ],
+
+    googleAnalytics: {
+        id: 'UA-183419207-1'
+    },
 
     fontawesome: {
         icons: {
