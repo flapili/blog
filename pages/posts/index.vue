@@ -29,69 +29,72 @@
 
         <template v-if="articles.length">
           <ul style="padding-inline-start: 0">
-            <li v-for="(article, i) in articles" :key="i" class="article">
-              <nuxt-link :to="article.path" class="no-text-decoration">
-                <el-card
-                  shadow="hover"
-                  class="no-border transparent-card"
-                >
-                  <!-- tags -->
-                  <div>
-                    <el-tag
-                      v-for="(tag, i) in Array.from(
-                        new Set(article.tags.split(';'))
-                      )"
-                      :key="i"
-                      type="info"
-                      class="tag"
-                    >
-                      {{ tag }}
-                    </el-tag>
-                  </div>
+            <XyzTransitionGroup
+              appear
+              class="square-grid"
+              xyz="fade small duration-30 appear-stagger"
+            >
+              <li v-for="(article, i) in articles" :key="i" class="article">
+                <nuxt-link :to="article.path" class="no-text-decoration">
+                  <el-card shadow="hover" class="no-border transparent-card">
+                    <!-- tags -->
+                    <div>
+                      <el-tag
+                        v-for="(tag, i) in Array.from(
+                          new Set(article.tags.split(';'))
+                        )"
+                        :key="i"
+                        type="info"
+                        class="tag"
+                      >
+                        {{ tag }}
+                      </el-tag>
+                    </div>
 
-                  <!-- title -->
-                  <h3 v-if="article.title" class="title">
-                    {{ article.title }}
-                  </h3>
+                    <!-- title -->
+                    <h3 v-if="article.title" class="title">
+                      {{ article.title }}
+                    </h3>
 
-                  <!-- date -->
-                  <span>
-                    <i>{{ new Date(article.createdAt).toLocaleString() }}</i>
-                  </span>
-
-                  <!-- image -->
-                  <div class="flex">
-                    <el-image
-                      v-if="article.image"
-                      :src="`/posts/${article.image.src}`"
-                      :alt="article.image.alt"
-                      fit="scale-down"
-                      style="max-width: 25%"
-                    ></el-image>
-
-                    <!-- description -->
-                    <p v-if="article.description" style="margin-left: 10px">
-                      {{ article.description }}
-                    </p>
-                  </div>
-
-                  <!-- author -->
-                  <div class="author" v-if="article.author">
-                    <i v-if="article.author.name" class="author-name">
-                      {{ article.author.name }}
-                    </i>
-                    <span v-if="article.author.avatar">
-                      <el-image
-                        :src="`/author/${article.author.avatar}`"
-                        fit="cover"
-                        class="logo"
-                        alt="auteur"
-                      ></el-image>
+                    <!-- date -->
+                    <span>
+                      <i>{{ new Date(article.createdAt).toLocaleString() }}</i>
                     </span>
-                  </div>
-                </el-card>
-              </nuxt-link>
-            </li>
+
+                    <!-- image -->
+                    <div class="flex">
+                      <el-image
+                        v-if="article.image"
+                        :src="`/posts/${article.image.src}`"
+                        :alt="article.image.alt"
+                        fit="scale-down"
+                        style="max-width: 25%"
+                      ></el-image>
+
+                      <!-- description -->
+                      <p v-if="article.description" style="margin-left: 10px">
+                        {{ article.description }}
+                      </p>
+                    </div>
+
+                    <!-- author -->
+                    <div class="author" v-if="article.author">
+                      <i v-if="article.author.name" class="author-name">
+                        {{ article.author.name }}
+                      </i>
+                      <span v-if="article.author.avatar">
+                        <el-image
+                          :src="`/author/${article.author.avatar}`"
+                          fit="cover"
+                          class="logo"
+                          alt="auteur"
+                        ></el-image>
+                      </span>
+                    </div>
+                  </el-card>
+                </nuxt-link>
+              </li>
+            </XyzTransitionGroup>
           </ul>
         </template>
 
@@ -283,5 +286,11 @@ export default {
 .page-up,
 .page-down {
   text-align: center;
+}
+
+.square {
+  background-color: red;
+  width: 100px;
+  height: 100px;
 }
 </style>
