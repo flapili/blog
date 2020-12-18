@@ -7,7 +7,7 @@
       >
         <h1 class="text-center title-page">
           <XyzTransitionGroup
-            xyz="fade small stagger-1 duration-3 up"
+            xyz="fade small stagger-1 duration-2 up"
             appear
             class="splitting"
           >
@@ -22,7 +22,7 @@
       <XyzTransitionGroup
         appear
         class="square-grid"
-        xyz="fade small duration-10 stagger-2"
+        xyz="fade small duration-5 stagger-2"
       >
         <el-card
           v-for="(member, i) in members"

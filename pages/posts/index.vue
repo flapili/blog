@@ -25,7 +25,7 @@
           style="background-color: rgba(255, 255, 255, 0.2)"
         >
           <h1 class="text-center title-page">
-            <XyzTransitionGroup xyz="fade small stagger-1 duration-3 up" appear class="splitting">
+            <XyzTransitionGroup xyz="fade small stagger-1 duration-2 up" appear class="splitting">
               <span v-for="(c, i) in 'Les posts'" :key="i">
                 <template v-if="c == ' '">&nbsp;</template>
                 <template v-else>{{ c }}</template>
@@ -39,7 +39,7 @@
             <XyzTransitionGroup
               appear
               class="square-grid"
-              xyz="fade small duration-10 stagger-2"
+              xyz="fade small duration-5 stagger-2"
             >
               <li v-for="(article, i) in articles" :key="i" class="article">
                 <nuxt-link :to="article.path" class="no-text-decoration">
