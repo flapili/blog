@@ -8,7 +8,7 @@
         >
           <h1 class="text-center title-page">
             <XyzTransitionGroup
-              xyz="fade small stagger-1 duration-10"
+              xyz="fade small stagger-1 duration-3 up"
               appear
               class="splitting"
             >
@@ -21,7 +21,7 @@
         </el-card>
       </el-col>
     </el-row>
-    <XyzTransitionGroup appear xyz="fade small duration-15 stagger-2">
+    <XyzTransitionGroup appear xyz="fade small duration-10 stagger-2">
       <el-row type="flex" style="margin-top: 16px" key="1">
         <el-col :md="{ span: 16, offset: 4 }">
           <el-card
