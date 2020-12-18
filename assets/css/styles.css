@@ -1,4 +1,3 @@
-@import url("https://fonts.googleapis.com/css?family=Raleway:400,500,700%22");
 body {
     margin: 0;
     background: url('~@/assets/images/banner.jpg') no-repeat center fixed;
@@ -37,7 +36,6 @@ a div.el-card:hover {
 
 .title-page {
     font-size: 4em;
-    font-family: Raleway;
     margin-block-start: 0;
     margin-block-end: 0;
 }
@@ -45,4 +43,10 @@ a div.el-card:hover {
 .transparent-card {
     background-color: hsl(234deg 12% 81% / 90%) !important;
     border: none !important;
+}
+
+.splitting {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
 }

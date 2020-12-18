@@ -1,15 +1,32 @@
 <template>
   <el-row>
     <el-col :md="{ span: 16, offset: 4 }">
+
       <el-card
         class="no-border"
         style="background-color: rgba(255, 255, 255, 0.2)"
       >
-        <h1 class="text-center title-page">L'équipe</h1>
+        <h1 class="text-center title-page">
+          <XyzTransitionGroup xyz="fade small stagger-1 duration-20" appear class="splitting">
+            <span v-for="(c, i) in `L'équipe`" :key="i">
+              <template v-if="c == ' '">&nbsp;</template>
+              <template v-else>{{ c }}</template>
+            </span>
+          </XyzTransitionGroup>
+        </h1>
       </el-card>
 
-      <!-- <el-card shadow="hover" style="margin-top: 16px;"> -->
-      <el-card v-for="(member, i) in members" :key="i" class="member-card transparent-card">
+      <XyzTransitionGroup
+              appear
+              class="square-grid"
+              xyz="fade small duration-10 appear-stagger"
+            >
+
+      <el-card
+        v-for="(member, i) in members"
+        :key="i"
+        class="member-card transparent-card"
+      >
         <div class="flex" :class="{ 'flex-row-reverse': i % 2 == 1 }">
           <!-- image -->
           <el-avatar
@@ -43,7 +60,6 @@
             </div>
 
             <!-- bio -->
-            <!-- <p style="margin: 0 10px; text-align: justify"> -->
             <nuxt-content
               :document="member"
               style="text-align: justify; margin: 0 10px"
@@ -51,8 +67,8 @@
             <!-- </p> -->
           </div>
         </div>
-        <!-- </el-card> -->
       </el-card>
+      </XyzTransitionGroup>
     </el-col>
   </el-row>
 </template>

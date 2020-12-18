@@ -24,7 +24,14 @@
           class="no-border"
           style="background-color: rgba(255, 255, 255, 0.2)"
         >
-          <h1 class="text-center title-page">Les posts</h1>
+          <h1 class="text-center title-page">
+            <XyzTransitionGroup xyz="fade small stagger-1 duration-20" appear class="splitting">
+              <span v-for="(c, i) in 'Les posts'" :key="i">
+                <template v-if="c == ' '">&nbsp;</template>
+                <template v-else>{{ c }}</template>
+              </span>
+            </XyzTransitionGroup>
+          </h1>
         </el-card>
 
         <template v-if="articles.length">
