@@ -8,7 +8,7 @@
         >
           <h1 class="text-center title-page">
             <XyzTransitionGroup
-              xyz="fade small stagger-1 duration-20"
+              xyz="fade small stagger-1 duration-15"
               appear
               class="splitting"
             >
@@ -21,18 +21,13 @@
         </el-card>
       </el-col>
     </el-row>
-
-    <el-row type="flex" style="margin-top: 16px">
-      <el-col :md="{ span: 16, offset: 4 }">
-        <XyzTransitionGroup
-          appear
-          xyz="fade small duration-5"
-        >
+    <XyzTransitionGroup appear xyz="fade small duration-30 stagger-2">
+      <el-row type="flex" style="margin-top: 16px" key="1">
+        <el-col :md="{ span: 16, offset: 4 }">
           <el-card
             shadow="hover"
             class="transparent-card"
             style="text-align: justify"
-            key="1"
           >
             <h3>Chers développeurs,</h3>
             <h5>Intro</h5>
@@ -60,17 +55,12 @@
               visite!
             </div>
           </el-card>
-        </XyzTransitionGroup>
-      </el-col>
-    </el-row>
+        </el-col>
+      </el-row>
 
-    <el-row type="flex" style="margin-top: 16px">
-      <el-col :md="{ span: 16, offset: 4 }">
-        <XyzTransitionGroup
-          appear
-          xyz="fade small duration-30 appear-stagger"
-        >
-          <el-card shadow="hover" class="transparent-card" key="2">
+      <el-row type="flex" style="margin-top: 16px" key="2">
+        <el-col :md="{ span: 16, offset: 4 }">
+          <el-card shadow="hover" class="transparent-card">
             <div class="text-center">
               <strong>Rejoignez le discord</strong><br />
               <a
@@ -87,9 +77,9 @@
               <i>L'équipe a besoin de vous !</i>
             </div>
           </el-card>
-        </XyzTransitionGroup>
-      </el-col>
-    </el-row>
+        </el-col>
+      </el-row>
+    </XyzTransitionGroup>
   </div>
 </template>
 

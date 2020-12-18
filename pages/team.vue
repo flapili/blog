@@ -1,13 +1,16 @@
 <template>
   <el-row>
     <el-col :md="{ span: 16, offset: 4 }">
-
       <el-card
         class="no-border"
         style="background-color: rgba(255, 255, 255, 0.2)"
       >
         <h1 class="text-center title-page">
-          <XyzTransitionGroup xyz="fade small stagger-1 duration-20" appear class="splitting">
+          <XyzTransitionGroup
+            xyz="fade small stagger-1 duration-15"
+            appear
+            class="splitting"
+          >
             <span v-for="(c, i) in `L'équipe`" :key="i">
               <template v-if="c == ' '">&nbsp;</template>
               <template v-else>{{ c }}</template>
@@ -17,57 +20,56 @@
       </el-card>
 
       <XyzTransitionGroup
-              appear
-              class="square-grid"
-              xyz="fade small duration-10 appear-stagger"
-            >
-
-      <el-card
-        v-for="(member, i) in members"
-        :key="i"
-        class="member-card transparent-card"
+        appear
+        class="square-grid"
+        xyz="fade small duration-30 stagger-2"
       >
-        <div class="flex" :class="{ 'flex-row-reverse': i % 2 == 1 }">
-          <!-- image -->
-          <el-avatar
-            :size="100"
-            :src="`/author/${member.avatar}`"
-            style="min-width: fit-content"
-          ></el-avatar>
+        <el-card
+          v-for="(member, i) in members"
+          :key="i"
+          class="member-card transparent-card"
+        >
+          <div class="flex" :class="{ 'flex-row-reverse': i % 2 == 1 }">
+            <!-- image -->
+            <el-avatar
+              :size="100"
+              :src="`/author/${member.avatar}`"
+              style="min-width: fit-content"
+            ></el-avatar>
 
-          <div>
-            <!-- name -->
-            <div class="flex" :class="{ 'flex-row-reverse': i % 2 === 1 }">
-              <h1 class="name">{{ member.name }}</h1>
-              <div
-                v-if="member.roles"
-                :class="
-                  i % 2 === 0 ? 'role-container-left' : 'role-container-right'
-                "
-              >
-                <!-- roles -->
-                <el-tag
-                  v-for="(role, i_roles) in member.roles"
-                  :key="i_roles"
-                  class="role"
-                  :class="i % 2 === 1 ? 'role-left' : 'role-right'"
-                  effect="dark"
-                  type="info"
+            <div>
+              <!-- name -->
+              <div class="flex" :class="{ 'flex-row-reverse': i % 2 === 1 }">
+                <h1 class="name">{{ member.name }}</h1>
+                <div
+                  v-if="member.roles"
+                  :class="
+                    i % 2 === 0 ? 'role-container-left' : 'role-container-right'
+                  "
                 >
-                  {{ role }}
-                </el-tag>
+                  <!-- roles -->
+                  <el-tag
+                    v-for="(role, i_roles) in member.roles"
+                    :key="i_roles"
+                    class="role"
+                    :class="i % 2 === 1 ? 'role-left' : 'role-right'"
+                    effect="dark"
+                    type="info"
+                  >
+                    {{ role }}
+                  </el-tag>
+                </div>
               </div>
-            </div>
 
-            <!-- bio -->
-            <nuxt-content
-              :document="member"
-              style="text-align: justify; margin: 0 10px"
-            />
-            <!-- </p> -->
+              <!-- bio -->
+              <nuxt-content
+                :document="member"
+                style="text-align: justify; margin: 0 10px"
+              />
+              <!-- </p> -->
+            </div>
           </div>
-        </div>
-      </el-card>
+        </el-card>
       </XyzTransitionGroup>
     </el-col>
   </el-row>
