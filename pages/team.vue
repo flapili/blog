@@ -22,7 +22,7 @@
       <XyzTransitionGroup
         appear
         class="square-grid"
-        xyz="fade small duration-20 stagger-2"
+        xyz="fade small duration-15 stagger-2"
       >
         <el-card
           v-for="(member, i) in members"
