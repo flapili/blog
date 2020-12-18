@@ -7,9 +7,10 @@
       >
         <h1 class="text-center title-page">
           <XyzTransitionGroup
-            xyz="fade small stagger-1 duration-2 up"
+            xyz="fade small duration-5 up"
             appear
             class="splitting"
+            style="--xyz-stagger: 0.05s"
           >
             <span v-for="(c, i) in `L'équipe`" :key="i">
               <template v-if="c == ' '">&nbsp;</template>
