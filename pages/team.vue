@@ -7,7 +7,7 @@
       >
         <h1 class="text-center title-page">
           <XyzTransitionGroup
-            xyz="fade small stagger-1 duration-15"
+            xyz="fade small stagger-1 duration-10"
             appear
             class="splitting"
           >
