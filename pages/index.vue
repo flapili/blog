@@ -21,7 +21,7 @@
         </el-card>
       </el-col>
     </el-row>
-    <XyzTransitionGroup appear xyz="fade small duration-30 stagger-2">
+    <XyzTransitionGroup appear xyz="fade small duration-20 stagger-2">
       <el-row type="flex" style="margin-top: 16px" key="1">
         <el-col :md="{ span: 16, offset: 4 }">
           <el-card

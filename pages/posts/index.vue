@@ -39,7 +39,7 @@
             <XyzTransitionGroup
               appear
               class="square-grid"
-              xyz="fade small duration-30 stagger-2"
+              xyz="fade small duration-20 stagger-2"
             >
               <li v-for="(article, i) in articles" :key="i" class="article">
                 <nuxt-link :to="article.path" class="no-text-decoration">
