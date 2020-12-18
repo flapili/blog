@@ -57,6 +57,11 @@ import 'element-ui/lib/theme-chalk/image.css';
 Vue.component(ElImage.name, ElImage);
 
 
+import ElAvatar from 'element-ui/lib/avatar';
+import 'element-ui/lib/theme-chalk/avatar.css';
+Vue.component(ElAvatar.name, ElAvatar);
+
+
 import ElTag from 'element-ui/lib/tag';
 import 'element-ui/lib/theme-chalk/tag.css';
 Vue.component(ElTag.name, ElTag);
