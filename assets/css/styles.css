@@ -10,15 +10,15 @@ html {
 }
 
 .text-center {
-    text-align: center;
+    text-align: center !important;
 }
 
 .no-text-decoration {
-    text-decoration: none;
+    text-decoration: none !important;
 }
 
 .flex {
-    display: flex;
+    display: flex !important;
 }
 
 .flex-row-reverse {
@@ -26,13 +26,13 @@ html {
 }
 
 .block {
-    display: block;
+    display: block !important;
 }
 
 a div.el-card:hover {
-    background-color: #b3d8ff;
-    border-color: #409EFF;
-    transition: 2s;
+    background-color: #b3d8ff !important;
+    border-color: #409EFF !important;
+    transition: 2s !important;
 }
 
 .title-page {
