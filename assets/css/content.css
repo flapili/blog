@@ -24,6 +24,12 @@ div.nuxt-content div.box a {
     color: #11a7e2;
 }
 
+div.nuxt-content ul li a:hover,
+div.nuxt-content p a:hover,
+div.nuxt-content div.box a:hover {
+    mix-blend-mode: difference;
+}
+
 div.nuxt-content h2 code,
 div.nuxt-content h3 code,
 div.nuxt-content h4 code,
