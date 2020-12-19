@@ -299,10 +299,4 @@ export default {
 .page-down {
   text-align: center;
 }
-
-.square {
-  background-color: red;
-  width: 100px;
-  height: 100px;
-}
 </style>
