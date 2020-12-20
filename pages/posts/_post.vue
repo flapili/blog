@@ -4,18 +4,34 @@
       <el-col :md="{ span: 16, offset: 4 }">
         <el-card class="transparent-card">
           <article v-if="error == false">
-            <el-tag
-              v-for="(tag, i) in Array.from(new Set(article.tags.split(';')))"
-              :key="i"
-              type="info"
-              class="tag"
+            <XyzTransitionGroup
+              appear
+              class="square-group"
+              xyz="fade flip-up flip-left duration-30"
             >
-              {{ tag }}
-            </el-tag>
+              <el-tag
+                v-for="(tag, i) in Array.from(new Set(article.tags.split(';')))"
+                :key="i"
+                type="info"
+                class="tag"
+              >
+                {{ tag }}
+              </el-tag>
+            </XyzTransitionGroup>
             <!-- title -->
             <template v-if="article.title">
               <h1 class="title text-center">
-                {{ article.title }}
+                <XyzTransitionGroup
+                  xyz="fade small duration-5 up"
+                  appear
+                  class="splitting"
+                  style="--xyz-stagger: 0.05s"
+                >
+                  <span v-for="(c, i) in article.title" :key="i">
+                    <template v-if="c == ' '">&nbsp;</template>
+                    <template v-else>{{ c }}</template>
+                  </span>
+                </XyzTransitionGroup>
               </h1>
             </template>
 
@@ -46,6 +62,7 @@
                 <el-image
                   :src="`/posts/${article.image.src}`"
                   :alt="article.image.alt"
+                  style="max-width: 50%;"
                 ></el-image>
               </div>
             </template>
@@ -216,7 +233,6 @@ export default {
         property: "twitter:creator",
         content: this.article.author.name,
       });
-
     }
     return {
       title: this.article.title || "flapili.fr",
@@ -261,6 +277,10 @@ export default {
 
 .toc {
   color: #11a7e2;
+}
+
+.toc:hover {
+  mix-blend-mode: difference
 }
 
 .toc-2 {
