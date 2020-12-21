@@ -28,7 +28,7 @@ for x in [1, 2, 3]:
 # 3
 ```
 
-Un tuple (ou n-uplet en français) est un objet similaire à une liste à la seule différence qu'il ne peux être modifié une fois créé.
+Un tuple (ou n-uplet en français) est un objet similaire à une liste à la seule différence qu'il ne peut être modifié une fois créé.
 ```py
 for x in (1, 2, 3):
     print(x)
