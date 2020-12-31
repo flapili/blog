@@ -17,17 +17,23 @@ div.nuxt-content div.box {
     margin-right: 20px;
 }
 
-div.nuxt-content ul li a,
-div.nuxt-content p a,
-div.nuxt-content div.box a {
-    text-decoration: none;
-    color: #11a7e2;
+div.nuxt-content div.nuxt-content-highlight pre {
+    border: 1px solid black;
+    border-radius: 10px;
 }
 
-div.nuxt-content ul li a:hover,
-div.nuxt-content p a:hover,
-div.nuxt-content div.box a:hover {
+div.nuxt-content ul>li>a,
+div.nuxt-content p>a,
+div.nuxt-content div.box>a {
+    text-decoration: none;
+    color: royalblue;
+}
+
+div.nuxt-content ul>li>a:hover,
+div.nuxt-content p>a:hover,
+div.nuxt-content div.box>a:hover {
     mix-blend-mode: difference;
+    font-weight: bold;
 }
 
 div.nuxt-content h2 code,

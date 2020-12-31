@@ -20,10 +20,7 @@
     </el-row>
     <el-row>
       <el-col :md="{ span: 16, offset: 4 }">
-        <el-card
-          class="no-border"
-          style="background-color: rgba(255, 255, 255, 0.2)"
-        >
+        <el-card class="graycard">
           <h1 class="text-center title-page">
             <XyzTransitionGroup
               xyz="fade small duration-5 up"
@@ -48,7 +45,7 @@
             >
               <li v-for="(article, i) in articles" :key="i" class="article">
                 <nuxt-link :to="article.path" class="no-text-decoration">
-                  <el-card shadow="hover" class="no-border transparent-card">
+                  <el-card shadow="hover" class="graycard">
                     <!-- tags -->
                     <div>
                       <el-tag
@@ -73,21 +70,22 @@
                       <i>{{ new Date(article.createdAt).toLocaleString() }}</i>
                     </span>
 
-                    <!-- image -->
-                    <div class="flex">
-                      <el-image
-                        v-if="article.image"
-                        :src="`/posts/${article.image.src}`"
-                        :alt="article.image.alt"
-                        fit="scale-down"
-                        style="max-width: 25%"
-                      ></el-image>
+                    <el-row>
+                      <el-col v-if="article.image && article.image.src" :md="8">
+                        <!-- image -->
+                        <nuxt-image
+                          :src="`/posts/${article.image.src}`"
+                          :alt="article.image.alt || 'alt'"
+                        />
+                      </el-col>
 
                       <!-- description -->
-                      <p v-if="article.description" style="margin-left: 10px">
-                        {{ article.description }}
-                      </p>
-                    </div>
+                      <el-col v-if="article.description" :md="16">
+                        <p style="margin-left: 10px">
+                          {{ article.description }}
+                        </p>
+                      </el-col>
+                    </el-row>
 
                     <!-- author -->
                     <div class="author" v-if="article.author">
@@ -113,7 +111,7 @@
         <!-- error 404 -->
         <template v-else>
           <el-card shadow="hover" style="margin-top: 1rem">
-            <nuxt-content :document="error" />
+            Aucun article n'a été trouvé 😥
           </el-card>
         </template>
       </el-col>
@@ -182,9 +180,7 @@ export default {
         .search(this.search_query)
         .where({ archived: false })
         .fetch();
-      if (!this.articles.length) {
-        this.error = await this.$content("404").fetch();
-      }
+
       this.searched = true;
     },
 
@@ -215,7 +211,6 @@ export default {
 
   async asyncData({ $content, query }) {
     let page = query.page;
-    let error = false;
 
     if (page == parseInt(page) && parseInt(page) > 0) {
       page = parseInt(page);
@@ -223,7 +218,7 @@ export default {
       page = 1;
     }
 
-    const articles = await $content("posts")
+    let articles = await $content("posts")
       .only([
         "title",
         "createdAt",
@@ -239,13 +234,8 @@ export default {
       .limit(10)
       .fetch();
 
-    if (!articles.length) {
-      error = await $content("404").fetch();
-    }
-
     const article_with_tags = await $content("posts")
       .where({ archived: false, tags: { $gt: "" } })
-
       .fetch();
 
     const tags = [
@@ -257,7 +247,6 @@ export default {
 
     return {
       articles,
-      error,
       tags,
     };
   },

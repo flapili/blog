@@ -2,8 +2,8 @@
   <div>
     <el-row>
       <el-col :md="{ span: 16, offset: 4 }">
-        <el-card class="transparent-card">
-          <article v-if="error == false">
+        <el-card class="graycard">
+          <article>
             <XyzTransitionGroup
               appear
               class="square-group"
@@ -18,53 +18,59 @@
                 {{ tag }}
               </el-tag>
             </XyzTransitionGroup>
+
             <!-- title -->
             <template v-if="article.title">
               <h1 class="title text-center">
-                <XyzTransitionGroup
-                  xyz="fade small duration-5 up"
-                  appear
-                  class="splitting"
-                  style="--xyz-stagger: 0.05s"
+                <span
+                  v-for="(word, i) in computedTitle"
+                  class="word"
+                  :key="`title-${i}`"
                 >
-                  <span v-for="(c, i) in article.title" :key="i">
-                    <template v-if="c == ' '">&nbsp;</template>
-                    <template v-else>{{ c }}</template>
-                  </span>
-                </XyzTransitionGroup>
+                  <template v-if="i != 0">&nbsp;</template
+                  ><span
+                    v-for="(letter, i2) in word"
+                    :key="`title-${i}-${i2}`"
+                    class="letter xyz-in"
+                    xyz="fade small up-5 stagger duration-20"
+                    :style="{ '--xyz-index': letter.index }"
+                    style="--xyz-stagger: 0.1s"
+                    >{{ letter.char }}</span
+                  >
+                </span>
               </h1>
             </template>
 
             <!-- author -->
-            <div v-if="article.author" class="flex" style="align-items: flex">
-              <el-image
+            <template v-if="article.author">
+              <nuxt-image
                 :src="`/author/${article.author.avatar}`"
-                alt="auteur"
-                fit="cover"
-                class="logo"
-              ></el-image>
-              <div class="author" v-if="article.author">
-                <i v-if="article.author.name" class="author-name">
+                class="author-logo"
+              />
+              <template
+                class="author"
+                v-if="article.author && article.author.name"
+                ><h3 v-if="article.author.name" class="author-name">
                   {{ article.author.name }}
-                </i>
-              </div>
+                </h3>
+              </template>
+            </template>
 
-              <!-- date -->
-              <br />
-            </div>
-            <i class="date">{{
-              new Date(article.createdAt).toLocaleString()
-            }}</i>
+            <!-- date -->
+            <i class="date"
+              >le {{ new Date(article.createdAt).toLocaleDateString() }}</i
+            >
 
             <!-- article img -->
             <template v-if="article.image">
-              <div class="flex" style="justify-content: center">
-                <el-image
-                  :src="`/posts/${article.image.src}`"
-                  :alt="article.image.alt"
-                  style="max-width: 50%;"
-                ></el-image>
-              </div>
+              <el-row style="clear: left">
+                <el-col :md="{ span: 16, offset: 4 }">
+                  <nuxt-picture
+                    :src="`/posts/${article.image.src}`"
+                    :alt="article.image.alt"
+                  />
+                </el-col>
+              </el-row>
             </template>
 
             <!-- article toc -->
@@ -91,8 +97,6 @@
             <!-- content -->
             <nuxt-content :document="article" />
           </article>
-          <!-- error -->
-          <nuxt-content v-else :document="article" />
         </el-card>
       </el-col>
     </el-row>
@@ -105,10 +109,15 @@
           class="no-text-decoration nav-button"
           v-if="prev"
         >
-          <el-card shadow="hover" class="page-down">
-            <i
-              ><strong>{{ prev.title }}</strong></i
-            >
+          <el-card
+            shadow="hover"
+            class="flex"
+            style="height: 100%; align-items: center"
+            :body-style="{ margin: 'auto' }"
+          >
+            <i>
+              <strong>{{ prev.title }}</strong>
+            </i>
           </el-card>
         </nuxt-link>
       </el-col>
@@ -120,10 +129,15 @@
           class="no-text-decoration nav-button"
           v-if="next"
         >
-          <el-card shadow="hover" class="page-down">
-            <i
-              ><strong>{{ next.title }}</strong></i
-            >
+          <el-card
+            shadow="hover"
+            class="flex"
+            style="height: 100%; align-items: center"
+            :body-style="{ margin: 'auto' }"
+          >
+            <i>
+              <strong>{{ next.title }}</strong>
+            </i>
           </el-card>
         </nuxt-link>
       </el-col>
@@ -133,7 +147,7 @@
 
 <script>
 export default {
-  async asyncData({ $content, params }) {
+  async asyncData({ $content, params, error }) {
     try {
       const article = await $content("posts", params.post)
         .where({ archived: false })
@@ -146,11 +160,27 @@ export default {
         .surround(params.post)
         .fetch();
 
-      return { article, prev, next, error: false };
-    } catch (error) {
-      const article = await $content("404").fetch();
-      return { article, prev: null, next: null, error: true };
+      return { article, prev, next };
+    } catch (e) {
+      error({ statusCode: 404, message: "Article non trouvé" });
     }
+  },
+
+  computed: {
+    computedTitle() {
+      const words = this.article.title.split(" ");
+      let index = 0;
+      const title = words.map((word) => {
+        const letters = word.split("");
+        return letters.map((char) => {
+          return {
+            char,
+            index: index++,
+          };
+        });
+      });
+      return title;
+    },
   },
 
   head() {
@@ -253,34 +283,27 @@ export default {
   margin-block-end: 0;
 }
 
-.author {
-  padding-bottom: 10px;
-  display: flex;
-  align-items: center;
-}
-
 .author-name {
   padding-left: 10px;
   padding-bottom: 0px;
+  margin: 0px;
 }
 
-.logo {
-  width: 40px;
-  height: 40px;
-  border-radius: 20px;
-}
-
-.date {
-  margin-left: auto;
-  margin-right: 50px;
+.author-logo {
+  float: left;
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
+  border: 1px solid black;
 }
 
 .toc {
-  color: #11a7e2;
+  color: royalblue;
 }
 
 .toc:hover {
-  mix-blend-mode: difference
+  mix-blend-mode: difference;
+  font-weight: bold;
 }
 
 .toc-2 {
@@ -295,9 +318,10 @@ export default {
   color: inherit;
 }
 
-.page-up,
-.page-down {
-  text-align: center;
-  height: 100%;
+.letter {
+  display: inline-block;
+}
+.word {
+  display: inline-block;
 }
 </style>

@@ -1,11 +1,13 @@
 body {
     margin: 0;
-    background: url('~@/assets/images/banner.jpg') no-repeat center fixed;
-    background-size: cover;
+    /* background: url('~@/assets/images/banner.jpg') no-repeat center fixed; */
+    /* background-size: cover; */
+    background: linear-gradient(180deg, rgba(0, 0, 0, 1) 0%, rgba(64, 64, 64, 1) 100%) fixed;
 }
 
 html {
-    font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    /* font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; */
+    font-family: DM Sans, system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif, BlinkMacSystemFont, "Segoe UI", "Helvetica Neue", Arial, "Noto Sans", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 .text-center {
@@ -29,8 +31,7 @@ html {
 }
 
 a div.el-card:hover {
-    background-color: #b3d8ff !important;
-    border-color: #409EFF !important;
+    background-color: lightgray !important;
     transition: 2s !important;
 }
 
@@ -40,13 +41,19 @@ a div.el-card:hover {
     margin-block-end: 0;
 }
 
-.transparent-card {
+
+/* .transparent-card {
     background-color: hsl(234deg 12% 81% / 90%) !important;
     border: none !important;
-}
+} */
 
 .splitting {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+}
+
+.graycard {
+    border-color: black !important;
+    background-color: darkgray !important;
 }

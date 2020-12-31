@@ -2,10 +2,7 @@
   <div>
     <el-row type="flex">
       <el-col :md="{ span: 16, offset: 4 }">
-        <el-card
-          class="no-border"
-          style="background-color: rgba(255, 255, 255, 0.2)"
-        >
+        <el-card style="background-color: darkgray; border-color: black">
           <h1 class="text-center title-page">
             <XyzTransitionGroup
               xyz="fade small duration-5 up"
@@ -27,8 +24,7 @@
         <el-col :md="{ span: 16, offset: 4 }">
           <el-card
             shadow="hover"
-            class="transparent-card"
-            style="text-align: justify"
+            style="text-align: justify; background-color: darkgray"
           >
             <h3>Chers développeurs,</h3>
             <h5>Intro</h5>
@@ -61,7 +57,7 @@
 
       <el-row type="flex" style="margin-top: 16px" key="2">
         <el-col :md="{ span: 16, offset: 4 }">
-          <el-card shadow="hover" class="transparent-card">
+          <el-card shadow="hover" style="text-align: justify; background-color: darkgray">
             <div class="text-center">
               <strong>Rejoignez le discord</strong><br />
               <a
@@ -72,7 +68,7 @@
                 <font-awesome-icon
                   :icon="['fab', 'discord']"
                   size="8x"
-                  style="color: #8c9eff"
+                  style="color: dimgray;"
                 /> </a
               ><br />
               <i>L'équipe a besoin de vous !</i>

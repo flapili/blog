@@ -13,6 +13,7 @@
               router
             >
               <el-menu-item index="/" class="nav-menu-item">
+                
                 <el-image
                   src="/logo.webp"
                   fit="cover"
@@ -74,7 +75,7 @@ export default {
 }
 
 .footer {
-  background-color: silver;
+  color: white;
   height: 80px !important;
   padding-top: 10px;
 }
