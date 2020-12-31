@@ -8,6 +8,13 @@ const description = "Ce site a été entièrement réalisé par des passionnés 
 const hostname = 'https://flapili.fr'
 
 const config = {
+    messages: {
+        error_404: "page non trouvée",
+        server_error: "Oups",
+        server_error_details: "Oups",
+        client_error: "Oups",
+        client_error_details: "Oups",
+    },
 
     server: {
         port: process.env.NODE_ENV === "development" ? 8080 : 4443,
@@ -92,7 +99,15 @@ const config = {
         '@nuxtjs/dayjs',
         '@nuxtjs/sitemap',
         '@nuxtjs/robots',
+        '@nuxt/image',
+
     ],
+
+    image: {
+        ipx: {
+            cacheDir: '~~/node_modules/.cache/nuxt-image',
+        },
+    },
 
     googleAnalytics: {
         id: 'UA-183419207-1'
@@ -171,5 +186,12 @@ if (process.env.NODE_ENV === "production") {
         cert: fs.readFileSync(path.resolve(__dirname, 'server.crt')),
     }
 }
+
+// listen in all interfaces in dev mode 
+if (process.env.NODE_ENV === "development") {
+    config.server.host = '0.0.0.0';
+}
+
+
 
 export default config
