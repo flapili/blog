@@ -70,22 +70,21 @@
                       <i>{{ new Date(article.createdAt).toLocaleString() }}</i>
                     </span>
 
-                    <el-row>
-                      <el-col v-if="article.image && article.image.src" :md="8">
-                        <!-- image -->
-                        <nuxt-image
-                          :src="`/posts/${article.image.src}`"
-                          :alt="article.image.alt || 'alt'"
-                        />
-                      </el-col>
+                    <!-- image -->
+                    <div class="flex">
+                      <el-image
+                        v-if="article.image"
+                        :src="`/posts/${article.image.src}`"
+                        :alt="article.image.alt"
+                        fit="scale-down"
+                        style="max-width: 25%"
+                      />
 
                       <!-- description -->
-                      <el-col v-if="article.description" :md="16">
-                        <p style="margin-left: 10px">
-                          {{ article.description }}
-                        </p>
-                      </el-col>
-                    </el-row>
+                      <p v-if="article.description" style="margin-left: 10px">
+                        {{ article.description }}
+                      </p>
+                    </div>
 
                     <!-- author -->
                     <div class="author" v-if="article.author">

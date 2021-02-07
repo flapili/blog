@@ -99,15 +99,7 @@ const config = {
         '@nuxtjs/dayjs',
         '@nuxtjs/sitemap',
         '@nuxtjs/robots',
-        '@nuxt/image',
-
     ],
-
-    image: {
-        ipx: {
-            cacheDir: '~~/node_modules/.cache/nuxt-image',
-        },
-    },
 
     googleAnalytics: {
         id: 'UA-183419207-1'

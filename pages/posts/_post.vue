@@ -42,30 +42,30 @@
             </template>
 
             <!-- author -->
-            <template v-if="article.author">
-              <nuxt-image
+            <div v-if="article.author">
+              <el-image
                 :src="`/author/${article.author.avatar}`"
+                alt="auteur"
+                fit="cover"
                 class="author-logo"
-              />
-              <template
-                class="author"
-                v-if="article.author && article.author.name"
-                ><h3 v-if="article.author.name" class="author-name">
+              ></el-image>
+              <div class="author" v-if="article.author">
+                <i v-if="article.author.name" class="author-name">
                   {{ article.author.name }}
-                </h3>
-              </template>
-            </template>
+                </i>
+              </div>
 
             <!-- date -->
             <i class="date"
               >le {{ new Date(article.createdAt).toLocaleDateString() }}</i
             >
+            </div>
 
             <!-- article img -->
             <template v-if="article.image">
               <el-row style="clear: left">
                 <el-col :md="{ span: 16, offset: 4 }">
-                  <nuxt-picture
+                  <el-image
                     :src="`/posts/${article.image.src}`"
                     :alt="article.image.alt"
                   />
@@ -283,11 +283,12 @@ export default {
   margin-block-end: 0;
 }
 
-.author-name {
+.author-name, .date {
   padding-left: 10px;
   padding-bottom: 0px;
   margin: 0px;
 }
+
 
 .author-logo {
   float: left;
