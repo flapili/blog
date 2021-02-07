@@ -23,7 +23,7 @@
         xyz="fade small duration-5 stagger-2"
       >
         <el-card v-for="(member, i) in members" :key="i" class="member-card">
-          <nuxt-image
+          <el-image
             :src="`/author/${member.avatar}`"
             class="avatar"
             :style="{ float: i % 2 === 0 ? 'left' : 'right' }"
