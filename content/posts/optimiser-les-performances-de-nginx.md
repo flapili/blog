@@ -1,6 +1,6 @@
 ---
 title: Augmenter les performances de Nginx
-description: 
+description: Un petit article sur comment optimiser votre Nginx 😎
 author:
     name: flapili
     avatar: flapili.webp
@@ -9,7 +9,7 @@ image:
     src: NGINX-logo.png
     alt: logo de Nginx
 tags: nginx;performances;optimisations
-createdAt: "2021-05-15T18:42:13.509Z"
+createdAt: 2021-05-16T15:46:23.714Z
 ---
 
 
