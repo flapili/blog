@@ -16,7 +16,7 @@ createdAt: 2021-05-16T15:46:23.714Z
 
 ## Préambule
 - Ce tutoriel s'adresse aux gens sous GNU/Linux, il a été fait sous Debian 10 (avec un compte root).
-- Il est possible que certaines commandes changent suivant votre distribution (et surtout de votre packet manager) ou qu'il y ai besoin d'utiliser sudo.
+- Il est possible que certaines commandes changent suivant votre distribution (et surtout de votre package manager) ou qu'il y ai besoin d'utiliser sudo.
 
 ## Installation des prérequis
 
