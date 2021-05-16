@@ -63,7 +63,13 @@ const config = {
             { hid: 'twitter:image', property: "twitter:image", content: `${hostname}/logo.webp` },
         ],
         link: [
-            { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }
+            { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+            { rel: 'stylesheet', href: '/termynal.js/termynal.css' },
+            { rel: 'stylesheet', href: '/termynal.js/termynal_addon.css' },
+        ],
+        script: [
+            { src: "/termynal.js/termynal.js" },
+            { src: "/termynal.js/termynal_addon.js", body: true },
         ],
     },
 

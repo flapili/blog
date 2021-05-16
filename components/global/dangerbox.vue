@@ -1,10 +1,20 @@
 <template>
-  <el-card class="box" shadow="never">
+  <el-card class="box" shadow="never" :style="cardStyle">
     <font-awesome-icon :icon="['fas', 'exclamation-triangle']" style="color:black;"/>
     <slot></slot>
   </el-card>
 </template>
 
+
+<script>
+export default {
+  props: {
+    cardStyle: {
+      default: "",
+    }
+  },
+}
+</script>
 
 <style scoped>
 .box {

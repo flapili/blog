@@ -166,6 +166,12 @@ export default {
     }
   },
 
+  async mounted() {
+    await this.$nextTick()
+    createTermynals();
+    loadVisibleTermynals();
+  },
+
   computed: {
     computedTitle() {
       const words = this.article.title.split(" ");

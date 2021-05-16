@@ -1,10 +1,19 @@
 <template>
-  <el-card class="box" shadow="never">
+  <el-card class="box" shadow="never" :style="cardStyle">
     <i class="el-icon-warning" style="color:black;"></i>
     <slot></slot>
   </el-card>
 </template>
 
+<script>
+export default {
+  props: {
+    cardStyle: {
+      default: "",
+    }
+  },
+}
+</script>
 
 <style scoped>
 .box {
