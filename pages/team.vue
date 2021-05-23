@@ -25,6 +25,7 @@
               </li>
             </ul>
           </div>
+          <h2>{{ member.name }}</h2>
           <nuxt-content :document="member" class="member-bio" />
         </div>
       </div>

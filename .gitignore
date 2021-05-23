@@ -92,3 +92,4 @@ static/google*cca.html
 ecosystem.config.js
 server.crt
 server.key
+.editorconfig
