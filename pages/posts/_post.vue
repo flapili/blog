@@ -167,7 +167,7 @@ export default {
 
 <style scoped>
 .container {
-  margin: 0px 10%;
+  margin: 0px 25%;
 }
 
 @media only screen and (max-width: 991px) {
