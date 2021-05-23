@@ -1,7 +1,8 @@
 name: deploy
 on:
   push:
-    branches: [ master ]
+    branches:
+    - master
   workflow_dispatch:
 
 jobs:
@@ -9,13 +10,14 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     steps:
-    - name: executing remote ssh commands using password
+    - name: Build and deploy website from github source
       uses: appleboy/ssh-action@master
       with:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.KEY }}
         port: ${{ secrets.PORT }}
+        script_stop: true
         script: |
           git pull
           yarn build
