@@ -95,13 +95,13 @@ const config = {
 
     // Modules for dev and build (recommended) (https://go.nuxtjs.dev/config-modules)
     buildModules: [
-        '@nuxt/image',
         '@nuxtjs/fontawesome',
         '@nuxtjs/google-analytics',
     ],
     
     // Modules (https://go.nuxtjs.dev/config-modules)
     modules: [
+        '@nuxt/image',
         '@nuxt/content',
         '@nuxtjs/sitemap',
         '@nuxtjs/robots',
