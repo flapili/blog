@@ -31,7 +31,7 @@ const config = {
     target: "server",
 
     loading: {
-        color: 'blue',
+        color: 'orange',
         height: '3px',
         continuous: true,
         duration: 1000,
@@ -53,40 +53,41 @@ const config = {
             { hid: 'og:url', property: 'og:url', content: hostname },
             { hid: 'og:type', property: 'og:type', content: 'website' },
             { hid: 'og:title', property: 'og:title', content: 'Accueil - flapili.fr' },
-            { hid: 'og:image', property: "og:image", content: `${hostname}/logo.webp` },
+            { hid: 'og:image', property: "og:image", content: `${hostname}/logo.png` },
 
             // twitter tags
             { hid: 'twitter:description', property: 'twitter:description', content: description },
             { hid: 'twitter:domain', property: 'twitter:domain', content: 'flapili.fr' },
             { hid: 'twitter:url', property: 'twitter:url', content: hostname },
             { hid: 'twitter:title', property: 'twitter:title', content: 'Accueil - flapili.fr' },
-            { hid: 'twitter:image', property: "twitter:image", content: `${hostname}/logo.webp` },
+            { hid: 'twitter:image', property: "twitter:image", content: `${hostname}/logo.png` },
         ],
         link: [
             { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
-            { rel: 'stylesheet', href: '/termynal.js/termynal.css' },
-            { rel: 'stylesheet', href: '/termynal.js/termynal_addon.css' },
         ],
         script: [
-            { src: "/termynal.js/termynal.js" },
-            { src: "/termynal.js/termynal_addon.js", body: true },
+            // { src: "/termynal.js/termynal.js" },
+            // { src: "/termynal.js/termynal_addon.js", body: true },
         ],
     },
 
     // Global CSS (https://go.nuxtjs.dev/config-css)
     css: [
-        // 'element-ui/lib/theme-chalk/index.css',
+        'element-ui/lib/theme-chalk/index.css',
 
         '~/assets/css/styles.css',
+        '~/assets/css/roboto.css',
         '~/assets/css/content.css',
         '~/assets/css/transition.css',
+        '~/assets/css/termynal.css',
+        '~/assets/css/termynal_addon.css',
     ],
 
     // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
     plugins: [
         '@/plugins/element-ui',
-        '@/plugins/animxyz',
         '@/plugins/menu-router-guard.js',
+        '@/plugins/termynal.client.js',
     ],
 
     // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -96,13 +97,14 @@ const config = {
     buildModules: [
         '@nuxtjs/fontawesome',
         '@nuxtjs/google-analytics',
+        '@nuxt/image',
     ],
 
     // Modules (https://go.nuxtjs.dev/config-modules)
     modules: [
         // https://go.nuxtjs.dev/content
         '@nuxt/content',
-        '@nuxtjs/dayjs',
+        // '@nuxtjs/dayjs',
         '@nuxtjs/sitemap',
         '@nuxtjs/robots',
     ],
@@ -115,15 +117,17 @@ const config = {
         icons: {
             solid: [
                 'faExclamationTriangle',
-                'faHome'
+                'faHome',
+                'faSearch',
             ],
-            regular: [],
+            regular: [
+                'faClock',
+            ],
             light: [],
             duotone: [],
             brands: [
                 'faDiscord',
                 'faGithub',
-
             ],
         }
     },
@@ -135,7 +139,7 @@ const config = {
                 theme: 'prism-themes/themes/prism-vsc-dark-plus.css'
             }
         },
-        fullTextSearchFields: ['title', 'description', 'slug', 'text', 'tags'],
+        fullTextSearchFields: ['title', 'description', 'slug', 'text', 'tags', 'author.name'],
         nestedProperties: [
             "author.name",
             "author.avatar",
@@ -172,6 +176,7 @@ const config = {
     // Build Configuration (https://go.nuxtjs.dev/config-build)
     build: {
         transpile: [/^element-ui/],
+        // extractCSS: true,
         // hardSource: true,
         cache: true,
     },
@@ -189,7 +194,7 @@ if (process.env.NODE_ENV === "production") {
 if (process.env.NODE_ENV === "development") {
     config.server.host = '0.0.0.0';
 }
-
+config.server.host = '0.0.0.0';
 
 
 export default config

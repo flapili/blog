@@ -201,11 +201,11 @@ server {
 }
 ```
 <infobox>
-    Il est possible de modifier ce comportement pour un vhost en mettant le bon `server_name`.
+    Il est possible de modifier ce comportement pour un vhost en mettant le bon <code>server_name</code>.
 </infobox>
 
 
-## Récapitulation
+## Récapitulatif
 `/etc/nginx/nginx.conf`
 ```nginx
 

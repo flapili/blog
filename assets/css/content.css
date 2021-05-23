@@ -3,7 +3,8 @@
 div.nuxt-content blockquote {
     border: 1px solid black;
     border-radius: 10px;
-    background-color: #F2F6F8;
+    color: orange;
+    background-color: white;
 }
 
 div.nuxt-content blockquote p {
@@ -42,8 +43,12 @@ div.nuxt-content h4 code,
 div.nuxt-content h5 code,
 div.nuxt-content p code,
 div.nuxt-content ul li code,
+div.nuxt-content ol li code,
 div.nuxt-content div.el-card.box div.el-card__body code {
+    font-family: Roboto;
     background-color: #ededed;
     word-break: break-all;
     border-radius: 3px;
+    color: #ffa600;
+    background-color: white;
 }

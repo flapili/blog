@@ -9,20 +9,20 @@
         "generate": "nuxt generate"
     },
     "dependencies": {
-        "@animxyz/vue": "^0.1.1",
-        "@nuxt/content": "1.10.0",
-        "@nuxtjs/dayjs": "^1.2.0",
-        "@nuxtjs/robots": "^2.4.2",
+        "@nuxt/content": "^1.10.0",
+        "@nuxtjs/robots": "^2.5.0",
         "@nuxtjs/sitemap": "^2.4.0",
         "core-js": "^3.6.5",
-        "element-ui": "^2.13.2",
-        "nuxt": "^2.14.5",
-        "prism-themes": "^1.4.1",
-        "remark-footnotes": "2"
+        "element-ui": "^2.15.1",
+        "lodash": "^4.17.21",
+        "nuxt": "^2.15.6",
+        "prism-themes": "^1.7.0"
     },
     "devDependencies": {
-        "@fortawesome/free-brands-svg-icons": "^5.15.1",
-        "@fortawesome/free-solid-svg-icons": "^5.15.1",
+        "@fortawesome/free-brands-svg-icons": "^5.15.3",
+        "@fortawesome/free-regular-svg-icons": "^5.15.3",
+        "@fortawesome/free-solid-svg-icons": "^5.15.3",
+        "@nuxt/image": "^0.4.10",
         "@nuxtjs/fontawesome": "^1.1.2",
         "@nuxtjs/google-analytics": "^2.4.0",
         "coffee-loader": "^1.0.0",

@@ -1,223 +1,61 @@
 <template>
-  <div>
-    <el-row>
-      <el-col :md="{ span: 4, offset: 16 }">
-        <el-autocomplete
-          placeholder="Cherchez quelque chose"
-          v-model="search_query"
-          :fetch-suggestions="fetch_tags"
-          @keypress.enter.native="search"
-          class="block"
-          style="margin-bottom: 16px"
+  <div class="container">
+    <template v-if="articles.length">
+      <h1>Derniers posts</h1>
+      <ul class="flex flex-wrap articles-container">
+        <li
+          v-for="(article, indexArticle) in articles"
+          :key="`indexArticle-${indexArticle}`"
+          class="article-container"
         >
-          <el-button
-            slot="append"
-            icon="el-icon-search"
-            @click="search"
-          ></el-button>
-        </el-autocomplete>
-      </el-col>
-    </el-row>
-    <el-row>
-      <el-col :md="{ span: 16, offset: 4 }">
-        <el-card class="graycard">
-          <h1 class="text-center title-page">
-            <XyzTransitionGroup
-              xyz="fade small duration-5 up"
-              appear
-              class="splitting"
-              style="--xyz-stagger: 0.05s"
+          <div class="article">
+            <nuxt-link
+              :to="article.path"
+              class="no-text-decoration"
+              style="color: black"
             >
-              <span v-for="(c, i) in 'Les posts'" :key="i">
-                <template v-if="c == ' '">&nbsp;</template>
-                <template v-else>{{ c }}</template>
-              </span>
-            </XyzTransitionGroup>
-          </h1>
-        </el-card>
-
-        <template v-if="articles.length">
-          <ul style="padding-inline-start: 0">
-            <XyzTransitionGroup
-              appear
-              class="square-grid"
-              xyz="fade small duration-5 stagger-2"
-            >
-              <li v-for="(article, i) in articles" :key="i" class="article">
-                <nuxt-link :to="article.path" class="no-text-decoration">
-                  <el-card shadow="hover" class="graycard">
-                    <!-- tags -->
-                    <div>
-                      <el-tag
-                        v-for="(tag, i) in Array.from(
-                          new Set(article.tags.split(';'))
-                        )"
-                        :key="i"
-                        type="info"
-                        class="tag"
-                      >
-                        {{ tag }}
-                      </el-tag>
+              <div class="flex flex-column">
+                <nuxt-img
+                  :src="`/posts/${article.image.src}`"
+                  class="article-img"
+                />
+                <div class="article-body">
+                  <div class="article-date">
+                    <font-awesome-icon :icon="['far', 'clock']" />
+                    {{ new Date(article.createdAt).toLocaleDateString() }} -
+                    {{ article.author.name }}
+                  </div>
+                  <div class="article-title">{{ article.title }}</div>
+                  <div
+                    class="flex flex-wrap article-tags-container"
+                    v-if="article.tags.length"
+                  >
+                    <div>Catégories:</div>
+                    <div
+                      v-for="(tag, indexTag) in article.tags.split(';')"
+                      :key="`indexArticle-${indexArticle}-indexTag-${indexTag}`"
+                      class="flex article-tag"
+                    >
+                      {{ tag }}
                     </div>
-
-                    <!-- title -->
-                    <h3 v-if="article.title" class="title">
-                      {{ article.title }}
-                    </h3>
-
-                    <!-- date -->
-                    <span>
-                      <i>{{ new Date(article.createdAt).toLocaleString() }}</i>
-                    </span>
-
-                    <!-- image -->
-                    <div class="flex">
-                      <el-image
-                        v-if="article.image"
-                        :src="`/posts/${article.image.src}`"
-                        :alt="article.image.alt"
-                        fit="scale-down"
-                        style="max-width: 25%"
-                      />
-
-                      <!-- description -->
-                      <p v-if="article.description" style="margin-left: 10px">
-                        {{ article.description }}
-                      </p>
-                    </div>
-
-                    <!-- author -->
-                    <div class="author" v-if="article.author">
-                      <i v-if="article.author.name" class="author-name">
-                        {{ article.author.name }}
-                      </i>
-                      <span v-if="article.author.avatar">
-                        <el-image
-                          :src="`/author/${article.author.avatar}`"
-                          fit="cover"
-                          class="logo"
-                          alt="auteur"
-                        ></el-image>
-                      </span>
-                    </div>
-                  </el-card>
-                </nuxt-link>
-              </li>
-            </XyzTransitionGroup>
-          </ul>
-        </template>
-
-        <!-- error 404 -->
-        <template v-else>
-          <el-card shadow="hover" style="margin-top: 1rem">
-            Aucun article n'a été trouvé 😥
-          </el-card>
-        </template>
-      </el-col>
-    </el-row>
-
-    <template v-if="articles.length && !searched">
-      <el-row type="flex" justify="space-around">
-        <el-col :lg="{ span: 5 }">
-          <nuxt-link
-            :to="`${$route.path}?page=${page - 1}`"
-            class="no-text-decoration nav-button"
-          >
-            <el-card v-if="page > 1" shadow="hover" class="page-down">
-              page précédente
-            </el-card>
-          </nuxt-link>
-        </el-col>
-        <el-col :lg="{ span: 5 }">
-          <nuxt-link
-            :to="`${$route.path}?page=${page + 1}`"
-            class="no-text-decoration nav-button"
-          >
-            <el-card v-if="articles.length > 9" shadow="hover" class="page-up">
-              page suivante
-            </el-card>
-          </nuxt-link>
-        </el-col>
-      </el-row>
+                  </div>
+                </div>
+              </div>
+            </nuxt-link>
+          </div>
+        </li>
+      </ul>
+    </template>
+    <template v-else>
+      <h1>Aucun article n'a été trouvé</h1>
     </template>
   </div>
 </template>
 
 <script>
 export default {
-  head() {
-    return {
-      title: "Les posts - flapili.fr",
-    };
-  },
-
-  watchQuery: ["page"],
-
-  key: (to) => to.fullPath,
-
-  data() {
-    return {
-      search_query: "",
-      searched: false,
-    };
-  },
-
-  methods: {
-    async search() {
-      this.articles = await this.$content("posts")
-        .only([
-          "title",
-          "createdAt",
-          "author",
-          "description",
-          "path",
-          "author_avatar",
-          "image",
-          "tags",
-        ])
-        .sortBy("createdAt", "desc")
-        .search(this.search_query)
-        .where({ archived: false })
-        .fetch();
-
-      this.searched = true;
-    },
-
-    async fetch_tags(qs, cb) {
-      if (!qs) {
-        return cb(this.tags.map((x) => ({ value: x })));
-      }
-      return cb(
-        this.tags
-          .filter((x) => x.toLowerCase().indexOf(qs.toLowerCase()) === 0)
-          .map((x) => ({ value: x }))
-      );
-    },
-  },
-
-  computed: {
-    page() {
-      if (
-        this.$route.query.page == parseInt(this.$route.query.page) &&
-        parseInt(this.$route.query.page) > 0
-      ) {
-        return parseInt(this.$route.query.page);
-      } else {
-        return 1;
-      }
-    },
-  },
-
-  async asyncData({ $content, query }) {
-    let page = query.page;
-
-    if (page == parseInt(page) && parseInt(page) > 0) {
-      page = parseInt(page);
-    } else {
-      page = 1;
-    }
-
-    let articles = await $content("posts")
+  async asyncData({ $content }) {
+    const articles = await $content("posts")
       .only([
         "title",
         "createdAt",
@@ -229,62 +67,85 @@ export default {
       ])
       .sortBy("createdAt", "desc")
       .where({ archived: false })
-      .skip((page - 1) * 10)
-      .limit(10)
       .fetch();
 
-    const article_with_tags = await $content("posts")
-      .where({ archived: false, tags: { $gt: "" } })
-      .fetch();
-
-    const tags = [
-      ...new Set(
-        article_with_tags.map((article) => article.tags.split(";")).flat()
-      ),
-    ];
-    tags.sort((a, b) => a.localeCompare(b));
-
-    return {
-      articles,
-      tags,
-    };
+    return { articles };
   },
 };
 </script>
 
 <style scoped>
-.tag {
-  margin-right: 4px;
+.container {
+  margin: 0px 25%;
+}
+
+@media only screen and (max-width: 991px) {
+  .container {
+    margin: 0px 5% !important;
+  }
+  .article-container {
+    width: 100% !important;
+  }
+}
+
+.articles-container {
+  padding: 0px;
+  list-style: none;
+}
+
+.article-container {
+  width: 50%;
+}
+
+.article-container:first-child {
+  width: 100%;
 }
 
 .article {
-  display: block;
-  margin-bottom: 20px;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 15px;
+  background-color: white;
 }
 
-.author {
-  float: right;
-  padding-bottom: 10px;
-  display: flex;
+.article-img {
+  width: 100%;
+  background-color: transparent;
+}
+
+.article-body, .article-img {
+  background: linear-gradient(to right, #b8b8b8 50%, white 50%);
+  background-size: 200% 100%;
+  background-position: right bottom;
+  transition: all 0.5s ease-out;
+}
+
+.article-body:hover, .article-img:hover {
+  background-position: left bottom;
+}
+
+.article-title {
+  font-size: 1.5rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  font-weight: bold;
+}
+
+.article-date {
+  font-weight: bold;
+}
+
+.article-tags-container {
   align-items: center;
 }
 
-.author-name {
-  padding-right: 10px;
-}
-
-.logo {
-  width: 40px;
-  height: 40px;
-  border-radius: 20px;
-}
-
-.nav-button {
-  color: inherit;
-}
-
-.page-up,
-.page-down {
-  text-align: center;
+.article-tag {
+  align-items: center;
+  height: 30px;
+  border-radius: 5px;
+  margin-left: 10px;
+  padding: 0 10px;
+  border: 2px solid gray;
+  background-color: #efefef;
 }
 </style>

@@ -1,82 +1,69 @@
 <template>
   <div>
-    <el-row type="flex">
-      <el-col :md="{ span: 16, offset: 4 }">
-        <el-card style="background-color: darkgray; border-color: black">
-          <h1 class="text-center title-page">
-            <XyzTransitionGroup
-              xyz="fade small duration-5 up"
-              appear
-              class="splitting"
-              style="--xyz-stagger: 0.05s"
-            >
-              <span v-for="(c, i) in 'Bienvenue sur flapili.fr'" :key="i">
-                <template v-if="c == ' '">&nbsp;</template>
-                <template v-else>{{ c }}</template>
-              </span>
-            </XyzTransitionGroup>
-          </h1>
-        </el-card>
+    <el-row class="row">
+      <el-col
+        :md="12"
+        class="flex"
+        style="align-items: center; justify-content: center"
+      >
+        <nuxt-img src="/laptop_S.png" width="200" height="200" />
+        <nuxt-img src="/tea_S.png" width="80" height="80" />
+      </el-col>
+      <el-col :md="12">
+        <h1 class="title">FLAPILI.FR</h1>
+        <h2 class="subtitle">BLOG DE L'INFO</h2>
+        <nuxt-link to="/posts">
+          <el-button class="discover-btn btn">DÉCOUVRIR</el-button>
+        </nuxt-link>
       </el-col>
     </el-row>
-    <XyzTransitionGroup appear xyz="fade small duration-5 stagger-2">
-      <el-row type="flex" style="margin-top: 16px" key="1">
-        <el-col :md="{ span: 16, offset: 4 }">
-          <el-card
-            shadow="hover"
-            style="text-align: justify; background-color: darkgray"
-          >
-            <h3>Chers développeurs,</h3>
-            <h5>Intro</h5>
-            <p>
-              Ce site a été entièrement réalisé par des passionnés
-              d'informatique qui ont pour vocation de transmettre leurs
-              connaissances sur des sujets aussi précis que variés. Cette équipe
-              de rédacteurs et de designers est à votre écoute pour toute idée
-              sur le fonctionnement du site. Le projet étant Open Source il est
-              consultable depuis Github.
-            </p>
 
-            <h5>Collaboration</h5>
-            <p>
-              Il est très simple de collaborer en intégrant vos articles sur le
-              site internet. En effet vous pouvez très simplement "Forker" le
-              projet et le modifier à votre guise. Reconnaissez qu'il est
-              tellement mieux de discuter avec les membres du discord qui
-              sauront vous guider. Un article ne se fait pas en un jour ni même
-              en une nuit c'est un travail long et fastidieux...
-            </p>
+    <el-row style="margin-top: 5%">
+      <el-col :md="{ offset: 7, span: 10 }">
+        <p class="text-justify">
+          Ce site a été entièrement réalisé par des passionnés d'informatique
+          bénévoles qui ont pour vocation de transmettre leurs connaissances sur
+          des sujets aussi précis que variés. Cette équipe de rédacteurs et de
+          designers est à votre écoute pour toute idée sur le fonctionnement du
+          site. Le projet étant Open Source il est consultable depuis Github.
+        </p>
+        <p class="text-justify">
+          Il est très simple de publier vos articles sur le site internet. En
+          effet vous pouvez très simplement fork le projet sur Github et
+          commencer à écrire un article. Reconnaissez qu'il est tellement mieux
+          de discuter avec les membres du discord qui sauront vous guider.
+        </p>
+      </el-col>
+    </el-row>
 
-            <div style="text-align: center">
-              Sur ceux vous êtes les Bienvenus, l'équipe vous souhaite une bonne
-              visite!
-            </div>
-          </el-card>
-        </el-col>
-      </el-row>
-
-      <el-row type="flex" style="margin-top: 16px" key="2">
-        <el-col :md="{ span: 16, offset: 4 }">
-          <el-card shadow="hover" style="text-align: justify; background-color: darkgray">
-            <div class="text-center">
-              <strong>Rejoignez le discord</strong><br />
-              <a
-                href="https://discord.flapili.fr"
-                target="_blank"
-                rel="nofollow noopener"
-              >
-                <font-awesome-icon
-                  :icon="['fab', 'discord']"
-                  size="8x"
-                  style="color: dimgray;"
-                /> </a
-              ><br />
-              <i>L'équipe a besoin de vous !</i>
-            </div>
-          </el-card>
-        </el-col>
-      </el-row>
-    </XyzTransitionGroup>
+    <el-row style="margin-top: 8%">
+      <el-col
+        :md="{ span: 6, offset: 6 }"
+        class="flex"
+        style="justify-content: center"
+      >
+        <a
+          href="https://discord.flapili.fr"
+          target="_blank"
+          rel="nofollow noopener"
+        >
+          <el-button class="discord-btn btn">
+            <font-awesome-icon :icon="['fab', 'discord']" /> DISCORD
+          </el-button>
+        </a>
+      </el-col>
+      <el-col :md="6" class="flex" style="justify-content: center">
+        <a
+          href="https://github.com/flapili/blog"
+          target="_blank"
+          rel="nofollow noopener"
+        >
+          <el-button class="github-btn btn">
+            <font-awesome-icon :icon="['fab', 'github']" /> GITHUB
+          </el-button>
+        </a>
+      </el-col>
+    </el-row>
   </div>
 </template>
 
@@ -89,3 +76,52 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.title {
+  font-size: 4rem;
+  margin: 0px;
+  letter-spacing: 0.3rem;
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  margin: 0px;
+  letter-spacing: 0.3rem;
+}
+.row {
+  margin-top: 3%;
+}
+
+@media only screen and (max-width: 991px) {
+  .row {
+    margin: 0px;
+  }
+  .github-btn {
+    margin-top: 5%;
+  }
+}
+
+.btn {
+  height: 60px;
+  width: 230px;
+  color: black;
+  font-weight: bold;
+  font-size: 1.25rem;
+  letter-spacing: 0.2rem;
+  border-radius: 30px;
+}
+
+.discover-btn {
+  margin-top: 30px;
+}
+
+.discover-btn,
+.discord-btn {
+  background-color: #f29100;
+}
+
+.github-btn {
+  border: 2px solid #f29100;
+}
+</style>

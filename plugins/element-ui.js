@@ -1,11 +1,14 @@
 import Vue from 'vue'
 // import Element from 'element-ui'
-// import locale from 'element-ui/lib/locale/lang/en'
+import locale from 'element-ui/lib/locale'
+import lang from 'element-ui/lib/locale/lang/fr'
+
+locale.use(lang)
 // Vue.use(Element, { locale })
 
 
 import 'element-ui/lib/theme-chalk/icon.css';
-
+// import 'element-ui/lib/theme-chalk/display.css';
 
 import ElCard from 'element-ui/lib/card';
 import 'element-ui/lib/theme-chalk/card.css';
@@ -52,26 +55,51 @@ import 'element-ui/lib/theme-chalk/menu-item.css';
 Vue.component(ELMenuItem.name, ELMenuItem);
 
 
-import ElImage from 'element-ui/lib/image';
-import 'element-ui/lib/theme-chalk/image.css';
-Vue.component(ElImage.name, ElImage);
+// import ElImage from 'element-ui/lib/image';
+// import 'element-ui/lib/theme-chalk/image.css';
+// Vue.component(ElImage.name, ElImage);
 
 
-import ElAvatar from 'element-ui/lib/avatar';
-import 'element-ui/lib/theme-chalk/avatar.css';
-Vue.component(ElAvatar.name, ElAvatar);
+// import ElAvatar from 'element-ui/lib/avatar';
+// import 'element-ui/lib/theme-chalk/avatar.css';
+// Vue.component(ElAvatar.name, ElAvatar);
 
 
-import ElTag from 'element-ui/lib/tag';
-import 'element-ui/lib/theme-chalk/tag.css';
-Vue.component(ElTag.name, ElTag);
+// import ElTag from 'element-ui/lib/tag';
+// import 'element-ui/lib/theme-chalk/tag.css';
+// Vue.component(ElTag.name, ElTag);
 
 
-import ElAutocomplete from 'element-ui/lib/autocomplete';
-import 'element-ui/lib/theme-chalk/autocomplete.css';
-Vue.component(ElAutocomplete.name, ElAutocomplete);
+// import ElAutocomplete from 'element-ui/lib/autocomplete';
+// import 'element-ui/lib/theme-chalk/autocomplete.css';
+// Vue.component(ElAutocomplete.name, ElAutocomplete);
 
 
 import ElButton from 'element-ui/lib/button';
 import 'element-ui/lib/theme-chalk/button.css';
 Vue.component(ElButton.name, ElButton);
+
+
+// import ElScrollbar from 'element-ui/lib/scrollbar';
+// import 'element-ui/lib/theme-chalk/scrollbar.css';
+// Vue.component(ElScrollbar.name, ElScrollbar);
+
+
+import ElDialog from 'element-ui/lib/dialog';
+import 'element-ui/lib/theme-chalk/dialog.css';
+Vue.component(ElDialog.name, ElDialog);
+
+
+import ElInput from 'element-ui/lib/input';
+import 'element-ui/lib/theme-chalk/input.css';
+Vue.component(ElInput.name, ElInput);
+
+
+// import ElSelect from 'element-ui/lib/select';
+// import 'element-ui/lib/theme-chalk/select.css';
+// Vue.component(ElSelect.name, ElSelect);
+
+
+// import ElOption from 'element-ui/lib/option';
+// import 'element-ui/lib/theme-chalk/option.css';
+// Vue.component(ElOption.name, ElOption);

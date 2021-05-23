@@ -1,65 +1,39 @@
 <template>
-  <el-row>
-    <el-col :md="{ span: 16, offset: 4 }">
-      <el-card style="background-color: darkgray">
-        <h1 class="text-center title-page">
-          <XyzTransitionGroup
-            appear
-            xyz="fade small duration-5 up"
-            class="splitting"
-            style="--xyz-stagger: 0.05s"
-          >
-            <span v-for="(c, i) in `L'équipe`" :key="i">
-              <template v-if="c == ' '">&nbsp;</template>
-              <template v-else>{{ c }}</template>
-            </span>
-          </XyzTransitionGroup>
-        </h1>
-      </el-card>
-
-      <XyzTransitionGroup
-        appear
-        class="square-grid"
-        xyz="fade small duration-5 stagger-2"
+  <div class="container">
+    <h1>Notre équipe</h1>
+    <div class="flex flex-wrap">
+      <div
+        v-for="(member, indexMember) in members"
+        :key="`indexMember-${indexMember}`"
+        class="member-container flex"
       >
-        <el-card v-for="(member, i) in members" :key="i" class="member-card">
-          <el-image
-            :src="`/author/${member.avatar}`"
-            class="avatar"
-            :style="{ float: i % 2 === 0 ? 'left' : 'right' }"
-          />
-          <div :style="{ 'text-align': i % 2 === 0 ? 'left' : 'right' }">
-            <h2 v-if="i % 2 === 0" class="name">{{ member.name }}</h2>
-            <el-tag
-              v-for="(role, i_roles) in member.roles"
-              :key="i_roles"
-              class="role"
-              effect="plain"
-              type="info"
-            >
-              {{ role }}
-            </el-tag>
-            <h2 v-if="i % 2 === 1" class="name">{{ member.name }}</h2>
-
-            <nuxt-content
-              :document="member"
-              style="text-align: justify; margin: 0 10px"
+        <div class="member flex flex-column">
+          <div class="flex">
+            <nuxt-img
+              :src="`/author/${member.avatar}`"
+              class="member-avatar"
+              width="128"
+              height="128"
             />
+            <ul class="member-roles flex flex-wrap">
+              <li
+                v-for="(role, indexMemberRole) in member.roles"
+                :key="`indexMemberRole-${indexMemberRole}`"
+                class="member-role"
+              >
+                {{ role }}
+              </li>
+            </ul>
           </div>
-        </el-card>
-      </XyzTransitionGroup>
-    </el-col>
-  </el-row>
+          <nuxt-content :document="member" class="member-bio" />
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script>
 export default {
-  head() {
-    return {
-      title: "L'équipe - flapili.fr",
-    };
-  },
-
   async asyncData({ $content }) {
     const members = await $content("team")
       .only(["createdAt", "name", "avatar", "bio", "roles", "body"])
@@ -74,29 +48,59 @@ export default {
 </script>
 
 <style scoped>
-.avatar {
-  width: 100px;
-  height: 100px;
-  border-radius: 50px;
-  border: 1px solid black;
+.container {
+  margin: 0px 10%;
 }
 
-.name {
-  margin-bottom: 0px;
-  margin-top: 5px;
-  display: inline;
-  font-size: 2em;
+.member-container {
+  width: calc(100% / 3);
+  min-height: 600px;
 }
 
-.role {
-  margin-left: 2px;
-  margin-right: 2px;
+@media only screen and (max-width: 991px) {
+  .container {
+    margin: 0px 5%;
+  }
+  .member-container {
+    width: 100%;
+  }
+}
+.member {
+  margin: 20px;
+  width: 100%;
+  background-color: white;
+  border-radius: 10px;
+  border: 2px solid black;
 }
 
-.member-card {
-  margin-top: 16px;
-  min-height: 140px;
-  background-color: darkgray;
-  border-color: black;
+.member-avatar {
+  border-top-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-right: 2px solid black;
+  border-bottom: 2px solid black;
+}
+
+.member-roles {
+  margin: 0px;
+  padding: 0px;
+}
+
+.member-role {
+  display: flex;
+  /* border: 1px solid black; */
+  border-radius: 5px;
+  height: 30px;
+  padding: 0px 10px;
+  margin: 3px;
+  border: 2px solid gray;
+  background-color: #efefef;
+  justify-content: center;
+  align-items: center;
+  text-transform: capitalize;
+}
+
+.member-bio {
+  width: 100%;
+  font-size: 1.25rem;
 }
 </style>

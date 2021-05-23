@@ -1,147 +1,50 @@
 <template>
-  <div>
-    <el-row>
-      <el-col :md="{ span: 16, offset: 4 }">
-        <el-card class="graycard">
-          <article>
-            <XyzTransitionGroup
-              appear
-              class="square-group"
-              xyz="fade flip-up flip-left duration-30"
-            >
-              <el-tag
-                v-for="(tag, i) in Array.from(new Set(article.tags.split(';')))"
-                :key="i"
-                type="info"
-                class="tag"
-              >
-                {{ tag }}
-              </el-tag>
-            </XyzTransitionGroup>
-
-            <!-- title -->
-            <template v-if="article.title">
-              <h1 class="title text-center">
-                <span
-                  v-for="(word, i) in computedTitle"
-                  class="word"
-                  :key="`title-${i}`"
-                >
-                  <template v-if="i != 0">&nbsp;</template
-                  ><span
-                    v-for="(letter, i2) in word"
-                    :key="`title-${i}-${i2}`"
-                    class="letter xyz-in"
-                    xyz="fade small up-5 stagger duration-20"
-                    :style="{ '--xyz-index': letter.index }"
-                    style="--xyz-stagger: 0.1s"
-                    >{{ letter.char }}</span
-                  >
-                </span>
-              </h1>
-            </template>
-
-            <!-- author -->
-            <div v-if="article.author">
-              <el-image
-                :src="`/author/${article.author.avatar}`"
-                alt="auteur"
-                fit="cover"
-                class="author-logo"
-              ></el-image>
-              <div class="author" v-if="article.author">
-                <i v-if="article.author.name" class="author-name">
-                  {{ article.author.name }}
-                </i>
-              </div>
-
-            <!-- date -->
-            <i class="date"
-              >le {{ new Date(article.createdAt).toLocaleDateString() }}</i
-            >
-            </div>
-
-            <!-- article img -->
-            <template v-if="article.image">
-              <el-row style="clear: left">
-                <el-col :md="{ span: 16, offset: 4 }">
-                  <el-image
-                    :src="`/posts/${article.image.src}`"
-                    :alt="article.image.alt"
-                  />
-                </el-col>
-              </el-row>
-            </template>
-
-            <!-- article toc -->
-            <template v-if="article.toc.length">
-              <nav style="margin-bottom: 50px; margin-top: 30px">
-                Sommaire
-                <ul style="padding-inline-start: 40px">
-                  <li
-                    v-for="link in article.toc"
-                    :key="link.id"
-                    :class="`toc-${link.depth}`"
-                  >
-                    <nuxt-link
-                      :to="`#${link.id}`"
-                      class="no-text-decoration toc"
-                    >
-                      {{ link.text }}
-                    </nuxt-link>
-                  </li>
-                </ul>
-              </nav>
-            </template>
-
-            <!-- content -->
-            <nuxt-content :document="article" />
-          </article>
-        </el-card>
-      </el-col>
-    </el-row>
-
-    <!-- article précédent -->
-    <el-row type="flex" justify="space-around" style="margin-top: 16px">
-      <el-col :lg="{ span: 5 }">
-        <nuxt-link
-          :to="`${prev.path}`"
-          class="no-text-decoration nav-button"
-          v-if="prev"
+  <div class="container">
+    <article>
+      <h1 class="text-center title">{{ article.title }}</h1>
+      <div
+        v-if="article.image && article.image.src"
+        class="flex article-img-container"
+      >
+        <nuxt-img :src="`/posts/${article.image.src}`" class="article-img" />
+      </div>
+      <div
+        class="flex flex-wrap article-tags-container"
+        v-if="article.tags.length"
+      >
+        <div>Catégories:</div>
+        <div
+          v-for="(tag, indexTag) in article.tags.split(';')"
+          :key="`indexTag-${indexTag}`"
+          class="flex article-tag"
         >
-          <el-card
-            shadow="hover"
-            class="flex"
-            style="height: 100%; align-items: center"
-            :body-style="{ margin: 'auto' }"
-          >
-            <i>
-              <strong>{{ prev.title }}</strong>
-            </i>
-          </el-card>
-        </nuxt-link>
-      </el-col>
+          {{ tag }}
+        </div>
+      </div>
 
-      <!-- article suivant -->
-      <el-col :lg="{ span: 5 }">
-        <nuxt-link
-          :to="`${next.path}`"
-          class="no-text-decoration nav-button"
-          v-if="next"
-        >
-          <el-card
-            shadow="hover"
-            class="flex"
-            style="height: 100%; align-items: center"
-            :body-style="{ margin: 'auto' }"
-          >
-            <i>
-              <strong>{{ next.title }}</strong>
-            </i>
-          </el-card>
-        </nuxt-link>
-      </el-col>
-    </el-row>
+      <div v-if="article.author" class="flex author-container">
+        <nuxt-img
+          :src="`/author/${article.author.avatar}`"
+          alt="auteur"
+          class="author-logo"
+        />
+        <div class="author" v-if="article.author">
+          <i v-if="article.author.name" class="author-name">
+            {{ article.author.name }}
+          </i>
+        </div>
+      </div>
+      <nuxt-content :document="article" />
+    </article>
+
+    <div class="flex flex-wrap nav-container">
+      <nuxt-link v-if="prev" :to="`${prev.path}`" class="no-text-decoration">
+        <el-button class="nav-btn">{{ prev.title }}</el-button>
+      </nuxt-link>
+      <nuxt-link v-if="next" :to="`${next.path}`" class="no-text-decoration">
+        <el-button class="nav-btn">{{ next.title }}</el-button>
+      </nuxt-link>
+    </div>
   </div>
 </template>
 
@@ -167,26 +70,10 @@ export default {
   },
 
   async mounted() {
-    await this.$nextTick()
-    createTermynals();
-    loadVisibleTermynals();
-  },
-
-  computed: {
-    computedTitle() {
-      const words = this.article.title.split(" ");
-      let index = 0;
-      const title = words.map((word) => {
-        const letters = word.split("");
-        return letters.map((char) => {
-          return {
-            char,
-            index: index++,
-          };
-        });
-      });
-      return title;
-    },
+    await this.$nextTick();
+    this.$createTermynals();
+    this.$loadVisibleTermynals();
+    window.addEventListener("scroll", this.$loadVisibleTermynals);
   },
 
   head() {
@@ -279,56 +166,64 @@ export default {
 </script>
 
 <style scoped>
-.tag {
-  margin-right: 4px;
-  margin-bottom: 4px;
+.container {
+  margin: 0px 10%;
+}
+
+@media only screen and (max-width: 991px) {
+  .container {
+    margin: 0px 5% !important;
+  }
+  .article-container,
+  .nav-btn {
+    width: 100% !important;
+  }
 }
 
 .title {
-  font-size: 2.5em;
-  margin-block-end: 0;
+  font-size: 3rem;
+  margin-bottom: 0px;
 }
 
-.author-name, .date {
-  padding-left: 10px;
-  padding-bottom: 0px;
-  margin: 0px;
+.article-img-container {
+  justify-content: center;
 }
 
+.article-img {
+  width: 50%;
+}
+
+.article-tags-container {
+  align-items: center;
+}
+.article-tag {
+  align-items: center;
+  height: 30px;
+  border-radius: 5px;
+  margin-left: 10px;
+  padding: 0 10px;
+  border: 2px solid gray;
+  background-color: #efefef;
+}
+
+.author-container {
+  margin-top: 15px;
+}
 
 .author-logo {
-  float: left;
   width: 60px;
   height: 60px;
-  border-radius: 30px;
-  border: 1px solid black;
+  border: 2px solid black;
+  border-radius: 5px;
 }
 
-.toc {
-  color: royalblue;
+.nav-container {
+  justify-content: space-around;
 }
 
-.toc:hover {
-  mix-blend-mode: difference;
-  font-weight: bold;
-}
-
-.toc-2 {
-  margin-left: 0px;
-}
-
-.toc-3 {
-  margin-left: 15px;
-}
-
-.nav-button {
-  color: inherit;
-}
-
-.letter {
-  display: inline-block;
-}
-.word {
-  display: inline-block;
+.nav-btn {
+  height: 60px;
+  border: 2px solid black;
+  background-color: #f29100;
 }
 </style>
