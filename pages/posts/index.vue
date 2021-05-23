@@ -145,7 +145,6 @@ export default {
   border-radius: 5px;
   margin-left: 10px;
   padding: 0 10px;
-  border: 2px solid gray;
   background-color: #efefef;
 }
 </style>

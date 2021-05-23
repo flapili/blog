@@ -25,7 +25,7 @@
               </li>
             </ul>
           </div>
-          <h2>{{ member.name }}</h2>
+          <h2 class="member-name">{{ member.name }}</h2>
           <nuxt-content :document="member" class="member-bio" />
         </div>
       </div>
@@ -71,14 +71,11 @@ export default {
   width: 100%;
   background-color: white;
   border-radius: 10px;
-  border: 2px solid black;
 }
 
 .member-avatar {
   border-top-left-radius: 10px;
   border-bottom-right-radius: 10px;
-  border-right: 2px solid black;
-  border-bottom: 2px solid black;
 }
 
 .member-roles {
@@ -88,16 +85,19 @@ export default {
 
 .member-role {
   display: flex;
-  /* border: 1px solid black; */
   border-radius: 5px;
   height: 30px;
   padding: 0px 10px;
   margin: 3px;
-  border: 2px solid gray;
   background-color: #efefef;
   justify-content: center;
   align-items: center;
   text-transform: capitalize;
+}
+
+.member-name {
+  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .member-bio {
