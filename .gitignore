@@ -93,3 +93,6 @@ ecosystem.config.js
 server.crt
 server.key
 .editorconfig
+.ssh
+.pm2
+.bash_history
