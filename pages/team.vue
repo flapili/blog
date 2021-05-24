@@ -9,7 +9,7 @@
       >
         <div class="member flex flex-column">
           <div class="flex">
-            <nuxt-img
+            <nuxt-picture
               :src="`/author/${member.avatar}`"
               class="member-avatar"
               width="128"
@@ -73,11 +73,6 @@ export default {
   border-radius: 10px;
 }
 
-.member-avatar {
-  border-top-left-radius: 10px;
-  border-bottom-right-radius: 10px;
-}
-
 .member-roles {
   margin: 0px;
   padding: 0px;
@@ -103,5 +98,12 @@ export default {
 .member-bio {
   width: 100%;
   font-size: 1.25rem;
+}
+</style>
+
+<style>
+picture.member-avatar > img {
+  border-top-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 </style>
