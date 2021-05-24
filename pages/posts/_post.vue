@@ -202,7 +202,6 @@ export default {
   border-radius: 5px;
   margin-left: 10px;
   padding: 0 10px;
-  border: 2px solid gray;
   background-color: #efefef;
 }
 
@@ -213,8 +212,12 @@ export default {
 .author-logo {
   width: 60px;
   height: 60px;
-  border: 2px solid black;
-  border-radius: 5px;
+  border-top-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.author-name {
+  margin-left: 10px;
 }
 
 .nav-container {
@@ -223,7 +226,6 @@ export default {
 
 .nav-btn {
   height: 60px;
-  border: 2px solid black;
   background-color: #f29100;
 }
 </style>
