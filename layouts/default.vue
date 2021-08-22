@@ -16,7 +16,7 @@
               style="flex-direction: column"
               @click="dialogSearchVisible = false"
             >
-              <nuxt-img
+              <img
                 :src="`posts/${article.image.src}`"
                 class="search-result-img"
               />
@@ -46,11 +46,9 @@
           router
         >
           <el-menu-item index="/" class="nav-menu-item">
-            <nuxt-img
+            <img
               src="/logo.png"
               class="logo"
-              width="40"
-              height="40"
               alt="logo"
             />
           </el-menu-item>

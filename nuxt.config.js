@@ -84,15 +84,10 @@ const config = {
 
     // Modules (https://go.nuxtjs.dev/config-modules)
     modules: [
-        '@nuxt/image',
         '@nuxt/content',
         '@nuxtjs/sitemap',
         '@nuxtjs/robots',
     ],
-
-    image: {
-        provider: 'ipx',
-    },
 
     googleAnalytics: {
         id: 'UA-183419207-1'
@@ -161,8 +156,6 @@ const config = {
     // Build Configuration (https://go.nuxtjs.dev/config-build)
     build: {
         transpile: [/^element-ui/],
-        // extractCSS: true,
-        // hardSource: true,
         cache: true,
     },
 }

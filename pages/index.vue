@@ -6,8 +6,8 @@
         class="flex"
         style="align-items: center; justify-content: center"
       >
-        <nuxt-img src="/laptop_S.png" width="200" height="200" />
-        <nuxt-img src="/tea_S.png" width="80" height="80" />
+        <img src="/laptop_S_200x200.png" />
+        <img src="/tea_S_80x80.png" />
       </el-col>
       <el-col :md="12">
         <h1 class="title">FLAPILI.FR</h1>

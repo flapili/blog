@@ -6,7 +6,7 @@
         v-if="article.image && article.image.src"
         class="flex article-img-container"
       >
-        <nuxt-img :src="`/posts/${article.image.src}`" class="article-img" />
+        <img :src="`/posts/${article.image.src}`" class="article-img" />
       </div>
       <div
         class="flex flex-wrap article-tags-container"
@@ -23,7 +23,7 @@
       </div>
 
       <div v-if="article.author" class="flex author-container">
-        <nuxt-img
+        <img
           :src="`/author/${article.author.avatar}`"
           alt="auteur"
           class="author-logo"

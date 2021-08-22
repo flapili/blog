@@ -22,7 +22,6 @@
         "@fortawesome/free-brands-svg-icons": "^5.15.3",
         "@fortawesome/free-regular-svg-icons": "^5.15.3",
         "@fortawesome/free-solid-svg-icons": "^5.15.3",
-        "@nuxt/image": "^0.4.10",
         "@nuxtjs/fontawesome": "^1.1.2",
         "@nuxtjs/google-analytics": "^2.4.0",
         "coffee-loader": "^1.0.0",
