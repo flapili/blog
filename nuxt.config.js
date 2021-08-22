@@ -1,7 +1,3 @@
-import path from 'path'
-import fs from 'fs'
-
-
 const description = "Ce site a été entièrement réalisé par des passionnés d'informatique qui ont\
  pour vocation de transmettre leurs connaissances sur des sujets aussi précis que varié."
 
@@ -16,19 +12,9 @@ const config = {
         client_error_details: "Oups",
     },
 
-    server: {
-        port: process.env.NODE_ENV === "development" ? 8080 : 4443,
-    },
-
     modern: true,
 
-    render: {
-        http2: {
-            push: true,
-        },
-    },
-
-    target: "server",
+    target: "static",
 
     loading: {
         color: 'orange',
@@ -65,10 +51,7 @@ const config = {
         link: [
             { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
         ],
-        script: [
-            // { src: "/termynal.js/termynal.js" },
-            // { src: "/termynal.js/termynal_addon.js", body: true },
-        ],
+        script: [],
     },
 
     // Global CSS (https://go.nuxtjs.dev/config-css)
@@ -98,7 +81,7 @@ const config = {
         '@nuxtjs/fontawesome',
         '@nuxtjs/google-analytics',
     ],
-    
+
     // Modules (https://go.nuxtjs.dev/config-modules)
     modules: [
         '@nuxt/image',
@@ -183,20 +166,5 @@ const config = {
         cache: true,
     },
 }
-
-// only serve https in production
-if (process.env.NODE_ENV === "production") {
-    config.server.https = {
-        key: fs.readFileSync(path.resolve(__dirname, 'server.key')),
-        cert: fs.readFileSync(path.resolve(__dirname, 'server.crt')),
-    }
-}
-
-// listen in all interfaces in dev mode 
-if (process.env.NODE_ENV === "development") {
-    config.server.host = '0.0.0.0';
-}
-config.server.host = '0.0.0.0';
-
 
 export default config
