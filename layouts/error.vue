@@ -35,11 +35,9 @@ export default {
 .status-code {
   font-size: 8em;
   margin: 0px;
-  color: white;
 }
 
 .message {
   margin-top: 0px;
-  color: white;
 }
 </style>
