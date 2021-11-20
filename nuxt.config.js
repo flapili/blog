@@ -150,7 +150,8 @@ const config = {
             const files = await $content("posts").only(['path']).fetch()
 
             return files.map(file => file.path === '/index' ? '/' : file.path)
-        }
+        },
+        fallback: true
     },
 
     // Build Configuration (https://go.nuxtjs.dev/config-build)
