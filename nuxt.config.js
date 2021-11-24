@@ -4,6 +4,9 @@ const description = "Ce site a été entièrement réalisé par des passionnés 
 const hostname = 'https://flapili.fr'
 
 const config = {
+    publicRuntimeConfig: {
+        hostname: hostname,
+    },
     messages: {
         error_404: "page non trouvée",
         server_error: "Oups",
@@ -71,6 +74,7 @@ const config = {
         '@/plugins/element-ui',
         '@/plugins/menu-router-guard.js',
         '@/plugins/termynal.client.js',
+        '@/plugins/jsonld.js',
     ],
 
     // Auto import components (https://go.nuxtjs.dev/config-components)
