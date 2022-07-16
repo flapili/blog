@@ -1,0 +1,167 @@
+/* https://github.com/antfu/prism-theme-vars */
+@import "prism-theme-vars/base.css";
+
+html {
+  --prism-block-radius: 0.125rem !important;
+}
+
+html:not(.dark) {
+  --prism-foreground: #393a34;
+  --prism-background: #fbfbfb;
+  --prism-comment: #a0ada0;
+  --prism-string: #b56959;
+  --prism-literal: #2f8a89;
+  --prism-number: #296aa3;
+  --prism-keyword: #1c6b48;
+  --prism-function: #6c7834;
+  --prism-boolean: #1c6b48;
+  --prism-constant: #a65e2b;
+  --prism-deleted: #a14f55;
+  --prism-class: #2993a3;
+  --prism-builtin: #ab5959;
+  --prism-property: #b58451;
+  --prism-namespace: #b05a78;
+  --prism-punctuation: #8e8f8b;
+  --prism-decorator: #bd8f8f;
+  --prism-regex: #ab5e3f;
+  --prism-json-property: #698c96;
+}
+
+html.dark {
+  --prism-foreground: #d4cfbf;
+  --prism-background: #151515;
+  --prism-comment: #758575;
+  --prism-string: #d48372;
+  --prism-literal: #429988;
+  --prism-keyword: #4d9375;
+  --prism-boolean: #1c6b48;
+  --prism-number: #6394bf;
+  --prism-variable: #c2b36e;
+  --prism-function: #a1b567;
+  --prism-deleted: #a14f55;
+  --prism-class: #54b1bf;
+  --prism-builtin: #e0a569;
+  --prism-property: #dd8e6e;
+  --prism-namespace: #db889a;
+  --prism-punctuation: #858585;
+  --prism-decorator: #bd8f8f;
+  --prism-regex: #ab5e3f;
+  --prism-json-property: #6b8b9e;
+  --prism-line-number: #888888;
+  --prism-line-number-gutter: #eeeeee;
+  --prism-line-highlight-background: #444444;
+  --prism-selection-background: #444444;
+}
+
+.markdown {
+  @apply text-lg;
+}
+
+.markdown .table-of-contents {
+  @apply text-sm;
+}
+
+.markdown .table-of-contents a {
+  @apply !no-underline;
+  @apply py-1 px-1.5;
+  @apply inline-block;
+}
+
+.markdown .table-of-contents * {
+  @apply mt-0.1;
+}
+
+.markdown .table-of-contents > ul > li {
+  @apply ml-0;
+}
+
+.markdown .table-of-contents > ul > li > ul > li {
+  @apply ml-2;
+}
+
+.markdown .table-of-contents > ul > li > ul > li > ul > li {
+  @apply ml-4;
+}
+
+.markdown .table-of-contents > ul > li > ul > li > ul > li > ul > li {
+  @apply ml-6;
+}
+
+.markdown .named-fence-filename {
+  color: var(--prism-comment);
+  font-style: var(--prism-comment-style);
+  @apply absolute;
+  @apply top-4;
+  @apply text-base;
+}
+
+.markdown .u-mdic-copy-notify {
+  display: none;
+}
+
+.markdown .m-mdic-copy-wrapper {
+  @apply absolute;
+  @apply flex flex-gap-2;
+  @apply right-4 top-4;
+}
+
+.markdown h1,
+.markdown h2,
+.markdown h3,
+.markdown h4 {
+  @apply font-bold;
+  @apply pt-4;
+  @apply pb-2;
+}
+
+.markdown h1 {
+  @apply text-3xl;
+}
+
+.markdown h2 {
+  @apply pl-1;
+  @apply text-2xl;
+}
+
+.markdown h3 {
+  @apply pl-2;
+  @apply text-xl;
+}
+
+.markdown h4 {
+  @apply pl-3;
+  @apply text-lg;
+}
+
+.markdown code:not(*[class|="language"]) {
+  @apply bg-gray-800 text-gray-300 dark:(bg-light-100 text-gray-800);
+}
+
+.markdown pre[class*="language"] {
+  @apply max-h-50vh;
+  @apply scrollbar;
+  @apply scrollbar-w-4px scrollbar-h-4px sm:(scrollbar-w-12px scrollbar-h-12px);
+  @apply scrollbar-thumb-color-gray-800;
+  @apply dark:scrollbar-thumb-color-gray-300;
+  @apply scrollbar-track-color-[var(--prism-background)];
+  @apply border;
+}
+
+.markdown pre[class*="language"]::before {
+  content: "\00000a";
+}
+
+.markdown > * {
+  @apply mt-4;
+}
+
+.markdown a:not(.header-anchor) {
+  @apply link;
+  @apply underline;
+}
+
+.markdown blockquote {
+  @apply ml-2;
+  @apply border-l-4;
+  @apply pl-4;
+}
