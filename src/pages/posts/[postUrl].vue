@@ -15,6 +15,23 @@ else {
       'author': [{ name: post.author.name }],
     }),
   ])
+
+  const title = `${post.title} - ${import.meta.env.VITE_NAME}`
+  const description = post.description
+  useHead({
+    title,
+    meta: [
+      { key: 'description', name: 'description', content: description },
+
+      // open graph meta
+      { key: 'og:description', name: 'og:description', content: description },
+      { key: 'og:title', name: 'og:title', content: title },
+
+      // twitter meta
+      { key: 'twitter:description', name: 'twitter:description', content: description },
+      { key: 'twitter:title', name: 'twitter:title', content: title },
+    ],
+  })
 }
 </script>
 

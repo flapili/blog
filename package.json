@@ -11,6 +11,7 @@
     "@types/node": "^18.0.4",
     "@vueuse/core": "^8.9.2",
     "@vueuse/head": "^0.7.6",
+    "front-matter": "^4.0.2",
     "markdown-it-anchor": "^8.6.4",
     "markdown-it-copy": "^1.2.0",
     "markdown-it-named-code-blocks": "^0.1.0",

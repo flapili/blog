@@ -18,6 +18,8 @@ import MarkdownItCopy from 'markdown-it-copy'
 import MarkdownItTableOfContents from 'markdown-it-table-of-contents'
 import MarkdownItNamedCodeBlocks from 'markdown-it-named-code-blocks'
 
+import FrontMater from 'front-matter'
+
 export default (mode: string) => {
   const env = Object.assign({}, process.env, loadEnv(mode, process.cwd()))
   return defineConfig({
@@ -45,12 +47,12 @@ export default (mode: string) => {
       // https://github.com/antfu/unplugin-auto-import
       AutoImport({
         imports: [
+          schemaOrgAutoImports,
           'vue',
           'vue-router',
           'vue/macros',
           '@vueuse/head',
           '@vueuse/core',
-          schemaOrgAutoImports,
         ],
         dts: 'src/auto-imports.d.ts',
         dirs: [
@@ -124,9 +126,27 @@ export default (mode: string) => {
         return [
           '/',
           '/posts',
+          '/team',
+
+          // all not archived posts
           ...fs.readdirSync(path.resolve('content', 'posts'))
             .filter(r => path.parse(r).ext === '.md')
+            .filter((r) => {
+              const fileContent = fs.readFileSync(path.resolve('content', 'posts', r)).toString()
+              return FrontMater(fileContent).attributes.archived !== true
+            })
             .map(r => `/posts/${path.parse(r).name}`),
+
+          // all active member
+          ...fs.readdirSync(path.resolve('content', 'team'))
+            .filter(r => path.parse(r).ext === '.md')
+            .filter((r) => {
+              const fileContent = fs.readFileSync(path.resolve('content', 'team', r)).toString()
+              return FrontMater(fileContent).attributes.archived !== true
+            })
+            .map(r => `/team/${path.parse(r).name}`),
+
+          // fallback for netlify
           '/404',
         ]
       },
