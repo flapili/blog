@@ -76,15 +76,15 @@ html.dark {
 }
 
 .markdown .table-of-contents > ul > li > ul > li {
-  @apply ml-2;
-}
-
-.markdown .table-of-contents > ul > li > ul > li > ul > li {
   @apply ml-4;
 }
 
+.markdown .table-of-contents > ul > li > ul > li > ul > li {
+  @apply ml-8;
+}
+
 .markdown .table-of-contents > ul > li > ul > li > ul > li > ul > li {
-  @apply ml-6;
+  @apply ml-12;
 }
 
 .markdown .named-fence-filename {
