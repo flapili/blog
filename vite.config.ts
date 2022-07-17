@@ -89,7 +89,10 @@ export default (mode: string) => {
           md.use(MarkdownItNamedCodeBlocks)
           md.use((md) => {
             const defaultRender = md.renderer.rules.fence
-            md.renderer.rules.fence = (...args) => `<div style="position: relative">${defaultRender?.(...args)}</div>`
+            md.renderer.rules.fence = (...args) => `
+              <div style="position:relative; margin-left:0.5rem; margin-right:0.5rem; padding-top:2rem">
+                ${defaultRender?.(...args)}
+              </div>`
           })
           md.use(MarkdownItAnchor, {
             permalink: MarkdownItAnchor.permalink.linkInsideHeader({ placement: 'before' }),

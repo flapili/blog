@@ -88,11 +88,15 @@ html.dark {
 }
 
 .markdown .named-fence-filename {
-  color: var(--prism-comment);
-  font-style: var(--prism-comment-style);
   @apply absolute;
-  @apply top-4;
+  @apply w-full;
+  @apply top-0 left-0;
+  @apply rounded-t-sm;
+  @apply h-8;
+  @apply p-1;
   @apply text-base;
+  @apply invert;
+  @apply !bg-opacity-80;
 }
 
 .markdown .u-mdic-copy-notify {
@@ -101,8 +105,10 @@ html.dark {
 
 .markdown .m-mdic-copy-wrapper {
   @apply absolute;
-  @apply flex flex-gap-2;
-  @apply right-4 top-4;
+  @apply flex flex-gap-1;
+  @apply right-0 top-0;
+  @apply pr-2 pt-2;
+  @apply text-light-100 dark:text-gray-800;
 }
 
 .markdown h1,
@@ -135,20 +141,21 @@ html.dark {
 
 .markdown code:not(*[class|="language"]) {
   @apply bg-gray-800 text-gray-300 dark:(bg-light-100 text-gray-800);
+  @apply bg-opacity-80;
 }
 
 .markdown pre[class*="language"] {
+  @apply m-0;
+  @apply rounded-b-sm;
+  @apply rounded-t-none;
   @apply max-h-50vh;
   @apply scrollbar;
   @apply scrollbar-w-4px scrollbar-h-4px sm:(scrollbar-w-12px scrollbar-h-12px);
-  @apply scrollbar-thumb-color-gray-800;
-  @apply dark:scrollbar-thumb-color-gray-300;
-  @apply scrollbar-track-color-[var(--prism-background)];
-  @apply border;
-}
-
-.markdown pre[class*="language"]::before {
-  content: "\00000a";
+  @apply scrollbar-thumb-color-gray-800/80;
+  @apply dark:scrollbar-thumb-color-gray-300/80;
+  @apply scrollbar-track-color-[var(--prism-background)]/80;
+  @apply border-2;
+  @apply border-gray-800/80 dark:border-light-100/80;
 }
 
 .markdown > * {
