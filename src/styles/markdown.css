@@ -54,7 +54,7 @@ html.dark {
 }
 
 .markdown {
-  @apply text-lg;
+  @apply text-lg sm:text-base;
 }
 
 .markdown .table-of-contents {
