@@ -1,7 +1,7 @@
 @import "./markdown.css";
 
 *::-webkit-scrollbar-corner {
-  background-color: transparent; 
+  background-color: transparent;
 }
 
 html,
@@ -13,10 +13,10 @@ body,
   @apply !overflow-x-hidden;
   @apply scrollbar;
   @apply scrollbar-w-4px sm:scrollbar-w-12px;
-  @apply scrollbar-thumb-color-gray-800;
-  @apply dark:scrollbar-thumb-color-light-100;
-  @apply scrollbar-track-color-light-100;
-  @apply dark:scrollbar-track-color-gray-800;
+  @apply scrollbar-thumb-color-secondary;
+  @apply scrollbar-track-color-primary;
+  @apply dark:scrollbar-thumb-color-primary;
+  @apply dark:scrollbar-track-color-secondary;
 }
 
 #nprogress {

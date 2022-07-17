@@ -33,7 +33,7 @@ useSchemaOrg([
 
 <template>
   <suspense>
-    <div class="flex text-gray-800 bg-light-100 dark:(text-gray-300 bg-gray-800)">
+    <div class="flex text-secondary bg-primary dark:(text-primary bg-secondary)">
       <RouterView />
     </div>
   </suspense>

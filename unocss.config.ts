@@ -22,8 +22,12 @@ export default defineConfig({
     transformerDirectives(),
     transformerVariantGroup(),
   ],
+  extendTheme: (theme) => {
+    theme.colors.primary = theme.colors.light[100]
+    theme.colors.secondary = theme.colors.gray[800]
+  },
   shortcuts: [
-    { invert: 'bg-gray-800 text-gray-300 dark:(bg-light-100 text-gray-800)' },
+    { invert: 'bg-secondary text-primary dark:(bg-primary text-secondary)' },
     { link: 'hover:invert rounded-sm !bg-opacity-40 transition-color duration-400' },
   ],
   safelist: ['i-clarity-success-standard-solid', 'i-mdi-content-copy', 'text-green-600'],

@@ -108,7 +108,7 @@ html.dark {
   @apply flex flex-gap-1;
   @apply right-0 top-0;
   @apply pr-2 pt-2;
-  @apply text-light-100 dark:text-gray-800;
+  @apply text-primary dark:text-secondary;
 }
 
 .markdown h1,
@@ -140,22 +140,22 @@ html.dark {
 }
 
 .markdown code:not(*[class|="language"]) {
-  @apply bg-gray-800 text-gray-300 dark:(bg-light-100 text-gray-800);
+  @apply bg-secondary text-primary dark:(bg-primary text-secondary);
   @apply bg-opacity-80;
 }
 
 .markdown pre[class*="language"] {
+  @apply max-h-50vh;
   @apply m-0;
+  @apply border-2;
   @apply rounded-b-sm;
   @apply rounded-t-none;
-  @apply max-h-50vh;
   @apply scrollbar;
   @apply scrollbar-w-4px scrollbar-h-4px sm:(scrollbar-w-12px scrollbar-h-12px);
-  @apply scrollbar-thumb-color-gray-800/80;
-  @apply dark:scrollbar-thumb-color-gray-300/80;
+  @apply scrollbar-thumb-color-secondary/80;
+  @apply dark:scrollbar-thumb-color-primary/80;
   @apply scrollbar-track-color-[var(--prism-background)]/80;
-  @apply border-2;
-  @apply border-gray-800/80 dark:border-light-100/80;
+  @apply border-secondary/80 dark:border-primary/80;
 }
 
 .markdown > * {
