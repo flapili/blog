@@ -30,7 +30,7 @@ useHead({
       Les posts
     </h1>
     <div class="mt-8 w-full">
-      <ul v-if="posts.length" class="flex flex-col flex-gap-y-4 mx-auto w-1/2">
+      <ul v-if="posts.length" class="flex flex-col flex-gap-y-4 mx-auto w-full lg:w-1/2">
         <li v-for="post, i in posts" :key="i" class="flex w-full rounded-sm">
           <RouterLink :to="`/posts/${post.path}`" class="link flex flex-col w-full py-2 px-3">
             <div class="text-xl">

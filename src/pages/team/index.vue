@@ -30,7 +30,7 @@ useHead({
       La team
     </h1>
     <div class="mt-8 w-full">
-      <ul v-if="members.length" class="flex flex-col flex-gap-y-4 mx-auto w-1/2">
+      <ul v-if="members.length" class="flex flex-col flex-gap-y-4 mx-auto w-full lg:w-1/2">
         <li v-for="member, i in members" :key="i" class="flex w-full rounded-sm">
           <RouterLink :to="`/team/${member.name}`" class="link flex flex-col w-full py-2 px-3">
             <div class="text-xl">
