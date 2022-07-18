@@ -26,7 +26,7 @@ useHead({
 <template>
   <div class="flex flex-col w-full">
     <h1 class="flex w-full text-3xl font-bold justify-center">
-      <i class="i-dashicons-welcome-write-blog mr-2" />
+      <i class="i-ic-baseline-emoji-people mr-2" />
       La team
     </h1>
     <div class="mt-8 w-full">

@@ -80,7 +80,6 @@ export default (mode: string) => {
       Unocss(),
 
       // https://github.com/antfu/vite-plugin-vue-markdown
-      // Don't need this? Try vitesse-lite: https://github.com/antfu/vitesse-lite
       Markdown({
         wrapperClasses: 'markdown',
         markdownItSetup(md) {
