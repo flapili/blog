@@ -59,6 +59,8 @@ html.dark {
 
 .markdown .table-of-contents {
   @apply text-sm;
+  @apply border-b-1;
+  @apply mb-12 pb-8;
 }
 
 .markdown .table-of-contents a {
@@ -86,6 +88,23 @@ html.dark {
 .markdown .table-of-contents > ul > li > ul > li > ul > li > ul > li {
   @apply ml-12;
 }
+
+.markdown > ul > li {
+  @apply ml-0;
+}
+
+.markdown > ul > li > ul > li {
+  @apply ml-4;
+}
+
+.markdown > ul > li > ul > li > ul > li {
+  @apply ml-8;
+}
+
+.markdown > ul > li > ul > li > ul > li > ul > li {
+  @apply ml-12;
+}
+
 
 .markdown .named-fence-filename {
   @apply absolute;
@@ -160,6 +179,7 @@ html.dark {
 .markdown code:not(*[class|="language"]) {
   @apply bg-secondary text-primary dark:(bg-primary text-secondary);
   @apply bg-opacity-80;
+  @apply p-0.5;
 }
 
 .markdown pre[class*="language"] {
@@ -190,3 +210,23 @@ html.dark {
   @apply border-l-4;
   @apply pl-4;
 }
+
+.markdown ul {
+  @apply list-disc;
+  @apply list-inside;
+}
+
+.markdown table {
+  @apply border-collapse border;
+}
+
+.markdown table > thead, .markdown table > tbody {
+  @apply bg-primary text-secondary dark:(bg-secondary text-primary);
+}
+
+.markdown table td, .markdown table th {
+  @apply border;
+  @apply px-4 py-2;
+}
+
+

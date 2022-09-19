@@ -26,14 +26,16 @@ const close = () => {
 </script>
 
 <template>
-  <img :src="props.src" :alt="props.alt" :loading="lazy ? 'lazy' : 'eager'" class="mx-auto rounded-sm cursor-pointer" @click="open">
+  <div class="mx-2 max-h-80vh flex">
+    <img :src="props.src" :alt="props.alt" :loading="lazy ? 'lazy' : 'eager'" class="mx-auto rounded-sm cursor-pointer object-scale-down" @click="open">
+  </div>
   <Teleport v-if="isOpen" to="body">
     <div class="z-5000 w-screen h-screen inset-0 fixed bg-gray-900 opacity-90" />
     <div class="z-5001 w-screen h-screen inset-0 fixed">
       <div class="w-full h-full flex justify-center items-center" @click.self="close">
         <Transition
           appear
-          enter-active-class="duration-300 ease-out transform"
+          enter-active-class="duration-400 ease-out transform"
           enter-from-class="scale-0 opacity-0"
           enter-to-class="opacity-100"
         >

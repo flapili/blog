@@ -1,6 +1,6 @@
 ---
-title: Tour d'horizon de Prefect
-description: TODO
+title: Automatisez vos workflows avec Prefect
+description: Prefect est la tour de contrôle pour les stack de données modernes, surveillez, coordonnez et orchestrez les flux de données entre et à travers vos applications. Créez des pipelines, déployez-les n'importe où et configurez-les à distance.
 author:
   name: flapili
   avatar: flapili.webp
@@ -15,39 +15,52 @@ createdAt: "2022-09-16T05:50:24.418Z"
 
 Bonjour !
 
-Aujourd'hui un petit article pour présenter [Prefect](https://docs.prefect.io/) 😉<br/>
+Aujourd'hui un petit article pour présenter [Prefect](https://docs.prefect.io/) 😉
 
 # Présentation
 
 ## Qu'est ce que Prefect ?
-d'après la page de présentation :
+D'après la [page de présentation](https://docs.prefect.io/) :
 >Prefect is air traffic control for the modern data stack. Monitor, coordinate, and orchestrate dataflows between and across your applications. Build pipelines, deploy them anywhere, and configure them remotely.
 
-En gros Prefect est la tour de contrôle pour les stack de données modernes, Surveillez, coordonnez et orchestrez les flux de données entre et à travers vos applications. Créez des pipelines, déployez-les n'importe où et configurez-les à distance.
+En gros Prefect est la tour de contrôle pour les stack de données modernes, surveillez, coordonnez et orchestrez les flux de données entre et à travers vos applications. Créez des pipelines, déployez-les n'importe où et configurez-les à distance.
+
+En gros ça va vous permettre de lancer via GUI, API ou CRON des ensembles de taches, par exemple deployer un site puis envoyer un mail.
 
 # Mise en pratique
 
 ## Préambule
-Chez moi j'ai un serveur tournant sous Proxmox qui me permet de créer des VM, plutôt que de faire une démonstration sur du cloud (AWS, GCP, OVH, etc ...)je ferais une démonstration sur mon lab, je ne traiterais pas de la partie sécurité pour la mise en production.
+Chez moi j'ai un serveur tournant sous Proxmox qui me permet de créer des VM, plutôt que de faire une démonstration sur du cloud (AWS, GCP, OVH, etc ...) je ferais une démonstration sur mon lab, je ne traiterais pas de la partie sécurité pour la mise en production.
 
 
 ## Création des VMs
-Je vais créer 3 machines, une qui sera le controlleur et deux qui seront les workers.<br>
+Je vais créer 3 machines, une qui sera le contrôleur et deux qui seront les workers.<br>
 Les 3 machines seront sous ubuntu 22.04LTS parce que j'ai la flemme de faire d'autres templates 😅<br>
 2 Go de ram et 2 cores seront largement suffisant
 
+
+<ContentImage src="/posts/prefect/diagramme-infra.jpg" alt="Diagramme" />
+<div class="italic text-center mt-0">Diagramme de l'infrastructure</div>
+
+
 <ContentImage src="/posts/prefect/creation-vm.png" alt="Création des VMs" />
+<div class="italic text-center mt-0">Création des machines virtuelles sous Proxmox</div>
 
 On attends que CloudImage setup les VMs, on mets tous ça sous DHCP en faisant joujou avec dhclient:
 
-VM controlleur: 10.0.10.200<br>
-VM worker-1: 10.0.10.201<br>
-VM worker-2: 10.0.10.202<br>
+| Nom         | IP          |
+|-------------|-------------|
+| controlleur | 10.0.10.200 |
+| worker-1    | 10.0.10.201 |
+| worker-2    | 10.0.10.202 |
 
 ## Installation de Prefect
-Ici on ne va pas s'embeter à installer une nouvelle version de Python depuis les sources pour la démo ni utiliser Poetry mais en vrai faites le !
 
-On se log avec `ssh root@10.0.10.200` pour commencer (grace à Cloud init j'ai déjà ma clé publique dans les authorized_keys), bon en vrai je vais utiliser Vscode pour me log 😆.
+<ContentInfobox>
+Pour la démo je ne vais pas m'embeter à compiler Python depuis les sources ni installer de <ContentLink to="https://docs.python.org/fr/3/library/venv.html">venv</ContentLink>, mais dans un environnement de production je l'aurai fait.
+</ContentInfobox>
+
+On se log avec `ssh root@10.0.10.200` pour commencer (grace à Cloud init j'ai déjà ma clé publique dans les authorized_keys).
 
 Un petit coup d'`apt update && apt upgrade` ça fait pas de mal, même si normallement cloud-init le fait déjà, on reboot parce que y'a un nouveau kernel de dispo.
 
@@ -57,12 +70,14 @@ Et enfin, `pip install -U prefect smbprotocol` (smbprotocol sera pour un peu plu
 
 Pour le lancer rien de plus simple: `prefect orion start --host 0.0.0.0`
 <ContentWarningbox>
-    Ne suivez pas à la lettre le --host 0.0.0.0<br>
-    C'est pour la démo que je fais ça, si vous n'avez pas de parfeu tout le monde pourra utiliser votre Prefect, pas foufou !
+    Ne suivez pas à la lettre le <code>--host 0.0.0.0</code><br>
+    C'est pour la démo que je fais ça, si vous n'avez pas de pare-feu tout le monde pourra utiliser votre Prefect, pas foufou !
 </ContentWarningbox>
 
-On se rend sur http://10.0.10.200:4200 (le port par défaut d'orion)
+On se rend sur http://10.0.10.200:4200 (le port par défaut d'Orion)
+
 <ContentImage src="/posts/prefect/dashboard-vide.png" alt="interface d'orion" />
+<div class="italic text-center mt-0">dashboard de Prefect</div>
 
 Bon, pas grand chose encore, on va créer notre 1er deployment :
 
@@ -91,17 +106,17 @@ Deployment YAML created at '/root/hello_world-deployment.yaml'.
 Deployment storage None does not have upload capabilities; no files uploaded.  Pass --skip-upload to suppress this warning.
 ```
 
-On retourne sur le dashboard et ... toujours rien, pour le moment on a juste créé un fichier .yaml, regardons le contenu
+On retourne sur le dashboard et ... toujours rien, pour le moment on a juste créé un fichier .yaml 😁, regardons le contenu :
 
 ```yaml:hello_world-deployment.yaml
-###
-### A complete description of a Prefect Deployment for flow 'Hello Flow'
-###
-name: "d\xE9mo"
+# ##
+# ## A complete description of a Prefect Deployment for flow 'Hello Flow'
+# ##
+name: démo
 description: null
 version: 9f322938015631280a9869b82a116af5
 # The work queue that will handle this deployment's runs
-work_queue_name: "queue_de_d\xE9mo"
+work_queue_name: queue_de_démo
 tags: []
 parameters: {}
 schedule: null
@@ -116,9 +131,9 @@ infrastructure:
   block_type_slug: process
   _block_type_slug: process
 
-###
-### DO NOT EDIT BELOW THIS LINE
-###
+# ##
+# ## DO NOT EDIT BELOW THIS LINE
+# ##
 flow_name: Hello Flow
 manifest_path: null
 storage: null
@@ -138,15 +153,19 @@ parameter_openapi_schema:
 Et on a plus qu'à l'appliquer : `prefect deployment apply hello_world-deployment.yaml` et TADA !
 
 <ContentImage src="/posts/prefect/dashboard.png" alt="interface d'orion" />
+<div class="italic text-center mt-0">Dashboard de Prefect</div>
 
 maintenant on va lancer le deployment
 
 <ContentImage src="/posts/prefect/run-deploy.png" alt="interface d'orion" />
+<div class="italic text-center mt-0">Lancement d'un deployment</div>
+
 <ContentImage src="/posts/prefect/flow-run.png" alt="interface d'orion" />
+<div class="italic text-center mt-0">Le flowrun créé par le lancement du deployment</div>
 
-et ... et ... bah rien, le code est pas éxécuté
+Et ... Et ... Bah rien ... Le code est pas éxécuté 😅 ...
 
-## Lancement de l'agent
+# Lancement de l'agent
 
 On se connecte sur le worker-1, on met le script `demo_prefect.py` créé plus tôt dans `/root` (pour que ça corresponde au fichier de deployment)
 
@@ -176,6 +195,7 @@ Hello world!
 And voilà 😉
 
 <ContentImage src="/posts/prefect/dashboard-run.png" alt="interface d'orion" />
+
 <ContentImage src="/posts/prefect/dashboard-run2.png" alt="interface d'orion" />
 
 ## Bonus, deployment dans le cloud
@@ -183,11 +203,11 @@ And voilà 😉
 Bon, on va pas se mentir devoir upload les fichiers pythons à la main c'est relou, heureusement prefect a des solutions
 <ContentImage src="/posts/prefect/le-cloud.jpeg" alt="Le Cloud" />
 
-Bon comme je suis sur une infra de test je vais utiliser du SMB, mais en pratique on va utiliser les services du cloud provider.
+Bon comme je suis sur une infra de test je vais utiliser du SMB, mais en pratique on va utiliser les services managés des cloud providers.
 
 ### Configuration du serveur SMB
 
-On install `samba` sur le controlleur (`apt install samba`)<br>
+On install `samba` sur le contrôleur (`apt install samba`)<br>
 On crée un dossier share-prefect dans /var/smb : `mkdir -p /var/smb/share-prefect`<br>
 On configure samba:
 ```bash:/etc/samba/smb.conf
@@ -223,14 +243,14 @@ Le flag `-sb` indique qu'on veux deployer en utilisant le storage block de type 
 
 La tronche du fichier nouvellement créé:
 ```yaml:hello_world-deployment.yaml
-###
-### A complete description of a Prefect Deployment for flow 'Hello Flow'
-###
-name: "d\xE9mo_smb"
+# ##
+# ## A complete description of a Prefect Deployment for flow 'Hello Flow'
+# ##
+name: démo_smb
 description: null
 version: 9f322938015631280a9869b82a116af5
 # The work queue that will handle this deployment's runs
-work_queue_name: "queue_de_d\xE9mo"
+work_queue_name: queue_de_démo
 tags: []
 parameters: {}
 schedule: null
@@ -245,9 +265,9 @@ infrastructure:
   block_type_slug: process
   _block_type_slug: process
 
-###
-### DO NOT EDIT BELOW THIS LINE
-###
+# ##
+# ## DO NOT EDIT BELOW THIS LINE
+# ##
 flow_name: Hello Flow
 manifest_path: null
 storage:
@@ -275,6 +295,51 @@ parameter_openapi_schema:
 ```
 
 
-On applique le deployment fraichement créé: `prefect deployment apply hello_world-deployment.yaml` (on est toujours sur le controlleur)<br>
+On applique le deployment fraichement créé: `prefect deployment apply hello_world-deployment.yaml` (on est toujours sur le contrôleur)<br>
 
-Maintenant sur le worker-1 on va supprimer le fichier `demo_prefect.py` et run le nouveau deployment depuis l'interface web (pour rappel http://10.0.10.200:4200 dans mon cas), et là comme par magie l'agent Prefect va chercher sur le smb les fichiers nécessaires au run.
+Maintenant sur le worker-1 on va supprimer le fichier `demo_prefect.py` et run le nouveau deployment depuis l'interface web (pour rappel http://10.0.10.200:4200 dans mon cas), et là comme par magie l'agent Prefect va chercher sur le partage SMB les fichiers nécessaires au run.
+
+## Bonus, dotenv
+
+Bon, devoir faire `PREFECT_API_URL="http://10.0.10.200:4200/api" prefect agent start -q queue_de_démo` c'est un peu relou, et en plus ça reste dans l'historique, heureusement le package **python-dotenv** permet de lancer un process en prennant en compte un fichier .env :
+
+### Fichier .env
+on va donc faire un fichier .env :
+
+```bash:.env
+PREFECT_API_URL="http://10.0.10.200:4200/api"
+```
+
+### Installation de python-dotenv
+
+<ContentWarningbox>
+Encore une fois dans un environnement de production il serait preferable d'utiliser un <ContentLink to="https://docs.python.org/fr/3/library/venv.html">venv</ContentLink>, ou encore mieux <ContentLink to="https://python-poetry.org/">Poetry</ContentLink>.
+</ContentWarningbox>
+
+`pip install python-dotenv`
+```bash
+Collecting python-dotenv
+  Downloading python_dotenv-0.21.0-py3-none-any.whl (18 kB)
+Installing collected packages: python-dotenv
+Successfully installed python-dotenv-0.21.0
+```
+
+### Utilisation de python-dotenv
+
+il suffit de lancer `dotenv run prefect agent start -q queue_de_démo` dans le repetoire où il y a le .env and voila.
+
+Bon, en vrai on dira au process manager (systemd, PM2, supervisor, docker, etc ...) d'utiliser le .env sans avoir à utiliser `dotenv run`.<br>
+Par exemple avec un service systemd:
+
+```bash:/etc/systemd/system/prefect-agent.service
+[Unit]
+Description = mon agent prefect
+After = network.target
+
+[Service]
+EnvironmentFile=/path/du/dossier/avec/le/dotenv/.env
+ExecStart = /usr/local/bin/prefect agent start -q queue_de_démo
+
+[Install]
+WantedBy = multi-user.target
+```
