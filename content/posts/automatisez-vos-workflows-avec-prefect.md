@@ -17,7 +17,7 @@ Bonjour !
 
 Aujourd'hui un petit article pour présenter [Prefect](https://docs.prefect.io/) 😉
 
-PS: N'hésitez pas à donner votre avis sur le [discord](https://discord.flapili.fr), si vous vouillez une coquille n'hésitez pas à la remonter 😋
+PS: N'hésitez pas à donner votre avis sur le [discord](https://discord.flapili.fr), si vous voyez une coquille n'hésitez pas à la remonter 😋
 
 # Présentation
 
