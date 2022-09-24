@@ -9,13 +9,15 @@ tags:
  - Tasks
  - Flows
  - Orchestration
-createdAt: "2022-09-16T05:50:24.418Z"
+createdAt: "2022-09-24T06:29:14.841Z"
 ---
 [[toc]]
 
 Bonjour !
 
 Aujourd'hui un petit article pour présenter [Prefect](https://docs.prefect.io/) 😉
+
+PS: N'hésitez pas à donner votre avis sur le [discord](https://discord.flapili.fr), si vous vouillez une coquille n'hésitez pas à la remonter 😋
 
 # Présentation
 
