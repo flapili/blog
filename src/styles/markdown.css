@@ -66,7 +66,6 @@ html.dark {
 .markdown .table-of-contents a {
   @apply !no-underline;
   @apply py-1 px-1.5;
-  @apply inline-block;
 }
 
 .markdown .table-of-contents * {
@@ -89,7 +88,7 @@ html.dark {
   @apply ml-12;
 }
 
-.markdown li {
+.markdown li:not(.table-of-contents) {
   @apply my-1;
 }
 
@@ -108,7 +107,6 @@ html.dark {
 .markdown > ul > li > ul > li > ul > li > ul > li {
   @apply ml-12;
 }
-
 
 .markdown .named-fence-filename {
   @apply absolute;
@@ -224,13 +222,13 @@ html.dark {
   @apply border-collapse border;
 }
 
-.markdown table > thead, .markdown table > tbody {
+.markdown table > thead,
+.markdown table > tbody {
   @apply bg-primary text-secondary dark:(bg-secondary text-primary);
 }
 
-.markdown table td, .markdown table th {
+.markdown table td,
+.markdown table th {
   @apply border;
   @apply px-4 py-2;
 }
-
-
