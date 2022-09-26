@@ -89,6 +89,10 @@ html.dark {
   @apply ml-12;
 }
 
+.markdown li {
+  @apply my-1;
+}
+
 .markdown > ul > li {
   @apply ml-0;
 }
@@ -196,7 +200,7 @@ html.dark {
   @apply border-secondary/80 dark:border-primary/80;
 }
 
-.markdown > * {
+.markdown > *:not(ul) {
   @apply mt-4;
 }
 
