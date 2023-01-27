@@ -24,7 +24,7 @@ PS: N'hésitez pas à donner votre avis sur le [discord](https://discord.flapili
 
 # Service de capture
 
-J'utilise FastAPI + Playwright pour faire le service mais vous pouvez utiliser ce que vous voulez.
+J'utilise <ContentLink to="https://fastapi.tiangolo.com/">FastAPI</ContentLink> + <ContentLink to="https://playwright.dev/python/">Playwright</ContentLink> pour faire le service mais vous pouvez utiliser ce que vous voulez.
 
 On fait un dossier `capture` et on y met 3 fichiers :
 - Dockerfile
@@ -56,7 +56,8 @@ CMD [ "uvicorn", "main:app", "--port", "8000", "--host", "0.0.0.0" ]
 
 ## requirements.txt
 
-J'utilise Poetry pour gérer les dépendances et surtout pour générer le fichier de requirements
+
+J'utilise <ContentLink to="https://python-poetry.org/">Poetry</ContentLink> pour gérer les dépendances et surtout pour générer le fichier de requirements
 
 
 ```toml:pyproject.toml
@@ -245,7 +246,7 @@ Il n'y a plus qu'à faire une règle de redirection
 ```
 Un coup de `firebase deploy` and voilà !
 
-si je vais sur `https://test-nuxt3-faas.flapili.fr/_api/capture` j'ai ça comme rendu :
+si je vais sur <ContentLink to="https://test-nuxt3-faas.flapili.fr/_api/capture">https://test-nuxt3-faas.flapili.fr/_api/capture</ContentLink> j'ai ça comme rendu :
 <ContentImage src="/posts/nuxt3-capture/capture.jpeg" alt="capture" />
 
 Et si je partage le lien sur discord TADAAAA !
