@@ -40,7 +40,7 @@ FROM mcr.microsoft.com/playwright/python:v1.30.0-focal
 # Pour avoir les logs en temps réel dans GCP
 ENV PYTHONUNBUFFERED True
 
-On récupère le fichier qui décrit les dépendances et on les installes
+# On récupère le fichier qui décrit les dépendances et on les installes
 COPY requirements.txt ./
 RUN python3 -m pip install --no-cache-dir -r requirements.txt
 
