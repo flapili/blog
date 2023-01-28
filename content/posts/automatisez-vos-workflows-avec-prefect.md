@@ -230,7 +230,7 @@ Added user root.
 ### Ajout du bloc dans Prefect
 
 On ajoute un bloc de type SMB tel quel
-<ContentImage src="/posts/prefect/dashboard-ajout-block-smb" alt="interface d'orion" />
+<ContentImage src="/posts/prefect/dashboard-ajout-block-smb.png" alt="interface d'orion" />
 
 On supprime le deployment précédant depuis l'interface, ainsi que la queue et le flow
 
