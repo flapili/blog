@@ -253,3 +253,78 @@ Et si je partage le lien sur discord TADAAAA !
 
 
 <ContentImage src="/posts/nuxt3-capture/previsu-discord.jpeg" alt="previsu-discord" />
+
+
+# EDIT
+
+L'image faisait quasiment 2go, j'ai donc fait une alternative plus legère:
+
+
+```docker:Dockerfile
+FROM joyzoursky/python-chromedriver:3.9-alpine-selenium
+
+RUN apk add --no-cache jpeg-dev zlib-dev
+RUN apk add --no-cache --virtual .build-deps build-base linux-headers \
+    && pip install Pillow uvicorn fastapi
+
+WORKDIR /app
+COPY main.py .
+
+
+CMD [ "uvicorn", "main:app", "--port", "8000", "--host", "0.0.0.0" ]
+```
+
+```python:main.py
+# coding: utf-8
+import io
+from typing import Union
+
+from PIL import Image
+from selenium import webdriver
+from fastapi import FastAPI, Response, Header, HTTPException
+
+
+app = FastAPI(openapi_url=None)
+
+
+@app.get("/{path:path}")
+def get_capture(
+    path: str,
+    host: Union[str, None] = Header(default=None, alias="x-forwarded-host"),
+):
+    if host is None:
+        raise HTTPException(status_code=400, detail="bad host")
+
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.add_argument("--no-sandbox")
+    chrome_options.add_argument("--headless")
+    chrome_options.add_argument("--disable-gpu")
+    chrome_options.add_argument("--disable-dev-shm-usage")
+    chrome_options.add_argument("--window-size=1920,1080")
+    driver = webdriver.Chrome(options=chrome_options)
+    driver.get(f"https://{host}")
+    result = driver.get_screenshot_as_png()
+
+    driver.close()
+
+    with io.BytesIO(result) as f:
+        with Image.open(f) as img:
+            resized_img = img.convert("RGB").resize((960, 540))
+
+    with io.BytesIO() as output_img:
+        resized_img.save(output_img, "JPEG", quality=80)
+        return Response(
+            content=output_img.getvalue(),
+            media_type="image/jpeg",
+            headers={"Cache-Control": "public, max-age=0, s-maxage=600"},
+        )
+```
+
+et maintenant TADA !
+
+```shell
+docker image ls
+REPOSITORY  TAG     IMAGE ID      CREATED            SIZE
+test        latest  2aba5691207f  About an hour ago  630MB
+
+```
