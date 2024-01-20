@@ -1,7 +1,9 @@
 <script setup>
 const { data: posts } = await useAsyncData('posts', async () => {
   const data = await queryContent('/posts/').find()
-  return data.sort((a, b) => new Date(a.created_at) - new Date(b.created_at))
+  return data
+    .filter(post => !post.archived)
+    .sort((a, b) => new Date(a.created_at) - new Date(b.created_at))
 })
 </script>
 
