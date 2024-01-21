@@ -26,7 +26,7 @@ const activeActicle = useActiveArticle()
                 </div>
                 <div class="flex flex-wrap flex-gap-2">
                   <img :src="`/team/${post.author.avatar}`" alt="auteur" class="h-8 w-8 rounded-sm">
-                  <div class="tags mr-auto flex">
+                  <div class="tags mr-auto flex flex-gap-2">
                     <div v-for="tag in post.tags" :key="tag" class="border border-green-700 rounded-md bg-green-950 px-1 py-0.5 text-primary transition-all transition-duration-500ms group-hover:(border-black bg-green-500 text-secondary)">
                       {{ tag }}
                     </div>
