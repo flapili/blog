@@ -6,7 +6,7 @@ const activeActicle = useActiveArticle()
   <div class="h-full w-full flex flex-col">
     <h1 class="w-full flex justify-center text-3xl font-bold">
       <i class="i-dashicons-welcome-write-blog mr-2" />
-      Les posts
+      Les articles
     </h1>
     <ContentList
       path="/posts" :query="{
