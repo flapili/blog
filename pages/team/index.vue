@@ -10,7 +10,7 @@
     >
       <template #default="{ list }">
         <div class="mt-8 w-full">
-          <ul class="mx-auto w-full flex flex-wrap items-center justify-center flex-gap-y-4 bg-gray-500 lg:w-1/2">
+          <ul class="mx-auto w-full flex flex-wrap items-center justify-center flex-gap-y-4 lg:w-1/2">
             <li v-for="member in list" :key="member._id" class="flex flex-grow rounded-sm">
               <NuxtLink :to="`/team/${member.name}`" class="mx-auto flex flex-col px-3 py-2 link">
                 <img :src="`/team/${member.avatar}`" alt="member" class="h-64 w-64 rounded-sm">
