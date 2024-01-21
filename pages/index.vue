@@ -13,7 +13,7 @@
         <div class="mt-8 w-full">
           <ul class="flex flex-col flex-gap-y-4 mx-auto w-full lg:w-1/2">
             <li v-for="post in list" :key="post._id" class="flex w-full rounded-sm">
-              <NuxtLink :to="post._path" class="link flex flex-col w-full py-2 px-3 flex-gap-y-1">
+              <NuxtLink :to="post._path" class="transition-all transition-duration-500ms group ring-inset ring-green-600 hover:(ring bg-green-950) rounded-md flex flex-col w-full py-2 px-3 flex-gap-y-1 py-2 px-4">
                 <div class="text-xl">
                   {{ post.title }}
                 </div>
@@ -22,7 +22,7 @@
                 </div>
                 <div class="flex flex-wrap flex-gap-2">
                   <img :src="`/team/${post.author.avatar}`" alt="auteur" class="h-8 w-8 rounded-sm">
-                  <div v-for="tag in post.tags" :key="tag" class="border-1 px-1 py-0.5 border-green-700 rounded-md text-primary bg-green-950 ">
+                  <div v-for="tag in post.tags" :key="tag" class="transition-all transition-duration-500ms border px-1 py-0.5 border-green-700 rounded-md text-primary bg-green-950 group-hover:(bg-green-500 text-secondary border-black)">
                     {{ tag }}
                   </div>
                 </div>

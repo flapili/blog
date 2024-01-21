@@ -7,17 +7,26 @@ const props = withDefaults(defineProps<{
 </script>
 
 <template>
-  <div class="mx-2 rounded overflow-hidden">
+  <div class="m-2 rounded overflow-hidden">
     <div
-      class="flex flex-col border rounded text-gray-900 border-l-8 border-0" :class="{
+      class="flex flex-col border rounded text-gray-900 border-l-8 border-0"
+      :class="{
         'border-sky-500': props.type === 'info',
         'border-yellow-500': props.type === 'warning',
         'border-red-500': props.type === 'danger',
       }"
     >
-      <div class="flex bg-sky-200 p-2">
+      <div
+        class="flex p-2"
+        :class="{
+          'bg-sky-200': props.type === 'info',
+          'bg-yellow-200': props.type === 'warning',
+          'bg-red-200': props.type === 'danger',
+        }"
+      >
         <i
-          class="text-xl mx-2" :class="{
+          class="text-xl mx-2"
+          :class="{
             'i-material-symbols-info text-sky-500': props.type === 'info',
             'i-material-symbols-warning': props.type === 'warning',
             'i-material-symbols-dangerous': props.type === 'danger',
@@ -36,7 +45,8 @@ const props = withDefaults(defineProps<{
         </slot>
       </div>
       <div
-        class="p-2 pl-4" :class="{
+        class="p-2 pl-4"
+        :class="{
           'bg-sky-100': props.type === 'info',
           'bg-yellow-100': props.type === 'warning',
           'bg-red-100': props.type === 'danger',

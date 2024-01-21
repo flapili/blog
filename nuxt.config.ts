@@ -15,18 +15,11 @@ export default defineNuxtConfig({
 
   modules: [
     '@nuxt/content',
-    '@nuxt/image',
     '@vueuse/nuxt',
     '@unocss/nuxt',
   ],
 
-  content: {
-    // documentDriven: {
-    //   injectPage: false,
-    //   layoutFallbacks: ['Default'],
-    //   trailingSlash: false,
-    // },
-  },
+  content: {},
 
   css: [
     '@unocss/reset/tailwind.css',

@@ -39,12 +39,9 @@ Je vais créer 3 machines, une qui sera le contrôleur et deux qui seront les wo
 Les 3 machines seront sous ubuntu 22.04LTS parce que j'ai la flemme de faire d'autres templates 😅<br>
 2 Go de ram et 2 cores seront largement suffisant
 
-![Diagramme](/posts/prefect/diagramme-infra.jpg)
+![Diagramme](/posts/prefect/diagramme-infra.jpg){legend="Diagramme de l'infrastructure"}
 
-<div class="italic text-center mt-0">Diagramme de l'infrastructure</div>
-
-<Image src="/posts/prefect/creation-vm.png" alt="Création des VMs" />
-<div class="italic text-center mt-0">Création des machines virtuelles sous Proxmox</div>
+![Création des VMs](/posts/prefect/creation-vm.png){legend="Création des VMs"}
 
 On attends que CloudImage setup les VMs, on mets tous ça sous DHCP en faisant joujou avec dhclient:
 
@@ -56,9 +53,9 @@ On attends que CloudImage setup les VMs, on mets tous ça sous DHCP en faisant j
 
 ## Installation de Prefect
 
-<Infobox>
-Pour la démo je ne vais pas m'embeter à compiler Python depuis les sources ni installer de <Link to="https://docs.python.org/fr/3/library/venv.html">venv</Link>, mais dans un environnement de production je l'aurai fait.
-</Infobox>
+::messageBox{type=info}
+Pour la démo je ne vais pas m'embeter à compiler Python depuis les sources ni installer de [venv](https://docs.python.org/fr/3/library/venv.html), mais dans un environnement de production je l'aurai fait.
+::
 
 On se log avec `ssh root@10.0.10.200` pour commencer (grace à Cloud init j'ai déjà ma clé publique dans les authorized_keys).
 
@@ -78,9 +75,7 @@ C'est pour la démo que je fais ça, si vous n'avez pas de pare-feu tout le mond
 
 On se rend sur http://10.0.10.200:4200 (le port par défaut d'Orion)
 
-![Interface d'Orion](/posts/prefect/dashboard-vide.png){legend="200px"}
-
-<div class="italic text-center mt-0">dashboard de Prefect</div>
+![Interface d'Orion](/posts/prefect/dashboard-vide.png){legend="Le dashboard de Prefect"}
 
 Bon, pas grand chose encore, on va créer notre 1er deployment :
 
@@ -155,16 +150,13 @@ parameter_openapi_schema:
 
 Et on a plus qu'à l'appliquer : `prefect deployment apply hello_world-deployment.yaml` et TADA !
 
-<Image src="/posts/prefect/dashboard.png" alt="interface d'orion" />
-<div class="italic text-center mt-0">Dashboard de Prefect</div>
+![Interface d'Orion](/posts/prefect/dashboard.png){legend="Dashboard de Prefect"}
 
 maintenant on va lancer le deployment
 
-<Image src="/posts/prefect/run-deploy.png" alt="interface d'orion" />
-<div class="italic text-center mt-0">Lancement d'un deployment</div>
+![Interface d'Orion](/posts/prefect/run-deploy.png){legend="Lancement d'un deployment"}
 
-<Image src="/posts/prefect/flow-run.png" alt="interface d'orion" />
-<div class="italic text-center mt-0">Le flowrun créé par le lancement du deployment</div>
+![Interface d'Orion](/posts/prefect/flow-run.png){legend="Le flowrun créé par le lancement du deployment"}
 
 Et ... Et ... Bah rien ... Le code est pas éxécuté 😅 ...
 
@@ -196,14 +188,14 @@ Hello world!
 
 And voilà 😉
 
-<Image src="/posts/prefect/dashboard-run.png" alt="interface d'orion" />
-
-<Image src="/posts/prefect/dashboard-run2.png" alt="interface d'orion" />
+![interface d'Orion](/posts/prefect/dashboard-run.png)
+![interface d'Orion](/posts/prefect/dashboard-run2.png)
 
 ## Bonus, deployment dans le cloud
 
 Bon, on va pas se mentir devoir upload les fichiers pythons à la main c'est relou, heureusement prefect a des solutions
-<Image src="/posts/prefect/le-cloud.jpeg" alt="Le Cloud" />
+
+![Le Cloud](/posts/prefect/le-cloud.jpeg)
 
 Bon comme je suis sur une infra de test je vais utiliser du SMB, mais en pratique on va utiliser les services managés des cloud providers.
 
@@ -218,8 +210,10 @@ On configure samba:
     read only = no
     browsable = yes
 ```
+
 On relance le service: `systemctl reload smbd`<br>
 Enfin on rajoute l'utilisateur root (avec le mot de passe "root")
+
 ```bash
 smbpasswd -a root
 New SMB password:
@@ -230,7 +224,8 @@ Added user root.
 ### Ajout du bloc dans Prefect
 
 On ajoute un bloc de type SMB tel quel
-<Image src="/posts/prefect/dashboard-ajout-block-smb.png" alt="interface d'orion" />
+
+![interface d'Orion](/posts/prefect/dashboard-ajout-block-smb.png)
 
 On supprime le deployment précédant depuis l'interface, ainsi que la queue et le flow
 
@@ -313,9 +308,9 @@ PREFECT_API_URL="http://10.0.10.200:4200/api"
 
 ### Installation de python-dotenv
 
-<Warningbox>
-Encore une fois dans un environnement de production il serait preferable d'utiliser un <Link to="https://docs.python.org/fr/3/library/venv.html">venv</Link>, ou encore mieux <Link to="https://python-poetry.org/">Poetry</Link>.
-</Warningbox>
+::messageBox{type=warning}
+Encore une fois dans un environnement de production il serait preferable d'utiliser un [venv](https://docs.python.org/fr/3/library/venv.html), ou encore mieux [Poetry](https://python-poetry.org/).
+::
 
 `pip install python-dotenv`
 ```bash
