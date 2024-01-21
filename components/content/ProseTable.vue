@@ -1,5 +1,5 @@
 <template>
-  <table class="![&_*]:border my-4">
+  <table class="my-4 ![&_*]:(border px-2 py-1.5)">
     <slot />
   </table>
 </template>

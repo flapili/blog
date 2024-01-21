@@ -35,17 +35,17 @@ const code = await codeToHtml(props.code.trim(), {
 </script>
 
 <template>
-  <div class="flex flex-col w-full my-4 border-2 border-primary bg-[#2e3440ff]">
-    <div class="flex bg-primary h-8 items-center">
-      <div v-if="language" class="ml-2 bg-secondary rounded p-1 text-xs">
+  <div class="my-4 w-full flex flex-col border-2 border-gray-900 bg-[#2e3440ff]">
+    <div class="h-8 flex items-center bg-gray-900">
+      <div v-if="language" class="ml-2 border border-green-700 rounded-md bg-green-950 bg-secondary px-1 py-0.5 text-sm text-primary">
         {{ language }}
       </div>
       <div v-if="filename" class="ml-2 text-secondary">
         {{ filename }}
       </div>
     </div>
-    <div class="flex max-h-80vh flex w-full h-full scrollable scrollbar-track-color-[#2e3440ff]">
-      <div class="flex-grow pl-2 pr-16 py-2" v-html="code" />
+    <div class="h-full max-h-80vh w-full flex flex scrollbar-track-color-[#2e3440ff] scrollable">
+      <div class="flex-grow py-2 pl-0.5 pr-16" v-html="code" />
     </div>
   </div>
 </template>

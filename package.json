@@ -13,6 +13,7 @@
     "@antfu/eslint-config": "^2.6.3",
     "@iconify/json": "^2.2.171",
     "@nuxt/content": "^2.10.0",
+    "@unocss/eslint-plugin": "^0.58.3",
     "@unocss/nuxt": "^0.58.3",
     "@unocss/transformer-variant-group": "^0.58.3",
     "@vueuse/core": "^10.7.2",

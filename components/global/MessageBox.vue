@@ -7,9 +7,9 @@ const props = withDefaults(defineProps<{
 </script>
 
 <template>
-  <div class="m-2 rounded overflow-hidden">
+  <div class="m-2 overflow-hidden rounded">
     <div
-      class="flex flex-col border rounded text-gray-900 border-l-8 border-0"
+      class="flex flex-col border border-0 border-l-8 rounded text-gray-900"
       :class="{
         'border-sky-500': props.type === 'info',
         'border-yellow-500': props.type === 'warning',
@@ -25,7 +25,7 @@ const props = withDefaults(defineProps<{
         }"
       >
         <i
-          class="text-xl mx-2"
+          class="mx-2 text-xl"
           :class="{
             'i-material-symbols-info text-sky-500': props.type === 'info',
             'i-material-symbols-warning': props.type === 'warning',
