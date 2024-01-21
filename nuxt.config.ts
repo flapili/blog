@@ -5,16 +5,28 @@ import { presetIcons, presetTypography, presetUno, presetWebFonts, transformerDi
 import { presetScrollbar } from 'unocss-preset-scrollbar'
 
 export default defineNuxtConfig({
+  devtools: {
+    enabled: true,
+  },
+
   nitro: {
     preset: 'netlify-static',
   },
 
   modules: [
     '@nuxt/content',
+    '@nuxt/image',
     '@vueuse/nuxt',
     '@unocss/nuxt',
-    'nuxt-schema-org',
   ],
+
+  content: {
+    // documentDriven: {
+    //   injectPage: false,
+    //   layoutFallbacks: ['Default'],
+    //   trailingSlash: false,
+    // },
+  },
 
   css: [
     '@unocss/reset/tailwind.css',
@@ -52,17 +64,5 @@ export default defineNuxtConfig({
     ],
     safelist: ['i-clarity-success-standard-solid', 'i-mdi-content-copy', 'text-green-600'],
 
-  },
-
-  content: {},
-
-  schemaOrg: {
-    identity: {
-      '@type': 'Person',
-      'name': 'Benoît Deveaux',
-      'url': 'https://flapili.fr',
-      'logo': 'https://flapili.fr/logo.png',
-    },
-    // host: 'https://flapili.fr',
   },
 })

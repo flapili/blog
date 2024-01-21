@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 const year = useDateFormat(useNow(), 'YYYY')
 </script>
 
@@ -9,11 +9,11 @@ const year = useDateFormat(useNow(), 'YYYY')
         flapili.fr
       </NuxtLink>
       <nav class="ml-auto mr-auto sm:(mr-8 text-xl) flex flex-wrap items-center children:(px-4 py-2 h-full)">
-        <NuxtLink to="/" class="link flex justify-center">
-          <div class="i-ion-home-outline mt-2px" />
-        </NuxtLink>
-        <NuxtLink to="/posts" class="link">
-          Posts
+        <NuxtLink to="/" class="link flex justify-center items-center flex-gap-1">
+          <i class="i-material-symbols-folder-open-outline" />
+          <div>
+            Articles
+          </div>
         </NuxtLink>
         <NuxtLink to="/team" class="link">
           L'équipe
